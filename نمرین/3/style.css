@@ -1,0 +1,108 @@
+/* فایل: style.css */
+
+/* تنظیمات کلی صفحه */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Vazirmatn", "Tahoma", sans-serif;
+}
+
+/* استایل کلی نوار منو */
+nav {
+   min-width:200px;
+  background-color: #b2a4e6;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin: 10px;
+}
+
+/* ظرف داخلی برای کنترل چیدمان */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* منوی اصلی */
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  white-space: nowrap;
+}
+
+
+
+/* آیتم‌های منو */
+.menu li {
+  position: relative;
+}
+
+/* لینک‌های منو */
+.menu li a {
+  text-decoration: none;
+  color: black;
+  padding: 8px 12px;
+  display: block;
+  transition: background-color 0.3s, color 0.3s;
+   white-space: nowrap;
+}
+
+/* تغییر رنگ موقع هاور */
+.menu li a:hover {
+  background-color: #7a6fb2;
+  color: #fff;
+  border-radius: 4px;
+}
+
+/* زیرمنوها */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  min-width: 180px;
+  z-index: 100;
+}
+
+/* نمایش زیرمنو هنگام هاور */
+.has-submenu:hover .submenu {
+  display: block;
+}
+
+/* آیتم‌های زیرمنو */
+.submenu li a {
+  padding: 10px;
+  color: black;
+  white-space: nowrap;
+ 
+}
+
+/* هاور زیرمنو */
+.submenu li a:hover {
+  background-color: #eee;
+}
+
+/* دکمه ورود / عضویت */
+.auth-button a {
+  background-color: #304ffe;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+   white-space: nowrap;
+}
+
+/* هاور دکمه ورود */
+.auth-button a:hover {
+  background-color: #1a237e;
+}
+.submenu{
+    list-style: none;
+}

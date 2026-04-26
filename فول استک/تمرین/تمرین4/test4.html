@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="صفحه معرفی شخصی و مهارت‌ها" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Landing Page</title>
+
+    <!-- لینک فایل CSS خارجی -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- ===== Header اصلی سایت ===== -->
+    <header class="site-header">
+      <div class="header-container">
+        <!-- لوگو / نام -->
+        <h1 class="site-logo">علی ترکمان پری</h1>
+
+        <!-- منوی ناوبری -->
+        <nav class="main-nav">
+          <ul class="nav-list">
+            <li class="nav-item has-dropdown">
+              <a href="#home">خانه</a>
+              <ul class="dropdown">
+                <li><a href="#">طراحی وب</a></li>
+                <li><a href="#">آشپزی رستوران</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item has-dropdown">
+              <a href="#skills">مهارت‌ها</a>
+              <!-- زیرمنو -->
+              <ul class="dropdown">
+                <li><a href="#">طراحی وب</a></li>
+                <li><a href="#">آشپزی رستوران</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item has-dropdown">
+              <a href="#portfolio">نمونه‌کارها</a>
+              <ul class="dropdown">
+                <li><a href="#">طراحی وب</a></li>
+                <li><a href="#">آشپزی رستوران</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item has-dropdown">
+              <a href="#contact">تماس</a>
+              <ul class="dropdown">
+                <li><a href="#">طراحی وب</a></li>
+                <li><a href="#">آشپزی رستوران</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== محتوای اصلی ===== -->
+    <main class="main-content">
+      <!-- ===== Hero Section ===== -->
+      <section id="home" class="section hero-section">
+        <header class="section-header">
+          <h2>سلام، من علی ترکمان پری هستم</h2>
+        </header>
+
+        <p class="section-text">
+          طراح وب و علاقه‌مند به خلق تجربه‌های دیجیتال و حتی دنیای آشپزی
+          حرفه‌ای.
+        </p>
+      </section>
+
+      <!-- ===== About Section ===== -->
+      <section id="about" class="section">
+        <header class="section-header">
+          <h2>درباره من</h2>
+        </header>
+
+        <p class="section-text">
+          من فردی خلاق هستم که هم در دنیای وب و هم در محیط‌های رستورانی تجربه
+          دارم. ترکیب نظم، خلاقیت و دقت، نقطه قوت من است.
+        </p>
+      </section>
+
+      <!-- ===== Skills Section ===== -->
+      <section id="skills" class="section">
+        <header class="section-header">
+          <h2>مهارت‌ها</h2>
+        </header>
+
+        <div class="cards-container">
+          <!-- مهارت طراحی وب -->
+          <article class="card">
+            <h3>طراحی وب</h3>
+            <p>
+              طراحی رابط کاربری، ساخت لندینگ پیج، رعایت اصول سئو و تجربه کاربری.
+            </p>
+          </article>
+
+          <!-- مهارت آشپزی رستوران -->
+          <article class="card">
+            <h3>آشپزی رستوران</h3>
+            <p>
+              تجربه کار در محیط رستوران، آماده‌سازی غذاهای گرم و سرد، رعایت
+              بهداشت، مدیریت زمان و هماهنگی تیمی در ساعات شلوغ.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===== Portfolio Section ===== -->
+      <section id="portfolio" class="section section-alt">
+        <header class="section-header">
+          <h2>نمونه‌کارها</h2>
+        </header>
+
+        <div class="cards-container">
+          <article class="card">
+            <h3>پروژه شماره ۱</h3>
+            <p>طراحی لندینگ پیج مدرن و ریسپانسیو</p>
+          </article>
+
+          <article class="card">
+            <h3>پروژه شماره ۲</h3>
+            <p>وب‌سایت معرفی رستوران</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ===== Contact Section ===== -->
+      <section id="contact" class="section">
+        <header class="section-header">
+          <h2>تماس با من</h2>
+        </header>
+
+        <form class="contact-form">
+          <input type="text" placeholder="نام" />
+          <input type="email" placeholder="ایمیل" />
+          <textarea placeholder="پیام شما"></textarea>
+          <button type="submit">ارسال</button>
+        </form>
+      </section>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="site-footer">
+      <p>© 2026 - تمامی حقوق محفوظ است</p>
+    </footer>
+  </body>
+</html>

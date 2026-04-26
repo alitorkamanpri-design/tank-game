@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>بازی‌های ساده 2D</title>
+    <link rel="stylesheet" href="games.css" />
+  </head>
+  <body>
+    <div class="timeline">
+      <button onclick="showGame('tic-tac-toe')">بازی XO</button>
+      <button onclick="showGame('snake')">مار بازی</button>
+      <button onclick="showGame('pong')">پونگ</button>
+    </div>
+    <div id="game-container">
+      <div id="tic-tac-toe" class="game">
+        <h2>بازی XO</h2>
+        <div id="board"></div>
+        <button onclick="resetTicTacToe()">شروع مجدد</button>
+      </div>
+      <div id="snake" class="game">
+        <h2>مار بازی</h2>
+        <canvas id="snake-canvas" width="400" height="400"></canvas>
+        <button onclick="resetSnake()">شروع مجدد</button>
+      </div>
+      <div id="pong" class="game">
+        <h2>پونگ</h2>
+        <canvas id="pong-canvas" width="400" height="200"></canvas>
+        <button onclick="resetPong()">شروع مجدد</button>
+      </div>
+    </div>
+    <script src="games.js"></script>
+  </body>
+</html>

@@ -1,0 +1,153 @@
+:root{
+    --primary: #f5f5f5;    /* 60% - پس‌زمینه */
+    --secondary: #2c3e50;  /* 30% - متن و هدر */
+    --accent: #e74c3c;     /* 10% - دکمه‌ها */
+    /* Theme: Ocean Professional */
+    --bg-color: #f0f4f8;
+    --card-bg: #ffffff;
+    --header-bg: #1a365d;
+    --text-primary: #2d3748;
+    --text-secondary: #718096;
+    --accent: #3182ce;
+    --accent-hover: #2c5282;
+    --badge-bg: #ebf8ff;
+    --badge-text: #2b6cb0;
+}
+
+@font-face {
+  font-family: vazir-1;
+  src:
+    url(../font/Vazir-Medium.eot) format(ٌ "eot"),
+    url(../font/Vazir-Medium.woff) format("woff"),
+    url(../font/Vazir-Medium.woff2) format("woff2");
+  /* font-weight: bold;
+  font-style: italic; */
+}
+* {
+  font-family: vazir-1;
+  /* برای تغییر سایز فونت */
+  font-size: 24px;
+  font-variant: small-caps;
+  margin: 0; /* 1) حذف تمام margin های پیش‌فرض برای کنترل کامل */
+
+  padding: 0;
+  box-sizing: border-box;
+}
+/* =========================================================
+   🔥 FULL MODERN CSS RESET – Professional Version
+   Author: GapGPT (Optimized for modern browsers)
+   توضیح: ترکیبی از Reset, Normalize و رفع باگ‌های مرورگر
+   ========================================================= */
+
+/* 2) تنظیم box-sizing روی تمام حالات شبه‌ای (::before, ::after) */
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* 3) جلوگیری از بزرگ شدن فونت روی موبایل */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* 4) بهبود خوانایی متن و جلوگیری از لغزیدن فونت‌ها */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased; /* صاف‌تر شدن متن */
+}
+
+/* 5) تصاویر و ویدیو واکنش‌گرا بدون دردسر */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6) جلوگیری از کش آمدن عکس‌های بدون width/height (تثبیت layout) */
+img {
+  height: auto;
+  aspect-ratio: attr(width) / attr(height);
+}
+
+/* 7) عناصر فرم هم‌پوشانی استایل مرورگر نداشته باشند */
+input,
+textarea,
+button,
+select {
+  font: inherit; /* فونت از والد به ارث برده شود */
+  color: inherit;
+}
+
+/* 8) حذف استایل‌های پیش‌فرض دکمه‌ها */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* 9) جلوگیری از چینش غیرعادی در textarea */
+textarea {
+  resize: vertical;
+}
+
+/* 10) لینک بدون underline پیش‌فرض؛ قابل استایل‌دهی بهتر */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 11) حذف bullet لیست‌ها */
+ul,
+ol {
+  list-style: none;
+}
+
+/* 12) تراز بهتر تیترها با فونت */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  line-height: 1.2;
+}
+
+/* 13) جدول‌ها بدون فاصله داخل سلول‌ها */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 14) رفع باگ در فرم‌ها برای دسکتاپ و موبایل */
+button,
+input,
+select,
+textarea {
+  outline: none; /* کنترل کامل روی outline */
+}
+
+/* 15) کنترل بهتر اسکرول و smooth scroll */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* 16) جلوگیری از highlight آبی ناخوشایند در موبایل */
+*:focus-visible {
+  outline: 2px solid #0a84ff; /* قابلیت دسترسی بالا */
+  outline-offset: 2px;
+}
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* 17) حذف tap highlight در موبایل */
+* {
+  -webkit-tap-highlight-color: transparent;
+}

@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tank Defense</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #0a0a1a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: "Segoe UI", sans-serif;
+        overflow: hidden;
+      }
+
+      #wrapper {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      #gameCanvas {
+        border: 2px solid #2a4a2a;
+        border-radius: 8px;
+        box-shadow: 0 0 30px rgba(0, 255, 80, 0.15);
+        display: block;
+      }
+
+      #sidebar {
+        width: 140px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .panel {
+        background: linear-gradient(135deg, #0d1f0d, #1a2e1a);
+        border: 1px solid #2a5a2a;
+        border-radius: 10px;
+        padding: 14px 12px;
+        text-align: center;
+        box-shadow: 0 0 12px rgba(0, 200, 60, 0.1);
+      }
+
+      .panel-label {
+        color: #4a9a4a;
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+
+      .panel-value {
+        color: #7fff7f;
+        font-size: 28px;
+        font-weight: bold;
+        text-shadow: 0 0 10px rgba(100, 255, 100, 0.5);
+      }
+
+      #healthBar {
+        width: 100%;
+        height: 10px;
+        background: #1a1a1a;
+        border-radius: 5px;
+        overflow: hidden;
+        margin-top: 8px;
+      }
+
+      #healthFill {
+        height: 100%;
+        background: linear-gradient(90deg, #ff4444, #ff8800, #44ff44);
+        background-size: 300% 100%;
+        border-radius: 5px;
+        transition: width 0.3s ease;
+      }
+
+      .hint {
+        background: #0d1520;
+        border: 1px solid #1a3a5a;
+        border-radius: 10px;
+        padding: 12px;
+        color: #4a7aaa;
+        font-size: 10px;
+        line-height: 1.8;
+      }
+
+      .hint span {
+        color: #7ab0dd;
+      }
+
+      #overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        z-index: 10;
+      }
+
+      #overlay h1 {
+        color: #7fff7f;
+        font-size: 32px;
+        text-shadow: 0 0 20px rgba(100, 255, 100, 0.8);
+        margin-bottom: 10px;
+      }
+
+      #overlay p {
+        color: #aaa;
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+
+      #overlay button {
+        margin-top: 20px;
+        padding: 12px 32px;
+        background: linear-gradient(135deg, #1a5a1a, #2a8a2a);
+        color: #7fff7f;
+        border: 1px solid #4aaa4a;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        letter-spacing: 1px;
+        transition: all 0.2s;
+      }
+
+      #overlay button:hover {
+        background: linear-gradient(135deg, #2a7a2a, #3aaa3a);
+        box-shadow: 0 0 15px rgba(100, 255, 100, 0.4);
+      }
+
+      #canvasWrapper {
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="canvasWrapper">
+        <canvas id="gameCanvas" width="560" height="600"></canvas>
+        <div id="overlay">
+          <h1>🎯 TANK DEFENSE</h1>
+          <p style="color: #7fff7f; font-size: 18px; margin-bottom: 4px">
+            آماده‌ای؟
+          </p>
+          <p>← → برای چرخش لوله</p>
+          <p>Enter برای شلیک</p>
+          <button onclick="startGame()">شروع بازی</button>
+        </div>
+      </div>
+
+      <div id="sidebar">
+        <div class="panel">
+          <div class="panel-label">امتیاز</div>
+          <div class="panel-value" id="scoreDisplay">0</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">جان</div>
+          <div class="panel-value" id="livesDisplay">100</div>
+          <div id="healthBar">
+            <div
+              id="healthFill"
+              style="width: 100%; background-position: 100% 0"
+            ></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">موج</div>
+          <div class="panel-value" id="waveDisplay">1</div>
+        </div>
+        <div class="hint">
+          <span>←→</span> لوله<br />
+          <span>Enter</span> شلیک<br />
+          <span>Space</span> شلیک
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const canvas = document.getElementById("gameCanvas");
+      const ctx = canvas.getContext("2d");
+
+      let score = 0,
+        lives = 100,
+        wave = 1,
+        gameRunning = false;
+      let tankAngle = -Math.PI / 2;
+      let bullets = [],
+        enemies = [],
+        particles = [];
+      let keys = {};
+      let lastShot = 0,
+        spawnTimer = 0,
+        waveTimer = 0;
+      let frameCount = 0;
+
+      const TANK_X = canvas.width / 2;
+      const TANK_Y = canvas.height - 70;
+
+      function startGame() {
+        score = 0;
+        lives = 100;
+        wave = 1;
+        tankAngle = -Math.PI / 2;
+        bullets = [];
+        enemies = [];
+        particles = [];
+        gameRunning = true;
+        document.getElementById("overlay").style.display = "none";
+        updateUI();
+        requestAnimationFrame(loop);
+      }
+
+      function updateUI() {
+        document.getElementById("scoreDisplay").textContent = score;
+        document.getElementById("livesDisplay").textContent = lives;
+        document.getElementById("waveDisplay").textContent = wave;
+        const pct = Math.max(0, lives);
+        document.getElementById("healthFill").style.width = pct + "%";
+        const pos = 100 - pct + "%";
+        document.getElementById("healthFill").style.backgroundPosition =
+          pos + " 0";
+      }
+
+      // SVG-based enemy drawing
+      function drawMissile(x, y, angle, scale = 1) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(angle + Math.PI / 2);
+        ctx.scale(scale, scale);
+
+        // Body
+        ctx.fillStyle = "#cc3333";
+        ctx.beginPath();
+        ctx.ellipse(0, 0, 5, 14, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Nose
+        ctx.fillStyle = "#ff6666";
+        ctx.beginPath();
+        ctx.moveTo(-5, -10);
+        ctx.lineTo(5, -10);
+        ctx.lineTo(0, -20);
+        ctx.closePath();
+        ctx.fill();
+
+        // Fins
+        ctx.fillStyle = "#882222";
+        ctx.beginPath();
+        ctx.moveTo(-5, 8);
+        ctx.lineTo(-12, 18);
+        ctx.lineTo(-5, 14);
+        ctx.closePath();
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(5, 8);
+        ctx.lineTo(12, 18);
+        ctx.lineTo(5, 14);
+        ctx.closePath();
+        ctx.fill();
+
+        // Flame
+        ctx.fillStyle = `rgba(255,${100 + Math.random() * 100},0,0.9)`;
+        ctx.beginPath();
+        ctx.ellipse(0, 18, 3, 6 + Math.random() * 4, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.restore();
+      }
+
+      function drawPlane(x, y, angle, scale = 1) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(angle + Math.PI / 2);
+        ctx.scale(scale, scale);
+
+        // Fuselage
+        ctx.fillStyle = "#3a6aaa";
+        ctx.beginPath();
+        ctx.ellipse(0, 0, 6, 18, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Wings
+        ctx.fillStyle = "#2a5a9a";
+        ctx.beginPath();
+        ctx.moveTo(-6, -2);
+        ctx.lineTo(-22, 8);
+        ctx.lineTo(-22, 12);
+        ctx.lineTo(-6, 6);
+        ctx.closePath();
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(6, -2);
+        ctx.lineTo(22, 8);
+        ctx.lineTo(22, 12);
+        ctx.lineTo(6, 6);
+        ctx.closePath();
+        ctx.fill();
+
+        // Tail
+        ctx.fillStyle = "#1a4a8a";
+        ctx.beginPath();
+        ctx.moveTo(-4, 12);
+        ctx.lineTo(-10, 20);
+        ctx.lineTo(-4, 18);
+        ctx.closePath();
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(4, 12);
+        ctx.lineTo(10, 20);
+        ctx.lineTo(4, 18);
+        ctx.closePath();
+        ctx.fill();
+
+        // Cockpit
+        ctx.fillStyle = "#88ccff";
+        ctx.beginPath();
+        ctx.ellipse(0, -8, 4, 6, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Engine glow
+        ctx.fillStyle = `rgba(255,150,0,${0.5 + Math.random() * 0.3})`;
+        ctx.beginPath();
+        ctx.ellipse(0, 18, 4, 5, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.restore();
+      }
+
+      function drawTank() {
+        const x = TANK_X,
+          y = TANK_Y;
+
+        // Shadow
+        ctx.fillStyle = "rgba(0,0,0,0.3)";
+        ctx.beginPath();
+        ctx.ellipse(x, y + 28, 38, 8, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Tracks
+        ctx.fillStyle = "#1a1a1a";
+        ctx.beginPath();
+        ctx.roundRect(x - 38, y + 10, 76, 18, 4);
+        ctx.fill();
+        // Track segments
+        ctx.strokeStyle = "#333";
+        ctx.lineWidth = 1;
+        for (let i = 0; i < 8; i++) {
+          ctx.beginPath();
+          ctx.moveTo(x - 38 + i * 10, y + 10);
+          ctx.lineTo(x - 38 + i * 10, y + 28);
+          ctx.stroke();
+        }
+
+        // Wheels
+        ctx.fillStyle = "#2a2a2a";
+        for (let wx of [-28, -14, 0, 14, 28]) {
+          ctx.beginPath();
+          ctx.arc(x + wx, y + 19, 7, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = "#444";
+          ctx.beginPath();
+          ctx.arc(x + wx, y + 19, 3, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = "#2a2a2a";
+        }
+
+        // Hull
+        const hullGrad = ctx.createLinearGradient(
+          x - 34,
+          y - 8,
+          x + 34,
+          y + 12,
+        );
+        hullGrad.addColorStop(0, "#3a5a2a");
+        hullGrad.addColorStop(0.5, "#4a7a3a");
+        hullGrad.addColorStop(1, "#2a4a1a");
+        ctx.fillStyle = hullGrad;
+        ctx.beginPath();
+        ctx.roundRect(x - 34, y - 8, 68, 20, 6);
+        ctx.fill();
+
+        // Camo pattern
+        ctx.fillStyle = "rgba(30,60,20,0.4)";
+        ctx.beginPath();
+        ctx.ellipse(x - 15, y - 2, 10, 6, 0.3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.ellipse(x + 12, y + 2, 8, 5, -0.2, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Turret
+        const turretGrad = ctx.createRadialGradient(
+          x - 5,
+          y - 14,
+          2,
+          x,
+          y - 10,
+          22,
+        );
+        turretGrad.addColorStop(0, "#5a8a4a");
+        turretGrad.addColorStop(1, "#2a5a1a");
+        ctx.fillStyle = turretGrad;
+        ctx.beginPath();
+        ctx.ellipse(x, y - 10, 22, 16, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Barrel
+        const barrelLen = 40;
+        const bx = Math.cos(tankAngle) * barrelLen;
+        const by = Math.sin(tankAngle) * barrelLen;
+
+        ctx.save();
+        ctx.translate(x, y - 10);
+        ctx.rotate(tankAngle);
+        const barrelGrad = ctx.createLinearGradient(0, -5, 0, 5);
+        barrelGrad.addColorStop(0, "#6a9a5a");
+        barrelGrad.addColorStop(1, "#2a4a1a");
+        ctx.fillStyle = barrelGrad;
+        ctx.beginPath();
+        ctx.roundRect(0, -4, barrelLen, 8, 3);
+        ctx.fill();
+        // Muzzle
+        ctx.fillStyle = "#1a3a0a";
+        ctx.beginPath();
+        ctx.roundRect(barrelLen - 4, -5, 8, 10, 2);
+        ctx.fill();
+        ctx.restore();
+
+        // Hatch
+        ctx.fillStyle = "#3a6a2a";
+        ctx.beginPath();
+        ctx.ellipse(x, y - 12, 8, 6, 0, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      function spawnEnemy() {
+        const type = Math.random() < 0.5 ? "missile" : "plane";
+        const x = 30 + Math.random() * (canvas.width - 60);
+        const speed = 1.2 + wave * 0.3 + Math.random() * 0.8;
+        enemies.push({
+          x,
+          y: -30,
+          type,
+          speed,
+          angle: Math.PI / 2,
+          hp: type === "plane" ? 2 : 1,
+          wobble: Math.random() * Math.PI * 2,
+          wobbleSpeed: 0.02 + Math.random() * 0.02,
+        });
+      }
+
+      function addParticles(x, y, color, count = 12) {
+        for (let i = 0; i < count; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const speed = 1 + Math.random() * 4;
+          particles.push({
+            x,
+            y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            life: 1,
+            decay: 0.03 + Math.random() * 0.04,
+            size: 2 + Math.random() * 4,
+            color,
+          });
+        }
+      }
+
+      function addExplosion(x, y) {
+        addParticles(x, y, "#ff8800", 16);
+        addParticles(x, y, "#ffcc00", 10);
+        addParticles(x, y, "#ff4400", 8);
+      }
+
+      function loop() {
+        if (!gameRunning) return;
+        frameCount++;
+
+        // Input
+        const rotSpeed = 0.03;
+        if (keys["ArrowLeft"]) tankAngle -= rotSpeed;
+        if (keys["ArrowRight"]) tankAngle += rotSpeed;
+        tankAngle = Math.max(-Math.PI + 0.1, Math.min(-0.1, tankAngle));
+
+        // Spawn
+        spawnTimer++;
+        const spawnRate = Math.max(60, 120 - wave * 8);
+        if (spawnTimer >= spawnRate) {
+          spawnEnemy();
+          spawnTimer = 0;
+        }
+
+        waveTimer++;
+        if (waveTimer > 600) {
+          wave++;
+          waveTimer = 0;
+          updateUI();
+        }
+
+        // Update bullets
+        bullets = bullets.filter((b) => {
+          b.x += b.vx;
+          b.y += b.vy;
+          return b.y > -10 && b.x > -10 && b.x < canvas.width + 10;
+        });
+
+        // Update enemies
+        enemies = enemies.filter((e) => {
+          e.wobble += e.wobbleSpeed;
+          if (e.type === "plane") e.x += Math.sin(e.wobble) * 1.2;
+          e.y += e.speed;
+
+          // Hit tank
+          const dx = e.x - TANK_X,
+            dy = e.y - TANK_Y;
+          if (Math.sqrt(dx * dx + dy * dy) < 40) {
+            lives -= e.type === "plane" ? 15 : 10;
+            addExplosion(e.x, e.y);
+            updateUI();
+            if (lives <= 0) gameOver();
+            return false;
+          }
+          if (e.y > canvas.height + 40) {
+            lives -= 5;
+            updateUI();
+            if (lives <= 0) gameOver();
+            return false;
+          }
+
+          // Bullet collision
+          for (let i = bullets.length - 1; i >= 0; i--) {
+            const b = bullets[i];
+            const bx = b.x - e.x,
+              by = b.y - e.y;
+            const hitR = e.type === "plane" ? 22 : 14;
+            if (Math.sqrt(bx * bx + by * by) < hitR) {
+              e.hp--;
+              addParticles(b.x, b.y, "#ffaa00", 6);
+              bullets.splice(i, 1);
+              if (e.hp <= 0) {
+                addExplosion(e.x, e.y);
+                score += e.type === "plane" ? 20 : 10;
+                updateUI();
+                return false;
+              }
+            }
+          }
+          return true;
+        });
+
+        // Update particles
+        particles = particles.filter((p) => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.1;
+          p.life -= p.decay;
+          return p.life > 0;
+        });
+
+        // Draw
+        draw();
+        requestAnimationFrame(loop);
+      }
+
+      function draw() {
+        // Background
+        const bgGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        bgGrad.addColorStop(0, "#050510");
+        bgGrad.addColorStop(0.7, "#0a0f1a");
+        bgGrad.addColorStop(1, "#0a1505");
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Stars
+        ctx.fillStyle = "rgba(255,255,255,0.6)";
+        for (let i = 0; i < 40; i++) {
+          const sx = (i * 137 + frameCount * 0.1) % canvas.width;
+          const sy = (i * 97) % (canvas.height * 0.7);
+          const ss = 0.5 + (i % 3) * 0.5;
+          ctx.beginPath();
+          ctx.arc(sx, sy, ss, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        // Ground
+        const groundGrad = ctx.createLinearGradient(
+          0,
+          canvas.height - 40,
+          0,
+          canvas.height,
+        );
+        groundGrad.addColorStop(0, "#1a3a0a");
+        groundGrad.addColorStop(1, "#0d2005");
+        ctx.fillStyle = groundGrad;
+        ctx.fillRect(0, canvas.height - 40, canvas.width, 40);
+
+        // Ground detail
+        ctx.strokeStyle = "#2a5a1a";
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height - 40);
+        ctx.lineTo(canvas.width, canvas.height - 40);
+        ctx.stroke();
+
+        // Particles
+        particles.forEach((p) => {
+          ctx.save();
+          ctx.globalAlpha = p.life;
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        });
+
+        // Enemies
+        enemies.forEach((e) => {
+          if (e.type === "missile") drawMissile(e.x, e.y, e.angle);
+          else drawPlane(e.x, e.y, e.angle);
+        });
+
+        // Bullets
+        bullets.forEach((b) => {
+          ctx.save();
+          ctx.shadowColor = "#ffff00";
+          ctx.shadowBlur = 8;
+          ctx.fillStyle = "#ffee44";
+          ctx.beginPath();
+          ctx.ellipse(
+            b.x,
+            b.y,
+            3,
+            7,
+            Math.atan2(b.vy, b.vx) + Math.PI / 2,
+            0,
+            Math.PI * 2,
+          );
+          ctx.fill();
+          ctx.restore();
+        });
+
+        // Tank
+        drawTank();
+
+        // Barrel aim line (subtle)
+        const aimX = TANK_X + Math.cos(tankAngle) * 60;
+        const aimY = TANK_Y - 10 + Math.sin(tankAngle) * 60;
+        ctx.save();
+        ctx.strokeStyle = "rgba(100,255,100,0.15)";
+        ctx.lineWidth = 1;
+        ctx.setLineDash([4, 8]);
+        ctx.beginPath();
+        ctx.moveTo(aimX, aimY);
+        ctx.lineTo(
+          TANK_X + Math.cos(tankAngle) * 200,
+          TANK_Y - 10 + Math.sin(tankAngle) * 200,
+        );
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      function shoot() {
+        const now = Date.now();
+        if (now - lastShot < 250) return;
+        lastShot = now;
+
+        const speed = 10;
+        bullets.push({
+          x: TANK_X + Math.cos(tankAngle) * 44,
+          y: TANK_Y - 10 + Math.sin(tankAngle) * 44,
+          vx: Math.cos(tankAngle) * speed,
+          vy: Math.sin(tankAngle) * speed,
+        });
+
+        // Muzzle flash
+        addParticles(
+          TANK_X + Math.cos(tankAngle) * 50,
+          TANK_Y - 10 + Math.sin(tankAngle) * 50,
+          "#ffff88",
+          5,
+        );
+      }
+
+      function gameOver() {
+        gameRunning = false;
+        const ov = document.getElementById("overlay");
+        ov.style.display = "flex";
+        ov.innerHTML = `
+    <h1 style="color:#ff4444;text-shadow:0 0 20px rgba(255,50,50,0.8)">GAME OVER</h1>
+    <p style="color:#aaa;font-size:16px;margin:10px 0">امتیاز نهایی</p>
+    <p style="color:#7fff7f;font-size:36px;font-weight:bold;text-shadow:0 0 15px rgba(100,255,100,0.6)">${score}</p>
+    <p style="color:#666;margin-top:8px">موج ${wave}</p>
+    <button onclick="startGame()">دوباره بازی کن</button>
+  `;
+      }
+
+      document.addEventListener("keydown", (e) => {
+        keys[e.code] = true;
+        if (e.code === "Enter" || e.code === "Space") {
+          e.preventDefault();
+          if (gameRunning) shoot();
+        }
+      });
+      document.addEventListener("keyup", (e) => {
+        keys[e.code] = false;
+      });
+    </script>
+  </body>
+</html>

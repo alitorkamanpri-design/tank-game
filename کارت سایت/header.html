@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Card Layout</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section class="container">
+      <header class="header">
+        <div class="logo">
+          <svg
+            width="100px"
+            viewBox="-100 0 340 120"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <!-- Premium Gold -->
+              <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#A48D67" />
+                <stop offset="100%" stop-color="#8B7654" />
+              </linearGradient>
+
+              <!-- Deep Teal Accent -->
+              <linearGradient id="teal" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1A4341" />
+                <stop offset="100%" stop-color="#215A57" />
+              </linearGradient>
+            </defs>
+
+            <!-- Icon: Premium Drop + Clinical Geometry -->
+            <g transform="translate(20,15)">
+              <!-- Outer geometric frame -->
+              <circle
+                cx="40"
+                cy="40"
+                r="35"
+                stroke="url(#gold)"
+                stroke-width="3"
+                fill="none"
+              />
+
+              <!-- Drop -->
+              <path
+                d="M40 12 C30 28 22 38 22 50 A18 18 0 1 0 58 50 C58 38 50 28 40 12 Z"
+                fill="url(#teal)"
+              />
+
+              <!-- Inner Shine -->
+              <path
+                d="M40 28 C33 28 28 34 32 37 C36 40 44 35 42 30 C41 29 40 28 40 28 Z"
+                fill="#FFFFFF"
+                opacity="0.85"
+              />
+            </g>
+
+            <!-- Brand Name -->
+            <text
+              x="110"
+              y="70"
+              font-family="Poppins, Arial, sans-serif"
+              font-size="42"
+              letter-spacing="4"
+              font-weight="600"
+              fill="url(#gold)"
+            >
+              MANELY
+            </text>
+
+            <!-- Subtitle (optional, removable) -->
+            <text
+              x="113"
+              y="94"
+              font-family="Poppins, sans-serif"
+              font-size="14"
+              letter-spacing="2"
+              fill="#5D6D7E"
+            >
+              BEAUTY & CLINICAL CARE
+            </text>
+          </svg>
+        </div>
+        <nav class="nav-a">
+          <a href="">خانه</a>
+          <a href="" class="navbari">محصولات <span class="arrow">▼</span></a>
+
+          <a href="">درباره ما</a>
+        </nav>
+        <button class="button" type="button">ورود</button>
+      </header>
+
+      <section class="cards-container">
+        <article class="card">
+          <div class="card-header">
+            <img src="../css3/img/ali.png" alt="لوازم کامپیوتر" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">لوازم کامپیوتر</h3>
+            <p class="card-description">
+              توضیحات کوتاه درباره محصول که میتونه چند خط باشه و طول متفاوتی
+              داشته باشه.
+            </p>
+            <div class="card-price">۲۵,۰۰۰ تومان</div>
+          </div>
+          <div class="card-footer">
+            <button type="button">خرید</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <img src="../css3/img/ali.png" alt="لوازم کامپیوتر" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">ماوس گیمینگ</h3>
+            <p class="card-description">متن کوتاه</p>
+            <div class="card-price">۱۵۰,۰۰۰ تومان</div>
+          </div>
+          <div class="card-footer">
+            <button type="button">خرید</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <img src="../css3/img/ali.png" alt="لوازم کامپیوتر" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">کیبورد مکانیکی</h3>
+            <p class="card-description">
+              این یه متن خیلی خیلی طولانی‌ست که میخوایم ببینیم وقتی محتوا زیاد
+              میشه، دکمه همچنان پایین کارت میمونه یا نه. این قابلیت خیلی مهمه.
+            </p>
+            <div class="card-price">۳۵۰,۰۰۰ تومان</div>
+          </div>
+          <div class="card-footer">
+            <button type="button">خرید</button>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-header">
+            <img src="../css3/img/ali.png" alt="لوازم کامپیوتر" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">کیبورد مکانیکی</h3>
+            <p class="card-description">
+              این یه متن خیلی خیلی طولانی‌ست که میخوایم ببینیم وقتی محتوا زیاد
+              میشه، دکمه همچنان پایین کارت میمونه یا نه. این قابلیت خیلی مهمه.
+            </p>
+            <div class="card-price">۳۵۰,۰۰۰ تومان</div>
+          </div>
+          <div class="card-footer">
+            <button type="button">خرید</button>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-header">
+            <img src="../css3/img/ali.png" alt="لوازم کامپیوتر" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">کیبورد مکانیکی</h3>
+            <p class="card-description">
+              این یه متن خیلی خیلی طولانی‌ست که میخوایم ببینیم وقتی محتوا زیاد
+              میشه، دکمه همچنان پایین کارت میمونه یا نه. این قابلیت خیلی مهمه.
+            </p>
+            <div class="card-price">۳۵۰,۰۰۰ تومان</div>
+          </div>
+          <div class="card-footer">
+            <button type="button">خرید</button>
+          </div>
+        </article>
+      </section>
+      <!-- <main class="sidebar">
+        <div>
+            <a href="">11</a>
+            <a href="">22</a>
+            <a href="">33</a>
+            <a href="">44</a>
+            <a href="">55</a>
+            <a href="">66</a>
+            <a href="">77</a>
+        </div>
+    </main> -->
+
+      <footer class="footer">
+        <p>&copy; 1405 تمامی حقوق برای شرکت مَهراد CNC محفوظ است.</p>
+      </footer>
+    </section>
+  </body>
+</html>

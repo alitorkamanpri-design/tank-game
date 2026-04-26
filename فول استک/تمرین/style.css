@@ -1,0 +1,83 @@
+/* فونت و تنظیمات کلی صفحه */
+body{
+    font-family: Tahoma, sans-serif;
+    background:#f7f7f7;
+    margin:0;
+    padding:0;
+    line-height:1.9;
+    color:#333;
+}
+
+/* وسط‌چین کردن محتوای اصلی */
+main{
+    max-width:800px;
+    margin:auto;
+    padding:20px;
+}
+
+/* استایل عنوان اصلی */
+header{
+    text-align:center;
+    background:white;
+    padding:20px;
+    border-bottom:1px solid #eee;
+}
+
+h1{
+    margin:0;
+    font-size:32px;
+}
+
+/* فاصله بین سکشن‌ها */
+section{
+    margin-top:30px;
+}
+
+/* استایل تصویر */
+figure{
+    text-align:center;
+}
+
+figure img{
+    width:250px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+figcaption{
+    font-size:14px;
+    color:#666;
+    margin-top:8px;
+}
+
+/* لیست مشخصات */
+ul{
+    background:white;
+    padding:15px;
+    border-radius:8px;
+}
+
+/* نقل قول سوال‌ها */
+blockquote{
+    background:#fff;
+    border-right:4px solid #555;
+    padding:10px 15px;
+    margin:20px 0;
+}
+
+/* لینک‌ها */
+a{
+    display:inline-block;
+    margin-left:10px;
+    text-decoration:none;
+    color:white;
+    background:#333;
+    padding:8px 14px;
+    border-radius:6px;
+    transition:0.3s;
+}
+
+/* افکت hover */
+a:hover{
+    background:#555;
+}

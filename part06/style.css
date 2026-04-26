@@ -1,0 +1,46 @@
+*{
+   margin: 0;
+    padding: 0; 
+    font-size: 30px;
+}
+body {
+ /* background-color: red; 
+  background-image: url(../img/pattern.jpg);
+  background-repeat: no-repeat; 
+   background-repeat: repeat-x;
+   background-repeat: repeat-y; 
+   background-position: top right ;  */
+
+}
+header{
+    /* برای فیکس کردن عکس در زیر پس زمینه که اسکرول میکنیم حرکت نکنه استفاده میشه */
+    /* background-image: url(../img/pattern.jpg);
+    height: 200px;
+    background-attachment: fixed;  */
+    /* برای زمانی که عکس کوچیک باشد میزاریم تا کل محدود پوشش بده */
+    /* background-size: cover; */
+}
+.test1{
+    border: 10px dotted rgb(15, 14, 15);
+    background-color: red;
+    margin: 10px 0 ;
+    padding: 10px;
+    /* حالت پیش فرض سیستم است و تغییری ایجاد نمیکند */
+    background-clip: border-box;
+}
+.test2{
+    border: 10px dotted rgb(15, 14, 15);
+    background-color:red;
+    margin: 10px 0 ;
+    padding: 10px;
+    /* با این استایل بردر دور متن رنگ نمیشود  */
+    background-clip: padding-box;
+}
+.test3{
+    border: 10px dotted rgb(15, 14, 15);
+    background-color: red;
+    margin: 10px 0 ;
+    padding: 10px;
+    /* با این استایل فقط قسمت خود متن جزو بک گراند میشود و رنگ دارد */
+    background-clip: content-box;
+}

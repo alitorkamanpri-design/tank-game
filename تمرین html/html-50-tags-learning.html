@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>آموزش 50 تگ HTML</title>
+
+    <style>
+      body {
+        font-family: tahoma;
+        background: #0f172a;
+        color: #e2e8f0;
+        margin: 0;
+        padding: 30px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 140px 1fr 1fr 1fr;
+        gap: 12px;
+        background: #1e293b;
+        padding: 14px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        align-items: center;
+      }
+
+      .tag {
+        font-family: monospace;
+        font-size: 18px;
+        color: #38bdf8;
+        font-weight: bold;
+      }
+
+      .code {
+        background: #020617;
+        padding: 10px;
+        border-radius: 8px;
+        font-family: monospace;
+        font-size: 13px;
+        direction: ltr;
+        white-space: pre-wrap;
+      }
+
+      .preview {
+        background: #020617;
+        padding: 10px;
+        border-radius: 8px;
+        min-height: 40px;
+      }
+
+      button {
+        padding: 6px 12px;
+        border: none;
+        background: #2563eb;
+        color: white;
+        border-radius: 6px;
+      }
+
+      .box {
+        width: 60px;
+        height: 60px;
+        background: orange;
+      }
+
+      .red {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>آموزش 50 تگ مهم HTML</h1>
+
+      <div id="tags"></div>
+    </div>
+
+    <script>
+      const tags = [
+        [
+          "!DOCTYPE",
+          "تعریف نوع سند",
+          "&lt;!DOCTYPE html&gt;",
+          "DOCTYPE declaration",
+        ],
+        ["html", "ریشه صفحه", "&lt;html&gt;&lt;/html&gt;", "ساختار صفحه"],
+        ["head", "اطلاعات صفحه", "&lt;head&gt;&lt;/head&gt;", "metadata"],
+        ["title", "عنوان تب", "&lt;title&gt;Title&lt;/title&gt;", "عنوان صفحه"],
+        ["meta", "اطلاعات متا", "&lt;meta charset='UTF-8'&gt;", "charset"],
+        ["body", "بدنه صفحه", "&lt;body&gt;...&lt;/body&gt;", "محتوا"],
+        ["h1", "تیتر بزرگ", "&lt;h1&gt;عنوان&lt;/h1&gt;", "<h1>عنوان</h1>"],
+        ["h2", "تیتر", "&lt;h2&gt;عنوان&lt;/h2&gt;", "<h2>عنوان</h2>"],
+        ["h3", "تیتر", "&lt;h3&gt;عنوان&lt;/h3&gt;", "<h3>عنوان</h3>"],
+        ["p", "پاراگراف", "&lt;p&gt;متن&lt;/p&gt;", "<p>یک متن</p>"],
+        ["br", "رفتن به خط بعد", "&lt;br&gt;", "خط<br>جدید"],
+        ["hr", "خط جداکننده", "&lt;hr&gt;", "<hr>"],
+        [
+          "a",
+          "لینک",
+          "&lt;a href='#'&gt;link&lt;/a&gt;",
+          "<a href='#'>link</a>",
+        ],
+        [
+          "img",
+          "تصویر",
+          "&lt;img src='https://picsum.photos/80'&gt;",
+          "<img src='https://picsum.photos/80'>",
+        ],
+        ["ul", "لیست", "ul/li", "<ul><li>item</li></ul>"],
+        ["ol", "لیست شماره", "ol/li", "<ol><li>item</li></ol>"],
+        ["li", "آیتم لیست", "&lt;li&gt;item&lt;/li&gt;", "• item"],
+        [
+          "div",
+          "جعبه",
+          "&lt;div&gt;&lt;/div&gt;",
+          "<div style='background:orange;width:40px;height:40px'></div>",
+        ],
+        ["span", "بخش متن", "span", "<span style='color:red'>text</span>"],
+        ["strong", "متن مهم", "strong", "<strong>bold</strong>"],
+        ["em", "تاکید", "em", "<em>italic</em>"],
+        ["small", "متن کوچک", "small", "<small>small</small>"],
+        ["mark", "هایلایت", "mark", "<mark>text</mark>"],
+        ["del", "حذف", "del", "<del>text</del>"],
+        ["ins", "اضافه", "ins", "<ins>text</ins>"],
+        ["sub", "زیرنویس", "sub", "H<sub>2</sub>O"],
+        ["sup", "بالانویس", "sup", "x<sup>2</sup>"],
+        ["code", "نمایش کد", "code", "<code>var x</code>"],
+        ["pre", "متن قالب", "pre", "<pre>code</pre>"],
+        [
+          "blockquote",
+          "نقل قول",
+          "blockquote",
+          "<blockquote>quote</blockquote>",
+        ],
+        ["q", "نقل کوتاه", "q", "<q>quote</q>"],
+        ["abbr", "مخفف", "abbr", "<abbr title='HyperText'>HTML</abbr>"],
+        ["address", "آدرس", "address", "<address>Tehran</address>"],
+        ["cite", "منبع", "cite", "<cite>Book</cite>"],
+        ["b", "بولد", "b", "<b>bold</b>"],
+        ["i", "ایتالیک", "i", "<i>italic</i>"],
+        ["u", "زیرخط", "u", "<u>underline</u>"],
+        ["form", "فرم", "form", "form"],
+        ["input", "ورودی", "input", "<input placeholder='name'>"],
+        ["textarea", "متن", "textarea", "<textarea></textarea>"],
+        ["button", "دکمه", "button", "<button>click</button>"],
+        ["select", "انتخاب", "select", "<select><option>1</option></select>"],
+        ["label", "برچسب", "label", "<label>name</label>"],
+        ["table", "جدول", "table", "table"],
+        ["tr", "ردیف", "tr", "row"],
+        ["td", "سلول", "td", "cell"],
+        ["th", "عنوان جدول", "th", "header"],
+        ["thead", "سر جدول", "thead", "thead"],
+        ["tbody", "بدنه جدول", "tbody", "tbody"],
+        ["tfoot", "پایان جدول", "tfoot", "tfoot"],
+      ];
+
+      const container = document.getElementById("tags");
+
+      tags.forEach((tag) => {
+        const row = document.createElement("div");
+        row.className = "row";
+
+        row.innerHTML = `
+
+<div class="tag">${tag[0]}</div>
+<div>${tag[1]}</div>
+<div class="code">${tag[2]}</div>
+<div class="preview">${tag[3]}</div>
+
+`;
+
+        container.appendChild(row);
+      });
+    </script>
+  </body>
+</html>

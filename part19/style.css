@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* @import "../css/cssstyle.css"; */
+
+.bakgrand {
+  margin: 0;
+  min-height: 100vh; /* حداقل اینقدر، بیشتر شد اشکال نداره */
+  display: flex; /*  فلکس برای وسط‌چین کردن کادر بعدی*/
+  align-items: center; /* وسط‌چین عمودی */
+  /* وسط‌چین افقی */
+  justify-content: center;
+  background: linear-gradient(135deg, #b9f3ff, #e0f7ff);
+}
+.app {
+  position: relative;
+  width: 500px;
+  height: 300px;
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  border: 3px solid #4da3ff;
+}
+div .img {
+  position: absolute;
+  right: 30px;
+  width: 150px;
+  top: 50px;
+}
+.bakgrand input[type="text"] {
+  border: 2px solid #4da3ff;
+  border-radius: 5px;
+  background-color: #e1edfa;
+  min-width: 400px;
+  height: 20px;
+}

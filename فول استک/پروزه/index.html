@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- تگ‌های سئو -->
+    <meta
+      name="description"
+      content="فروشگاه قطعات CNC مَهراد - خرید آنلاین انواع اسپیندل، کنترلر و ابزارهای دقیق صنعتی با بهترین کیفیت."
+    />
+    <meta
+      name="keywords"
+      content="قطعات cnc, مهران cnc, خرید اسپیندل, فروشگاه صنعتی, ابزار دقیق"
+    />
+    <title>مَهراد CNC | فروشگاه تخصصی قطعات صنعتی</title>
+    <!-- اتصال فایل استایل -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- هدر سایت -->
+    <header class="header">
+      <div class="logo">mahrad<span>CNC</span></div>
+      <nav class="navbar">
+        <a href="#">خانه</a>
+        <a href="#products">محصولات</a>
+        <a href="#about">درباره ما</a>
+      </nav>
+      <div class="auth-buttons">
+        <!-- فراخوانی توابع جاوا اسکریپت برای باز کردن مودال -->
+        <button class="btn login-btn" onclick="openModal('login')">ورود</button>
+        <button class="btn register-btn" onclick="openModal('register')">
+          ثبت‌نام
+        </button>
+      </div>
+    </header>
+
+    <!-- بخش اصلی (Hero) -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>دقت بی‌نهایت، قدرت بی‌وقفه</h1>
+        <p>
+          تامین‌کننده برترین قطعات دستگاه‌های CNC برای ارتقای خطوط تولید صنعتی
+          شما.
+        </p>
+        <a href="#products" class="btn primary-btn">مشاهده قطعات</a>
+      </div>
+    </section>
+
+    <!-- بخش محصولات -->
+    <section id="products" class="products">
+      <h2>پرفروش‌ترین قطعات</h2>
+      <div class="product-grid">
+        <!-- کارت محصول نمونه -->
+        <div class="product-card">
+          <div class="product-img-placeholder">تصویر اسپیندل</div>
+          <h3>اسپیندل موتور ۳ کیلووات</h3>
+          <p>مناسب برای فرزکاری دقیق روی چوب و فلز.</p>
+          <button class="btn add-to-cart">افزودن به سبد</button>
+        </div>
+        <!-- کارت محصول نمونه -->
+        <div class="product-card">
+          <div class="product-img-placeholder">تصویر کنترلر</div>
+          <h3>کنترلر Mach3</h3>
+          <p>برد کنترلر پیشرفته ۴ محور صنعتی.</p>
+          <button class="btn add-to-cart">افزودن به سبد</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- مودال ورود / ثبت نام -->
+    <div id="authModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modalTitle">ورود به حساب</h2>
+        <form id="authForm">
+          <input type="text" placeholder="نام کاربری یا ایمیل" required />
+          <input type="password" placeholder="رمز عبور" required />
+          <!-- دکمه سابمیت فرم -->
+          <button type="submit" class="btn primary-btn w-100">ارسال</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- فوتر سایت -->
+    <footer>
+      <p>&copy; 1405 تمامی حقوق برای شرکت مَهراد CNC محفوظ است.</p>
+    </footer>
+
+    <!-- اتصال فایل جاوا اسکریپت -->
+    <script src="script.js"></script>
+  </body>
+</html>

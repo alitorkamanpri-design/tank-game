@@ -1,0 +1,11 @@
+.box-model {
+  background-color: beige;
+  width: 300px;
+  height: 100px;
+  color: blue;
+  border-radius:50px ;
+  border: 3px solid red;
+  padding:40px ;
+  margin: 40px;
+  box-sizing: border-box;
+}

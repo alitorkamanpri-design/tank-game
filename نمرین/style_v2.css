@@ -1,0 +1,701 @@
+/* ============================================================
+   برنامه مدیریت اضافه‌کاری - استایل CSS (نسخه 2.0) 
+   تمام استایل‌ها Responsive هستند
+   ============================================================ */
+
+/* متغیرهای رنگ */
+:root {
+  --primary: #bb86fc;
+  --secondary: #03dac6;
+  --danger: #cf6679;
+  --bg-dark: #121212;
+  --bg-card: #1e1e1e;
+  --bg-input: #2c2c2c;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --border: #333;
+  --success: #4caf50;
+}
+
+/* استایل‌های کلی */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a1a 100%);
+  color: var(--text-primary);
+  direction: rtl;
+  line-height: 1.6;
+  padding: 20px;
+  min-height: 100vh;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 30px 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(187, 134, 252, 0.1) 0%,
+    rgba(3, 218, 198, 0.1) 100%
+  );
+  border-radius: 12px;
+  border-bottom: 3px solid var(--primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+  color: var(--primary);
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 8px rgba(187, 134, 252, 0.3);
+  font-weight: 700;
+}
+
+.subtitle {
+  color: var(--secondary);
+  font-size: 1em;
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+.version-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+  color: white;
+  padding: 7px 15px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 600;
+  margin-top: 12px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 3px 8px rgba(76, 175, 80, 0.3);
+}
+
+h2 {
+  color: var(--secondary);
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  border-bottom: 2px solid rgba(3, 218, 198, 0.3);
+  padding-bottom: 10px;
+}
+
+/* Card */
+.card {
+  background: linear-gradient(
+    135deg,
+    var(--bg-card) 0%,
+    rgba(46, 46, 46, 0.8) 100%
+  );
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 25px;
+  border: 1px solid rgba(187, 134, 252, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(187, 134, 252, 0.2);
+  border-color: rgba(187, 134, 252, 0.3);
+}
+
+/* داشبورد */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.stat {
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    rgba(187, 134, 252, 0.1) 0%,
+    rgba(46, 46, 46, 0.5) 100%
+  );
+  padding: 25px;
+  border-radius: 12px;
+  border-left: 5px solid var(--primary);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.stat:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(187, 134, 252, 0.3);
+}
+
+.stat h3 {
+  color: var(--primary);
+  font-size: 2.2em;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.stat p {
+  color: var(--text-secondary);
+  font-size: 0.95em;
+  font-weight: 500;
+}
+
+/* فرم */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  max-width: 100%;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  font-size: 0.95em;
+  letter-spacing: 0.5px;
+}
+
+#overtime-form input,
+#overtime-form select,
+.filter-group select {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  font-size: 16px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+#overtime-form input:focus,
+#overtime-form select:focus,
+.filter-group select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 12px rgba(187, 134, 252, 0.4);
+  background-color: rgba(44, 44, 44, 0.9);
+}
+
+.day-display {
+  color: var(--secondary);
+  font-size: 0.9em;
+  margin-top: 6px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* دکمه‌ها */
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.btn-primary,
+.btn-secondary,
+.btn-export,
+.btn-danger,
+button.edit,
+button.delete {
+  padding: 13px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  letter-spacing: 0.5px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, #9c4dff 100%);
+  color: var(--bg-dark);
+  flex: 1;
+  font-size: 16px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(187, 134, 252, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, var(--text-secondary) 0%, #9e9e9e 100%);
+  color: var(--bg-dark);
+  flex: 1;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(158, 158, 158, 0.4);
+}
+
+.btn-export {
+  background: linear-gradient(135deg, var(--secondary) 0%, #00bfa5 100%);
+  color: var(--bg-dark);
+  padding: 11px 18px;
+  font-size: 14px;
+}
+
+.btn-export:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(3, 218, 198, 0.4);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, var(--danger) 0%, #b00020 100%);
+  color: white;
+  padding: 11px 18px;
+  font-size: 14px;
+}
+
+.btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(207, 102, 121, 0.4);
+}
+
+button.edit {
+  background: var(--secondary);
+  color: var(--bg-dark);
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+button.edit:hover {
+  background: #00bfa5;
+  transform: scale(1.08);
+}
+
+button.delete {
+  background: var(--danger);
+  color: white;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+button.delete:hover {
+  background: #b00020;
+  transform: scale(1.08);
+}
+
+/* فیلترها */
+#filters {
+  background: linear-gradient(
+    135deg,
+    var(--bg-card) 0%,
+    rgba(46, 46, 46, 0.8) 100%
+  );
+}
+
+.filter-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.filter-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-item label {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  font-size: 0.95em;
+}
+
+.filter-item select {
+  padding: 12px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* جدول */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+#overtime-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--bg-card);
+  border-radius: 8px;
+  overflow: hidden;
+  display: none;
+}
+
+#overtime-table.show {
+  display: table;
+}
+
+#overtime-table th,
+#overtime-ta6le td {
+  padding: 14px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  font-weight: 500;
+}
+
+#overtime-table th {
+  background-color: rgba(187, 134, 252, 0.15);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.95em;
+  letter-spacing: 0.5px;
+}
+
+#overtime-table tbody tr {
+  transition: all 0.3s ease;
+  background-color: var(--bg-card);
+}
+
+#overtime-table tbody tr:hover {
+  background-color: rgba(187, 134, 252, 0.1);
+  box-shadow: inset 0 0 8px rgba(187, 134, 252, 0.1);
+}
+
+#overtime-table tfoot td {
+  font-weight: 700;
+  background-color: rgba(3, 218, 198, 0.1);
+  color: var(--secondary);
+  font-size: 1.05em;
+  padding: 16px 14px;
+}
+
+/* پیام خالی */
+.empty-message {
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--text-secondary);
+  font-size: 1.1em;
+  display: block;
+  background: rgba(187, 134, 252, 0.05);
+  border-radius: 8px;
+  border: 2px dashed var(--border);
+}
+
+#overtime-table {
+  display: none;
+}
+
+#overtime-table.show {
+  display: table;
+}
+
+/* فوتر */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 1px solid var(--border);
+  margin-top: 30px;
+  color: var(--text-secondary);
+  font-size: 0.9em;
+  border-radius: 8px;
+}
+
+/* ==================== Responsive Design ==================== */
+لپ‌تاپ و دسکتاپ (1200px و بالاتر) */ @media (min-width: 1200px) {
+  .card {
+    padding: 30px;
+  }
+
+  .filter-group {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 
+/* تبلت (768px و بالاتر) */
+@media (max-width: 768px) {
+  body {
+    padding: 12px;
+  }
+
+  header {
+    padding: 20px 15px;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  .subtitle {
+    font-size: 0.9em;
+  }
+
+  h2 {
+    font-size: 1.3em;
+  }
+
+  .card {
+    padding: 18px;
+    margin-bottom: 18px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .filter-group {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .stat {
+    padding: 18px;
+  }
+
+  .stat h3 {
+    font-size: 1.8em;
+  }
+
+  .table-wrapper {
+    font-size: 0.9em;
+  }
+
+  #overtime-table th,
+  #overtime-table td {
+    padding: 10px 6px;
+    font-size: 0.9em;
+  }
+
+  button.edit,
+  button.delete {
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+
+  .btn-primary,
+  .btn-secondary,
+  .btn-export,
+  .btn-danger {
+    padding: 11px 15px;
+    font-size: 14px;
+  }
+}
+
+/* موبایل (480px و کمتر) */
+@media (max-width: 480px) {
+  body {
+    padding: 8px;
+  }
+
+  header {
+    padding: 15px 10px;
+    margin-bottom: 15px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  .subtitle {
+    font-size: 0.8em;
+  }
+
+  h2 {
+    font-size: 1.1em;
+  }
+
+  .card {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .form-group label {
+    font-size: 0.9em;
+  }
+
+  .stat {
+    padding: 12px;
+    border-left-width: 4px;
+  }
+
+  .stat h3 {
+    font-size: 1.5em;
+  }
+
+  .stat p {
+    font-size: 0.85em;
+  }
+
+  .table-wrapper {
+    font-size: 0.8em;
+    overflow-x: scroll;
+  }
+
+  #overtime-table th,
+  #overtime-table td {
+    padding: 6px 4px;
+    font-size: 0.8em;
+  }
+
+  button.edit,
+  button.delete {
+    padding: 5px 7px;
+    font-size: 11px;
+  }
+
+  .filter-group {
+    gap: 8px;
+  }
+
+  .empty-message {
+    padding: 30px 15px;
+    font-size: 0.95em;
+  }
+
+  footer {
+    font-size: 0.85em;
+    padding: 15px;
+  }
+}
+
+/* موبایل خیلی کوچک (320px و کمتر) */
+@media (max-width: 320px) {
+  h1 {
+    font-size: 1.3em;
+  }
+
+  h2 {
+    font-size: 1em;
+  }
+
+  .card {
+    padding: 10px;
+  }
+
+  #overtime-table th,
+  #overtime-table td {
+    padding: 4px 2px;
+    font-size: 0.75em;
+  }
+
+  .stat h3 {
+    font-size: 1.3em;
+  }
+
+  .stat p {
+    font-size: 0.8em;
+  }
+}
+
+/* طباعت */
+@media print {
+  body {
+    padding: 0;
+    background: white;
+  }
+
+  .card {
+    page-break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+
+  button,
+  .btn-primary,
+  .btn-secondary,
+  .btn-export,
+  .btn-danger {
+    display: none;
+  }
+
+  #filters,
+  #form-section {
+    display: none;
+  }
+}
+
+/* انیمیشن‌ها */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* اسکرول‌بار سفارشی */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9c4dff;
+}
+
+/* آترتیبات Final */
+input::placeholder {
+  color: rgba(176, 176, 176, 0.6);
+  font-weight: 400;
+}
+
+select option {
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+}

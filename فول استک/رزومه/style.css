@@ -1,0 +1,304 @@
+/* 
+==================================================
+  پیکربندی پایه و متغیرها (قانون ۱ UI: ثبات و یکپارچگی)
+  طیف رنگی حرفه‌ای (آبی سرمه‌ای، خاکستری روشن و سفید)
+==================================================
+*/
+:root {
+    --bg-body: #f3f6f9;         /* پس‌زمینه کل صفحه */
+    --bg-card: #ffffff;         /* پس‌زمینه بخش‌ها */
+    --primary: #1e293b;         /* رنگ اصلی متن و تیترها */
+    --secondary: #475569;       /* رنگ متن‌های فرعی */
+    --accent: #2563eb;          /* رنگ تاکید (لینک‌ها و خطوط) */
+    --accent-hover: #1d4ed8;    /* رنگ تاکید هنگام هاور */
+    --border: #e2e8f0;          /* رنگ حاشیه‌ها */
+}
+
+/* 
+==================================================
+  تنظیمات عمومی، تایپوگرافی و ساختار بدنه
+  (استفاده از rem برای تمام سایزها)
+==================================================
+*/
+html {
+    /* سایز پایه برای محاسبه rem */
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+@font-face {
+  font-family: vazir-1;
+  src: url(../../font/Vazir-Medium.eot) format(ٌ "eot"),
+    url(../../font/Vazir-Medium.woff) format("woff"),
+    url(../../font/Vazir-Medium.woff2) format("woff2");
+  font-weight: bold;
+  font-style: italic;
+}
+body {
+    font-family: vazir-1;
+    /* نام فونتی که بعداً از طریق CDN اضافه می‌کنید را اینجا قرار دهید */
+    background-color: var(--bg-body);
+    color: var(--secondary);
+    line-height: 1.8;
+    margin: 0 auto;
+    padding: 1.5rem;
+    max-width: 800px; /* جلوگیری از عریض شدن بیش از حد متن برای خوانایی بهتر (قانون ۳: کاهش بار حافظه) */
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* فاصله‌گذاری بین بخش‌ها به جای تگ hr */
+}
+
+/* مخفی کردن خطوط قدیمی hr برای داشتن طراحی تمیزتر */
+hr {
+    display: none;
+}
+
+/* 
+==================================================
+  طراحی هدر متحرک (تگ center) 
+  (قانون ۴ UI: کنترل کاربر - دسترسی به اطلاعات اصلی)
+==================================================
+*/
+center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    position: sticky; /* چسبیدن به بالای صفحه */
+    top: 1rem;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* 
+  انیمیشن هدر با اسکرول: حرکت به سمت بالا و کوچک شدن
+  (در مرورگرهای مدرن که از این قابلیت پشتیبانی می‌کنند)
+*/
+@supports (animation-timeline: scroll()) {
+    center {
+        animation: slideUpHeader linear both;
+        animation-timeline: scroll();
+        animation-range: 0 300px;
+    }
+    @keyframes slideUpHeader {
+        to {
+            transform: translateY(-120%); /* حرکت به بالا */
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+}
+
+/* استایل عکس پروفایل */
+img {
+    border-radius: 50%; /* دایره‌ای کردن عکس */
+    border: 4px solid var(--accent);
+    padding: 0.2rem;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+    transition: transform 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.05); /* بازخورد بصری هنگام رفتن موس روی عکس */
+}
+
+/* تیترهای هدر */
+h1 {
+    color: var(--primary);
+    font-size: 2rem;
+    margin: 1rem 0 0.5rem 0;
+}
+
+h2 {
+    color: var(--accent);
+    font-size: 1.1rem;
+    font-weight: normal;
+    margin: 0;
+}
+
+/* 
+==================================================
+  تزریق "نمونه‌کار واقعی" با استفاده از CSS خالص
+  (بدون دست زدن به کدهای HTML شما)
+==================================================
+*/
+p::after {
+    content: "🚀 نمونه‌کار واقعی:\A اولین پروژه پورتفولیو من: سیستم رزرو و مدیریت رستوران (پیاده‌سازی فرانت‌اند) \A - توسعه یافته با استفاده از HTML, CSS مدرن و JavaScript \A - رعایت کامل اصول Responsive Design و تجربه کاربری (UX) \A - الهام گرفته از تجربیات واقعی در مدیریت رستوران برای طراحی جریان کاری (User Flow) اصولی.";
+    white-space: pre-wrap; /* اعمال خط شکست‌ها (\A) */
+    display: block;
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    margin-top: 2rem;
+    border-radius: 0.5rem;
+    border-right: 5px solid var(--accent);
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 2;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* 
+==================================================
+  ساختار بصری بخش‌ها (تیترها و متن‌ها)
+==================================================
+*/
+h3 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* اضافه کردن آیکون‌ها به تیترها بدون تگ اضافه */
+h3:nth-of-type(1)::before { content: "👤"; } /* درباره من */
+h3:nth-of-type(2)::before { content: "💼"; } /* سوابق کاری */
+h3:nth-of-type(3)::before { content: "🎓"; } /* تحصیلات */
+h3:nth-of-type(4)::before { content: "⚡"; } /* مهارت‌ها */
+h3:nth-of-type(5)::before { content: "📞"; } /* ارتباط با من */
+
+p {
+    font-size: 1.1rem;
+    text-align: justify;
+    background-color: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+/* 
+==================================================
+  استایل لیست‌ها (سوابق، تحصیلات و مهارت‌ها)
+  (قانون ۲ UI: بازخورد بصری با هاور کردن)
+==================================================
+*/
+ul {
+    list-style: none; /* حذف بولت‌های پیش‌فرض */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+li {
+    background-color: var(--bg-card);
+    padding: 1.2rem;
+    border-radius: 0.5rem;
+    border-right: 3px solid transparent;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+/* افکت هاور روی آیتم‌های لیست */
+li:hover {
+    border-right-color: var(--accent);
+    transform: translateX(-5px); /* حرکت ظریف به سمت چپ هنگام هاور */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* آیکون برای آیتم‌های لیست (به جای بولت) */
+li::before {
+    content: "▪";
+    color: var(--accent);
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+strong {
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+em {
+    color: var(--accent);
+    font-style: normal;
+    font-size: 0.95rem;
+    background-color: var(--bg-body);
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.2rem;
+}
+
+/* استایل لینک‌ها */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+/* 
+==================================================
+  طراحی رسپانسیو (واکنش‌گرا) برای موبایل و تبلت
+==================================================
+*/
+@media (max-width: 768px) {
+    html {
+        font-size: 14px; /* کوچک کردن پایه فونت در موبایل */
+    }
+    body {
+        padding: 1rem;
+    }
+    center {
+        position: relative; /* حذف حالت چسبان در موبایل برای جلوگیری از اشغال فضای صفحه */
+        top: 0;
+        padding: 1.5rem 1rem;
+    }
+    li:hover {
+        transform: none; /* حذف افکت حرکت در موبایل (جلوگیری از مشکلات لمسی) */
+    }
+}
+
+/* 
+==================================================
+  قابلیت چاپ (Print Friendly) - مناسب برای ذخیره به صورت PDF
+==================================================
+*/
+@media print {
+    body {
+        background-color: white;
+        color: black;
+        padding: 0;
+        max-width: 100%;
+    }
+    center {
+        position: static;
+        box-shadow: none;
+        border-bottom: 2px solid #ccc;
+        border-radius: 0;
+        padding: 1rem 0;
+        margin-bottom: 2rem; 
+        
+    }
+    img {
+        border-color: #333;
+        box-shadow: none;
+    }
+    li, p, center {
+        box-shadow: none;
+        background-color: transparent !important;
+        page-break-inside: avoid; /* جلوگیری از شکستن عناصر در صفحات پرینت */
+    }
+    p::after {
+        border-color: #333;
+        background-color: transparent;
+    }
+    a {
+        color: black;
+        text-decoration: underline;
+    }
+}

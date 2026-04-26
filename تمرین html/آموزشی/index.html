@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>پلتفرم تمرین HTML</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Vazirmatn;
+        background: #020617;
+        color: #e2e8f0;
+        height: 100vh;
+        display: flex;
+      }
+
+      .sidebar {
+        width: 260px;
+        background: #0f172a;
+        border-left: 1px solid #1e293b;
+        overflow: auto;
+        padding: 20px;
+      }
+
+      .sidebar h2 {
+        font-size: 18px;
+        margin-bottom: 15px;
+      }
+
+      .lesson {
+        padding: 10px;
+        margin-bottom: 6px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        background: #020617;
+      }
+
+      .lesson:hover {
+        background: #1e293b;
+      }
+
+      .main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .header {
+        padding: 15px 20px;
+        border-bottom: 1px solid #1e293b;
+        background: #020617;
+        font-size: 18px;
+      }
+
+      .content {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .editor {
+        background: #111827;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .editor-header {
+        padding: 8px 12px;
+        font-size: 12px;
+        border-bottom: 1px solid #1e293b;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      textarea {
+        flex: 1;
+        background: #020617;
+        color: white;
+        border: none;
+        padding: 15px;
+        font-family: monospace;
+        font-size: 14px;
+        resize: none;
+        direction: ltr;
+      }
+
+      .buttons {
+        padding: 10px;
+        display: flex;
+        gap: 10px;
+      }
+
+      button {
+        padding: 8px 14px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-family: Vazirmatn;
+      }
+
+      .run {
+        background: #2563eb;
+        color: white;
+      }
+
+      .copy {
+        background: #475569;
+        color: white;
+      }
+
+      .preview {
+        background: white;
+        color: black;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .preview-header {
+        background: #020617;
+        color: white;
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+
+      iframe {
+        flex: 1;
+        border: none;
+        background: white;
+      }
+
+      .desc {
+        padding: 10px 20px;
+        font-size: 14px;
+        color: #cbd5f5;
+        border-bottom: 1px solid #1e293b;
+      }
+
+      @media (max-width: 900px) {
+        .sidebar {
+          display: none;
+        }
+
+        .content {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="sidebar">
+      <h2>تمرین‌ها</h2>
+
+      <div id="lessonList"></div>
+    </div>
+
+    <div class="main">
+      <div class="header" id="title">تمرین HTML</div>
+
+      <div class="desc" id="description">
+        برای شروع یک تمرین از لیست سمت راست انتخاب کن
+      </div>
+
+      <div class="content">
+        <div class="editor">
+          <div class="editor-header">
+            <span>HTML Editor</span>
+          </div>
+
+          <textarea id="code"></textarea>
+
+          <div class="buttons">
+            <button class="run" onclick="runCode()">اجرا</button>
+
+            <button class="copy" onclick="copyCode()">کپی کد</button>
+          </div>
+        </div>
+
+        <div class="preview">
+          <div class="preview-header">خروجی مرورگر</div>
+
+          <iframe id="result"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const lessons = [];
+
+      lessons.push(
+        {
+          title: "تمرین 1 - عنوان",
+          desc: "با تگ h1 یک عنوان بساز.",
+          code: `<h1>سلام دنیا</h1>`,
+        },
+
+        {
+          title: "تمرین 2 - پاراگراف",
+          desc: "یک پاراگراف بساز.",
+          code: `<p>این یک متن آزمایشی است</p>`,
+        },
+
+        {
+          title: "تمرین 3 - لینک",
+          desc: "یک لینک ایجاد کن.",
+          code: `<a href="https://google.com">رفتن به گوگل</a>`,
+        },
+
+        {
+          title: "تمرین 4 - تصویر",
+          desc: "نمایش یک تصویر.",
+          code: `<img src="https://picsum.photos/200">`,
+        },
+      );
+
+      for (let i = 5; i <= 100; i++) {
+        lessons.push({
+          title: `تمرین ${i}`,
+          desc: "کد را تغییر بده و نتیجه را ببین.",
+          code: `<p>تمرین شماره ${i}</p>`,
+        });
+      }
+
+      const list = document.getElementById("lessonList");
+      const title = document.getElementById("title");
+      const desc = document.getElementById("description");
+      const code = document.getElementById("code");
+
+      lessons.forEach((l, i) => {
+        const div = document.createElement("div");
+        div.className = "lesson";
+        div.innerText = l.title;
+
+        div.onclick = () => loadLesson(i);
+
+        list.appendChild(div);
+      });
+
+      function loadLesson(i) {
+        title.innerText = lessons[i].title;
+        desc.innerText = lessons[i].desc;
+        code.value = lessons[i].code;
+
+        runCode();
+      }
+
+      function runCode() {
+        const iframe = document.getElementById("result");
+
+        iframe.srcdoc = code.value;
+      }
+
+      function copyCode() {
+        navigator.clipboard.writeText(code.value);
+
+        alert("کپی شد");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>دوره تمرین HTML</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Vazirmatn, sans-serif;
+        background: #020617;
+        color: #e2e8f0;
+        padding: 30px;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: auto;
+      }
+
+      h1 {
+        font-size: 30px;
+        margin-bottom: 10px;
+      }
+
+      .subtitle {
+        color: #94a3b8;
+        margin-bottom: 40px;
+      }
+
+      .exercise {
+        background: #0f172a;
+        border: 1px solid #1e293b;
+        border-radius: 16px;
+        padding: 25px;
+        margin-bottom: 40px;
+      }
+
+      .exercise-title {
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
+
+      .exercise-desc {
+        font-size: 14px;
+        color: #cbd5f5;
+        margin-bottom: 20px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .code-box {
+        background: #111827;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .code-header {
+        background: #020617;
+        padding: 8px 12px;
+        font-size: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .dots {
+        display: flex;
+        gap: 5px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .red {
+        background: #ff5f56;
+      }
+      .yellow {
+        background: #ffbd2e;
+      }
+      .green {
+        background: #27c93f;
+      }
+
+      pre {
+        padding: 15px;
+        overflow: auto;
+        direction: ltr;
+        font-size: 13px;
+      }
+
+      .output {
+        background: white;
+        color: black;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .output-header {
+        background: #020617;
+        color: white;
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+
+      .output-body {
+        padding: 20px;
+      }
+
+      .tip {
+        margin-top: 15px;
+        background: #082f49;
+        padding: 10px;
+        border-right: 4px solid #0ea5e9;
+        border-radius: 6px;
+        font-size: 13px;
+      }
+
+      .challenge {
+        margin-top: 10px;
+        background: #78350f;
+        padding: 10px;
+        border-right: 4px solid #f59e0b;
+        border-radius: 6px;
+        font-size: 13px;
+      }
+
+      @media (max-width: 800px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>دوره تمرینی HTML</h1>
+      <p class="subtitle">یادگیری HTML با تمرین‌های عملی</p>
+
+      <div id="exercises"></div>
+    </div>
+
+    <script>
+      const exercises = [
+        {
+          title: "تمرین 1: عنوان صفحه",
+          desc: "با تگ h1 یک عنوان بزرگ بساز.",
+          code: `<h1>سلام دنیا</h1>`,
+        },
+
+        {
+          title: "تمرین 2: پاراگراف",
+          desc: "با استفاده از تگ p یک متن بنویس.",
+          code: `<p>این اولین پاراگراف من است</p>`,
+        },
+
+        {
+          title: "تمرین 3: لینک",
+          desc: "یک لینک به سایت گوگل بساز.",
+          code: `<a href="https://google.com">رفتن به گوگل</a>`,
+        },
+
+        {
+          title: "تمرین 4: تصویر",
+          desc: "یک تصویر در صفحه نمایش بده.",
+          code: `<img src="https://picsum.photos/200">`,
+        },
+
+        {
+          title: "تمرین 5: لیست",
+          desc: "یک لیست ساده بساز.",
+          code: `
+<ul>
+<li>سیب</li>
+<li>موز</li>
+<li>پرتقال</li>
+</ul>
+`,
+        },
+
+        {
+          title: "تمرین 6: متن بولد",
+          desc: "یک متن ضخیم نمایش بده.",
+          code: `<b>متن مهم</b>`,
+        },
+
+        {
+          title: "تمرین 7: متن ایتالیک",
+          desc: "متن مورب ایجاد کن.",
+          code: `<i>متن مورب</i>`,
+        },
+
+        {
+          title: "تمرین 8: خط افقی",
+          desc: "یک جداکننده در صفحه بساز.",
+          code: `<hr>`,
+        },
+
+        {
+          title: "تمرین 9: دکمه",
+          desc: "یک دکمه ساده بساز.",
+          code: `<button>کلیک کن</button>`,
+        },
+
+        {
+          title: "تمرین 10: فرم",
+          desc: "یک input برای دریافت نام بساز.",
+          code: `
+<form>
+<input placeholder="نام شما">
+</form>
+`,
+        },
+      ];
+
+      /* ساخت خودکار تا 100 تمرین */
+
+      for (let i = 11; i <= 100; i++) {
+        exercises.push({
+          title: `تمرین ${i}`,
+          desc: "یک عنصر HTML ساده بساز و آن را در صفحه نمایش بده.",
+          code: `<p>تمرین شماره ${i}</p>`,
+        });
+      }
+
+      const container = document.getElementById("exercises");
+
+      exercises.forEach((ex) => {
+        const div = document.createElement("div");
+        div.className = "exercise";
+
+        div.innerHTML = `
+
+<h2 class="exercise-title">${ex.title}</h2>
+<p class="exercise-desc">${ex.desc}</p>
+
+<div class="grid">
+
+<div class="code-box">
+
+<div class="code-header">
+
+<span>HTML</span>
+
+<div class="dots">
+<div class="dot red"></div>
+<div class="dot yellow"></div>
+<div class="dot green"></div>
+</div>
+
+</div>
+
+<pre><code>${ex.code.replace(/</g, "&lt;")}</code></pre>
+
+</div>
+
+<div class="output">
+
+<div class="output-header">
+خروجی
+</div>
+
+<div class="output-body">
+${ex.code}
+</div>
+
+</div>
+
+</div>
+
+<div class="tip">
+نکته استاد: کد بالا را تغییر بده و نتیجه را بررسی کن.
+</div>
+
+<div class="challenge">
+چالش: همین تمرین را با متن یا محتوای متفاوت تکرار کن.
+</div>
+
+`;
+
+        container.appendChild(div);
+      });
+    </script>
+  </body>
+</html>

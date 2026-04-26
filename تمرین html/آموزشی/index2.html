@@ -1,0 +1,2148 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>آموزش و تمرین تگ های HTML</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+  <!-- فونت -->
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #020617;
+      --bg-content: #020617;
+      --bg-surface: #0b1220;
+      --bg-surface-soft: #020617;
+      --border-subtle: rgba(148, 163, 184, 0.25);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --accent-strong: #0ea5e9;
+      --danger: #f97373;
+      --success: #22c55e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Vazirmatn", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #0f172a 0, #020617 45%, #020617 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ================== layout اصلی ================== */
+    .layout {
+      display: flex;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+
+    /* ===== سایدبار ===== */
+    .sidebar {
+      width: 260px;
+      background: linear-gradient(180deg, #020617 0%, #020617 40%, #020617 100%);
+      border-left: 1px solid rgba(148, 163, 184, 0.25);
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      max-height: 100vh;
+      overflow-y: auto;
+    }
+
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .logo-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #38bdf8, #0f172a 60%, #020617 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #e5f6ff;
+      box-shadow:
+        0 0 0 1px rgba(56, 189, 248, 0.35),
+        0 0 24px rgba(56, 189, 248, 0.45);
+    }
+
+    .sidebar-title {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .sidebar-title span:first-child {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .sidebar-title span:last-child {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .sidebar-section-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: #64748b;
+      margin: 0.75rem 0 0.25rem;
+    }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.4rem 0.6rem;
+      border-radius: 0.7rem;
+      font-size: 0.8rem;
+      color: #cbd5f5;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.18s ease-out;
+    }
+
+    .nav-item span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-item small {
+      font-size: 0.7rem;
+      color: #64748b;
+    }
+
+    .nav-item-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #4b5563;
+    }
+
+    .nav-item:hover {
+      background: rgba(15, 23, 42, 0.9);
+      border-color: rgba(148, 163, 184, 0.5);
+      transform: translateX(-2px);
+    }
+
+    .nav-item.active {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(8, 47, 73, 0.9));
+      border-color: rgba(56, 189, 248, 0.65);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.35);
+    }
+
+    .nav-item.active .nav-item-dot {
+      background: var(--accent);
+    }
+
+    .nav-item-badge {
+      padding: 0.05rem 0.4rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.65rem;
+      color: #9ca3af;
+    }
+
+    .sidebar-hint {
+      margin-top: 1.5rem;
+      padding: 0.75rem 0.8rem;
+      border-radius: 0.9rem;
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.25), transparent 45%),
+        rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 0.75rem;
+      color: #cbd5f5;
+      line-height: 1.7;
+    }
+
+    .sidebar-hint strong {
+      font-weight: 600;
+      color: #e5f6ff;
+    }
+
+    /* ===== بخش اصلی ===== */
+    .main {
+      flex: 1;
+      padding: 1.7rem 1.5rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    /* هدربار بالا */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .top-bar-left {
+      flex: 1;
+      min-width: 210px;
+    }
+
+    .page-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .page-title-tag {
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      background: rgba(15, 23, 42, 1);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      color: #e5f6ff;
+    }
+
+    .page-subtitle {
+      margin-top: 0.2rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .top-bar-right {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .badge-chip {
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      color: #cbd5f5;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .badge-chip i {
+      font-style: normal;
+      font-size: 0.7rem;
+    }
+
+    /* سرچ‌بار بالا */
+    .search-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .search-input-wrapper {
+      flex: 1;
+      min-width: 220px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      padding-right: 2.2rem;
+      border-radius: 0.9rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.96);
+      color: var(--text-main);
+      font-size: 0.8rem;
+      outline: none;
+      transition: all 0.18s ease-out;
+    }
+
+    .search-input::placeholder {
+      color: #64748b;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-strong);
+      box-shadow:
+        0 0 0 1px rgba(56, 189, 248, 0.45),
+        0 0 24px rgba(56, 189, 248, 0.25);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 0.6rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.95rem;
+      color: #64748b;
+    }
+
+    .search-hint {
+      font-size: 0.7rem;
+      color: #9ca3af;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .kbd {
+      padding: 0.1rem 0.4rem;
+      border-radius: 0.35rem;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      font-size: 0.6rem;
+      color: #e5f6ff;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    /* نوار دسته‌بندی بالا */
+    .category-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.25rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .pill {
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      font-size: 0.7rem;
+      color: #cbd5f5;
+      cursor: pointer;
+      background: rgba(15, 23, 42, 0.95);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.16s ease-out;
+    }
+
+    .pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.9);
+    }
+
+    .pill:hover {
+      border-color: var(--accent);
+      background: rgba(15, 23, 42, 1);
+      transform: translateY(-1px);
+    }
+
+    .pill.active {
+      border-color: rgba(56, 189, 248, 0.85);
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.35), rgba(15, 23, 42, 0.95));
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.35);
+    }
+
+    .pill.active .pill-dot {
+      background: var(--accent);
+    }
+
+    /* کارت مقدمه آموزشی */
+    .intro-card {
+      margin-top: 0.3rem;
+      margin-bottom: 0.6rem;
+      padding: 0.8rem 1rem 0.75rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.32), transparent 45%),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 1));
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.9);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      align-items: flex-start;
+    }
+
+    .intro-main {
+      flex: 2;
+      min-width: 220px;
+    }
+
+    .intro-main h2 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .intro-main p {
+      font-size: 0.8rem;
+      color: #e5f6ff;
+      line-height: 1.8;
+    }
+
+    .intro-main p span {
+      color: #fbbf24;
+      font-weight: 600;
+    }
+
+    .intro-grid {
+      flex: 1.5;
+      min-width: 190px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.4rem;
+    }
+
+    .intro-chip {
+      padding: 0.4rem 0.5rem;
+      border-radius: 0.7rem;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 0.72rem;
+      color: #e5f6ff;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .intro-chip-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .intro-chip i {
+      font-style: normal;
+      font-size: 0.8rem;
+    }
+
+    .intro-side {
+      flex: 1;
+      min-width: 180px;
+      font-size: 0.72rem;
+      color: #e5f6ff;
+    }
+
+    .intro-side-title {
+      font-weight: 600;
+      font-size: 0.78rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .intro-side ul {
+      margin-top: 0.1rem;
+      padding-right: 1.1rem;
+      list-style: disc;
+      line-height: 1.8;
+    }
+
+    /* ===== سکشن‌های آموزشی/تمرینی ===== */
+    .sections-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 0.4rem;
+      margin-bottom: 2rem;
+    }
+
+    .section {
+      border-radius: 1.2rem;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.1), transparent 45%),
+        rgba(15, 23, 42, 0.97);
+      padding: 1rem 1rem 0.8rem;
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .section-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-title small {
+      font-size: 0.7rem;
+      color: #a5b4fc;
+      padding: 0.1rem 0.4rem;
+      border-radius: 999px;
+      border: 1px solid rgba(129, 140, 248, 0.7);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .section-subtitle {
+      font-size: 0.78rem;
+      color: #cbd5f5;
+    }
+
+    .section-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      font-size: 0.68rem;
+      color: #94a3b8;
+    }
+
+    .section-meta span {
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.92);
+    }
+
+    /* نکته استاد / هشدار / چالش */
+    .note-card {
+      margin-bottom: 0.7rem;
+      padding: 0.6rem 0.7rem;
+      border-radius: 0.9rem;
+      font-size: 0.78rem;
+      line-height: 1.8;
+      display: flex;
+      gap: 0.45rem;
+      align-items: flex-start;
+      border: 1px solid;
+    }
+
+    .note-card strong {
+      display: block;
+      margin-bottom: 0.1rem;
+      font-size: 0.78rem;
+    }
+
+    .note-icon {
+      font-size: 0.9rem;
+      margin-top: 0.05rem;
+    }
+
+    .note-pro {
+      background: rgba(8, 47, 73, 0.9);
+      border-color: rgba(56, 189, 248, 0.55);
+      color: #e0f2fe;
+    }
+
+    .note-pro strong {
+      color: #e0f2fe;
+    }
+
+    .note-warning {
+      background: rgba(120, 53, 15, 0.75);
+      border-color: rgba(249, 115, 22, 0.9);
+      color: #ffedd5;
+    }
+
+    .note-challenge {
+      background: rgba(22, 101, 52, 0.85);
+      border-color: rgba(34, 197, 94, 0.9);
+      color: #dcfce7;
+    }
+
+    /* ===== تمرین‌ها ===== */
+    .exercise {
+      margin-bottom: 1rem;
+      padding: 0.7rem 0.7rem 0.8rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .exercise-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.4rem;
+      margin-bottom: 0.4rem;
+      align-items: baseline;
+    }
+
+    .exercise-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .exercise-title span {
+      font-size: 0.7rem;
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: #e5f6ff;
+    }
+
+    .exercise-tag-label {
+      font-size: 0.7rem;
+      color: #a5b4fc;
+    }
+
+    .exercise-desc {
+      font-size: 0.76rem;
+      color: #cbd5f5;
+      margin-bottom: 0.55rem;
+    }
+
+    /* گرید کد + خروجی */
+    .code-output-container {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    @media (max-width: 900px) {
+      .code-output-container {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* ==== code-wrapper (بر اساس فایل اصلی) ==== */
+    .code-wrapper {
+      position: relative;
+      margin: 0;
+      border-radius: 1rem;
+      overflow: hidden;
+      background: #1e1e1e;
+      border: 1px solid rgba(15, 23, 42, 0.85);
+      box-shadow:
+        0 20px 40px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.75);
+      direction: ltr;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      min-height: 180px;
+    }
+
+    .code-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.35rem 0.75rem;
+      background: rgba(17, 24, 39, 0.95);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .code-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #9ca3af;
+      font-weight: 600;
+    }
+
+    .code-lang {
+      padding: 0.05rem 0.4rem;
+      border-radius: 999px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+      font-size: 0.6rem;
+      color: #e5f6ff;
+    }
+
+    .browser-dots {
+      display: flex;
+      gap: 0.25rem;
+      align-items: center;
+    }
+
+    .browser-dots div {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+    }
+
+    .dot-red {
+      background: #ff5f56;
+    }
+
+    .dot-yellow {
+      background: #ffbd2e;
+    }
+
+    .dot-green {
+      background: #27c93f;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 7px;
+      left: 10px;
+      background: transparent;
+      border: none;
+      color: #9ca3af;
+      font-size: 0.8rem;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.16s ease-out;
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.5rem;
+    }
+
+    .copy-button:hover {
+      transform: scale(0.9);
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5f6ff;
+    }
+
+    .copy-button.copied {
+      color: var(--success);
+    }
+
+    .copy-button.copied:hover {
+      color: var(--success);
+    }
+
+    .code-wrapper:hover .copy-button {
+      opacity: 1;
+    }
+
+    pre {
+      margin: 0 !important;
+      padding: 0.7rem 0.85rem;
+      overflow-x: auto;
+      background: transparent !important;
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: #e5e7eb;
+      max-height: 260px;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background: transparent !important;
+      padding: 0;
+      white-space: pre;
+    }
+
+    /* custom scrollbar */
+    .custom-scrollbar::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(55, 65, 81, 0.9);
+      border-radius: 999px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(75, 85, 99, 0.9);
+    }
+
+    /* ===== خروجی ===== */
+    .output-preview {
+      background: #0b1120;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      border-radius: 1rem;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 180px;
+      box-shadow:
+        0 20px 40px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(15, 23, 42, 0.7);
+    }
+
+    .output-preview.dark {
+      background: #020617;
+      border-color: rgba(30, 64, 175, 0.85);
+    }
+
+    .output-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.35rem 0.7rem;
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 0.7rem;
+      color: #e5f6ff;
+    }
+
+    .output-header span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .output-header small {
+      font-size: 0.65rem;
+      color: #9ca3af;
+    }
+
+    .output-body {
+      padding: 0.8rem;
+      font-size: 0.85rem;
+      color: #e5e7eb;
+      line-height: 1.8;
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.8), #020617);
+    }
+
+    .output-body.dark {
+      font-size: 0.9rem;
+    }
+
+    .output-body a {
+      color: #38bdf8;
+      text-decoration: underline;
+    }
+
+    .output-body ul {
+      padding-right: 1.2rem;
+      list-style: disc;
+    }
+
+    .output-body ol {
+      padding-right: 1.2rem;
+    }
+
+    .output-body table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+
+    .output-body th,
+    .output-body td {
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 0.3rem 0.4rem;
+    }
+
+    .output-body th {
+      background: rgba(30, 64, 175, 0.45);
+    }
+
+    .output-body input,
+    .output-body select,
+    .output-body textarea,
+    .output-body button {
+      font-family: inherit;
+      font-size: 0.8rem;
+    }
+
+    /* ===== فوتِر کوچک ===== */
+    .footer {
+      margin-top: 0.5rem;
+      font-size: 0.7rem;
+      color: #64748b;
+      text-align: left;
+    }
+
+    /* ریسپانسیو کلی */
+    @media (max-width: 1024px) {
+      .sidebar {
+        display: none;
+      }
+      .layout {
+        max-width: 100%;
+      }
+      .main {
+        padding: 1.3rem 1rem 2rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .intro-card {
+        padding: 0.75rem 0.75rem 0.7rem;
+      }
+      .section {
+        padding: 0.8rem 0.7rem 0.7rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<div class="layout">
+  <!-- ================== SIDEBAR ================== -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-circle">HT</div>
+      <div class="sidebar-title">
+        <span>HTML Tag Lab</span>
+        <span>تمرین تعاملی تگ‌های HTML</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="sidebar-section-title">سرفصل‌ها</div>
+      <nav class="sidebar-nav">
+        <div class="nav-item active" data-scroll="#sec-text">
+          <span>
+            <span class="nav-item-dot"></span>
+            متن و تیترها
+          </span>
+          <span class="nav-item-badge">۶ تگ</span>
+        </div>
+        <div class="nav-item" data-scroll="#sec-links">
+          <span>
+            <span class="nav-item-dot"></span>
+            لینک‌ها و ناوبری
+          </span>
+          <span class="nav-item-badge">۳ تگ</span>
+        </div>
+        <div class="nav-item" data-scroll="#sec-lists">
+          <span>
+            <span class="nav-item-dot"></span>
+            لیست‌ها
+          </span>
+          <span class="nav-item-badge">۳ تگ</span>
+        </div>
+        <div class="nav-item" data-scroll="#sec-media">
+          <span>
+            <span class="nav-item-dot"></span>
+            رسانه
+          </span>
+          <span class="nav-item-badge">۳ تگ</span>
+        </div>
+        <div class="nav-item" data-scroll="#sec-tables">
+          <span>
+            <span class="nav-item-dot"></span>
+            جداول
+          </span>
+          <span class="nav-item-badge">۲ تگ</span>
+        </div>
+        <div class="nav-item" data-scroll="#sec-forms">
+          <span>
+            <span class="nav-item-dot"></span>
+            فرم‌ها
+          </span>
+          <span class="nav-item-badge">۳ تگ</span>
+        </div>
+        <div class="nav-item" data-scroll="#sec-semantic">
+          <span>
+            <span class="nav-item-dot"></span>
+            تگ‌های معنایی
+          </span>
+          <span class="nav-item-badge">۳ تگ</span>
+        </div>
+      </nav>
+    </div>
+
+    <div class="sidebar-hint">
+      <strong>نحوه استفاده:</strong>
+      با کلیک روی هر سرفصل، پایین صفحه به همان بخش می‌پرد. هر تمرین شامل توضیح، کد، خروجی و یک
+      <strong>چالش</strong> کوتاه است. کد را بخوان، خروجی را ببین و بعد چالش را خودت حل کن.
+    </div>
+  </aside>
+
+  <!-- ================== MAIN ================== -->
+  <main class="main">
+    <!-- Header + search -->
+    <header class="top-bar">
+      <div class="top-bar-left">
+        <div class="page-title">
+          آموزش تعاملی تگ‌های HTML
+          <span class="page-title-tag">مسیر: مبتدی → حرفه‌ای</span>
+        </div>
+        <p class="page-subtitle">
+          در هر بخش، چند تگ مهم را همراه با مثال واقعی، نکته‌ی استاد و چالش تمرینی یاد می‌گیری.
+        </p>
+      </div>
+      <div class="top-bar-right">
+        <div class="badge-chip"><i>●</i> تگ + خروجی</div>
+        <div class="badge-chip"><i>★</i> نکته استاد</div>
+        <div class="badge-chip"><i>⚑</i> چالش دانشجو</div>
+      </div>
+    </header>
+
+    <!-- search bar -->
+    <section class="search-bar">
+      <div class="search-input-wrapper">
+        <span class="search-icon">⌕</span>
+        <input
+          id="searchInput"
+          class="search-input"
+          placeholder="جستجوی تگ (مثلاً h1 , img , table , form) یا عنوان تمرین..."
+        />
+      </div>
+      <div class="search-hint">
+        می‌خواهی فقط یک دسته را ببینی؟ روی چیپ‌های زیر کلیک کن.
+      </div>
+    </section>
+
+    <!-- top category pills -->
+    <div class="category-pills">
+      <button class="pill active" data-category="all">
+        <span class="pill-dot"></span> همه تگ‌ها
+      </button>
+      <button class="pill" data-category="text">
+        <span class="pill-dot"></span> متن و تیترها
+      </button>
+      <button class="pill" data-category="links">
+        <span class="pill-dot"></span> لینک‌ها
+      </button>
+      <button class="pill" data-category="lists">
+        <span class="pill-dot"></span> لیست‌ها
+      </button>
+      <button class="pill" data-category="media">
+        <span class="pill-dot"></span> رسانه
+      </button>
+      <button class="pill" data-category="tables">
+        <span class="pill-dot"></span> جدول
+      </button>
+      <button class="pill" data-category="forms">
+        <span class="pill-dot"></span> فرم
+      </button>
+      <button class="pill" data-category="semantic">
+        <span class="pill-dot"></span> تگ‌های معنایی
+      </button>
+    </div>
+
+    <!-- intro card -->
+    <section class="intro-card">
+      <div class="intro-main">
+        <h2>چطور از این صفحه استفاده کنی؟</h2>
+        <p>
+          این صفحه فقط فهرست تگ‌ها نیست؛ یک
+          <span>لَب‌لَب‌ HTML</span>
+          است. هر تگ را با مثال واقعی، خروجیِ شبیه مرورگر، نکته‌های حرفه‌ای و چالش تمرینی می‌بینی.
+        </p>
+      </div>
+
+      <div class="intro-grid">
+        <div class="intro-chip">
+          <span class="intro-chip-dot"></span>
+          <span>اجرای ذهنی + دیدن خروجی</span>
+        </div>
+        <div class="intro-chip">
+          <span class="intro-chip-dot"></span>
+          <span>تمرین ساخت کارت، منو، فرم ساده و...</span>
+        </div>
+        <div class="intro-chip">
+          <span class="intro-chip-dot"></span>
+          <span>تگ‌های پرکاربرد + معنایی HTML5</span>
+        </div>
+        <div class="intro-chip">
+          <span class="intro-chip-dot"></span>
+          <span>حالت آزمایشگاه با کد و خروجی کنار هم</span>
+        </div>
+      </div>
+
+      <div class="intro-side">
+        <div class="intro-side-title">پیشنهاد برای یادگیری عمیق‌تر:</div>
+        <ul>
+          <li>اول توضیح را بخوان، بعد سراغ کد برو.</li>
+          <li>سعی کن قبل از دیدن خروجی، حدس بزنی چه می‌شود.</li>
+          <li>چالش پایین هر تمرین را در فایل جدا تمرین کن.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ALL SECTIONS -->
+    <div class="sections-wrapper">
+
+      <!-- ============ 1) TEXT SECTION ============ -->
+      <section class="section" id="sec-text" data-category="text">
+        <header class="section-header">
+          <div class="section-title-block">
+            <div class="section-title">
+              تگ‌های متن و تیترها
+              <small>h1 – h6 , p , span , strong , em</small>
+            </div>
+            <p class="section-subtitle">
+              ساختار اصلی محتوای صفحه از تیترها و پاراگراف‌ها تشکیل شده؛ درست مثل یک مقاله.
+            </p>
+          </div>
+          <div class="section-meta">
+            <span>۶ تگ مهم</span>
+            <span dir="ltr">h1–h3 , p , strong , em</span>
+          </div>
+        </header>
+
+        <div class="note-card note-pro">
+          <span class="note-icon">💡</span>
+          <div>
+            <strong>نکته استاد:</strong>
+            تیترهای h1 تا h6 فقط برای بزرگ یا کوچک کردن متن نیستند؛
+            در واقع ساختار منطقی صفحه را برای مرورگر و موتورهای جستجو مشخص می‌کنند.
+          </div>
+        </div>
+
+        <!-- exercise 1: h1/h2/p -->
+        <article
+          class="exercise"
+          data-tags="h1,h2,p,heading,تیتر,عنوان"
+          data-category="text"
+        >
+          <div class="exercise-header">
+            <div class="exercise-title">
+              ساخت هدر ساده صفحه معرفی
+              <span>h1 + h2 + p</span>
+            </div>
+            <div class="exercise-tag-label">&lt;h1&gt; , &lt;h2&gt; , &lt;p&gt;</div>
+          </div>
+          <p class="exercise-desc">
+            در این مثال، یک عنوان اصلی، یک زیرعنوان و یک پاراگراف توضیح می‌بینی. این الگو تقریباً در
+            تمام صفحات فرود (Landing Page) تکرار می‌شود.
+          </p>
+
+          <div class="code-output-container">
+            <!-- code -->
+            <div class="code-wrapper">
+              <div class="code-header">
+                <div class="code-header-left">
+                  <span>HTML</span>
+                  <span class="code-lang">h1 / h2 / p</span>
+                </div>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <button class="copy-button" title="کپی کد" onclick="copyCode(this)">⧉</button>
+              <pre class="custom-scrollbar"><code>
+&lt;h1&gt;آموزش HTML به زبان ساده&lt;/h1&gt;
+&lt;h2&gt;گام اول: آشنایی با تگ‌های متن&lt;/h2&gt;
+
+&lt;p&gt;
+  در این دوره یاد می‌گیری چطور با استفاده از تگ‌های ساده،
+  ساختار اصلی یک صفحه وب را بسازی.
+&lt;/p&gt;
+              </code></pre>
+            </div>
+
+            <!-- output -->
+            <div class="output-preview">
+              <div class="output-header">
+                <span>خروجی مثال</span>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <div class="output-body">
+                <h1>آموزش HTML به زبان ساده</h1>
+                <h2>گام اول: آشنایی با تگ‌های متن</h2>
+                <p>
+                  در این دوره یاد می‌گیری چطور با استفاده از تگ‌های ساده،
+                  ساختار اصلی یک صفحه وب را بسازی.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="note-card note-challenge" style="margin-top:0.7rem;">
+            <span class="note-icon">⚑</span>
+            <div>
+              <strong>چالش دانشجو:</strong>
+              یک صفحه کوتاه بساز که در آن یک عنوان «معرفی خودم»، یک زیرعنوان
+              «مهارت‌ها» و یک پاراگراف شامل ۳ مهارت خودت را بنویسی.
+            </div>
+          </div>
+        </article>
+
+        <!-- exercise 2: strong/em/span -->
+        <article
+          class="exercise"
+          data-tags="strong,em,span,bold,italic,تاکید"
+          data-category="text"
+        >
+          <div class="exercise-header">
+            <div class="exercise-title">
+              تاکید روی بخش‌های مهم متن
+              <span>strong + em + span</span>
+            </div>
+            <div class="exercise-tag-label">&lt;strong&gt; , &lt;em&gt; , &lt;span&gt;</div>
+          </div>
+          <p class="exercise-desc">
+            از strong برای تاکید مهم (معمولاً پررنگ)، از em برای تاکید معنایی (معمولاً مورب) و
+            از span برای استایل دادن به بخشی از متن استفاده می‌شود.
+          </p>
+
+          <div class="code-output-container">
+            <div class="code-wrapper">
+              <div class="code-header">
+                <div class="code-header-left">
+                  <span>HTML</span>
+                  <span class="code-lang">strong / em / span</span>
+                </div>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <button class="copy-button" title="کپی کد" onclick="copyCode(this)">⧉</button>
+              <pre class="custom-scrollbar"><code>
+&lt;p&gt;
+  یادگیری &lt;strong&gt;HTML&lt;/strong&gt; اولین قدم برای ورود به
+  &lt;em&gt;جهان توسعه وب&lt;/em&gt; است.
+&lt;/p&gt;
+
+&lt;p&gt;
+  این متن شامل یک &lt;span style="color:#fbbf24;"&gt;هشدار مهم&lt;/span&gt; است.
+&lt;/p&gt;
+              </code></pre>
+            </div>
+
+            <div class="output-preview">
+              <div class="output-header">
+                <span>خروجی مثال</span>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <div class="output-body">
+                <p>
+                  یادگیری <strong>HTML</strong> اولین قدم برای ورود به
+                  <em>جهان توسعه وب</em> است.
+                </p>
+                <p>
+                  این متن شامل یک
+                  <span style="color:#fbbf24;">هشدار مهم</span>
+                  است.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="note-card note-challenge" style="margin-top:0.7rem;">
+            <span class="note-icon">⚑</span>
+            <div>
+              <strong>چالش دانشجو:</strong>
+              یک پاراگراف درباره‌ی «برنامه روزانه خودت» بنویس و حداقل روی
+              دو بخش مهم با strong و em تاکید کن.
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ============ 2) LINKS SECTION ============ -->
+      <section class="section" id="sec-links" data-category="links">
+        <header class="section-header">
+          <div class="section-title-block">
+            <div class="section-title">
+              لینک‌ها و ناوبری
+              <small>a , target , mailto</small>
+            </div>
+            <p class="section-subtitle">
+              لینک‌ها روح وب هستند. بدون تگ <code>&lt;a&gt;</code> وب فقط مجموعه‌ای از صفحات
+              جدا از هم است.
+            </p>
+          </div>
+          <div class="section-meta">
+            <span>۳ الگوی مهم لینک‌سازی</span>
+          </div>
+        </header>
+
+        <div class="note-card note-pro">
+          <span class="note-icon">💡</span>
+          <div>
+            <strong>نکته استاد:</strong>
+            همیشه متن لینک را معنادار بنویس؛ به جای «اینجا کلیک کنید»، بنویس «مشاهده
+            دوره HTML».
+          </div>
+        </div>
+
+        <!-- exercise: لینک ساده + target -->
+        <article
+          class="exercise"
+          data-tags="a,link,target,_blank,href"
+          data-category="links"
+        >
+          <div class="exercise-header">
+            <div class="exercise-title">
+              ساخت لینک ساده و لینک در تب جدید
+              <span>a + target</span>
+            </div>
+            <div class="exercise-tag-label">&lt;a&gt; , href , target</div>
+          </div>
+          <p class="exercise-desc">
+            در این مثال تفاوت لینک عادی و لینکی که در یک تب جدید باز می‌شود را می‌بینی.
+          </p>
+
+          <div class="code-output-container">
+            <div class="code-wrapper">
+              <div class="code-header">
+                <div class="code-header-left">
+                  <span>HTML</span>
+                  <span class="code-lang">a / target</span>
+                </div>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <button class="copy-button" title="کپی کد" onclick="copyCode(this)">⧉</button>
+              <pre class="custom-scrollbar"><code>
+&lt;!-- لینک عادی --&gt;
+&lt;a href="https://developer.mozilla.org"&gt;
+  مستندات MDN
+&lt;/a&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;!-- لینک که در تب جدید باز می‌شود --&gt;
+&lt;a href="https://google.com" target="_blank"&gt;
+  جستجو در گوگل (تب جدید)
+&lt;/a&gt;
+              </code></pre>
+            </div>
+
+            <div class="output-preview">
+              <div class="output-header">
+                <span>خروجی مثال</span>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <div class="output-body">
+                <a href="https://developer.mozilla.org" target="_blank">مستندات MDN</a>
+                <br><br>
+                <a href="https://google.com" target="_blank">جستجو در گوگل (تب جدید)</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="note-card note-challenge" style="margin-top:0.7rem;">
+            <span class="note-icon">⚑</span>
+            <div>
+              <strong>چالش دانشجو:</strong>
+              یک «نوار منوی ساده» بساز که شامل سه لینک «خانه»، «درباره ما» و
+              «تماس» باشد. لینک «تماس» در تب جدید باز شود.
+            </div>
+          </div>
+        </article>
+
+        <!-- exercise: mailto -->
+        <article
+          class="exercise"
+          data-tags="mailto,email,link"
+          data-category="links"
+        >
+          <div class="exercise-header">
+            <div class="exercise-title">
+              ساخت لینک ایمیل
+              <span>a + mailto</span>
+            </div>
+            <div class="exercise-tag-label">mailto:</div>
+          </div>
+          <p class="exercise-desc">
+            گاهی می‌خواهی با کلیک روی لینک، برنامه ایمیل کاربر باز شود. در این حالت از
+            <code>mailto:</code> استفاده می‌کنیم.
+          </p>
+
+          <div class="code-output-container">
+            <div class="code-wrapper">
+              <div class="code-header">
+                <div class="code-header-left">
+                  <span>HTML</span>
+                  <span class="code-lang">mailto</span>
+                </div>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <button class="copy-button" title="کپی کد" onclick="copyCode(this)">⧉</button>
+              <pre class="custom-scrollbar"><code>
+&lt;a href="mailto:info@example.com"&gt;
+  ارسال ایمیل به پشتیبانی
+&lt;/a&gt;
+              </code></pre>
+            </div>
+
+            <div class="output-preview">
+              <div class="output-header">
+                <span>خروجی مثال</span>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <div class="output-body">
+                <a href="mailto:info@example.com">ارسال ایمیل به پشتیبانی</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ============ 3) LISTS SECTION ============ -->
+      <section class="section" id="sec-lists" data-category="lists">
+        <header class="section-header">
+          <div class="section-title-block">
+            <div class="section-title">
+              لیست‌های مرتب و نامرتب
+              <small>ul , ol , li</small>
+            </div>
+            <p class="section-subtitle">
+              هر جایی که چند مورد پشت سر هم داری (منو، مراحل انجام کار، مزایا)، از لیست‌ها کمک بگیر.
+            </p>
+          </div>
+          <div class="section-meta">
+            <span>لیست نامرتب (bullet)</span>
+            <span>لیست مرتب (شماره‌دار)</span>
+          </div>
+        </header>
+
+        <div class="note-card note-pro">
+          <span class="note-icon">💡</span>
+          <div>
+            <strong>نکته استاد:</strong>
+            به جای استفاده از br پشت سر هم برای ساخت لیست، همیشه از ul/ol + li استفاده کن؛
+            هم دسترسی‌پذیرتر است و هم تمیزتر.
+          </div>
+        </div>
+
+        <!-- exercise: ul -->
+        <article
+          class="exercise"
+          data-tags="ul,li,لیست نامرتب,bullet"
+          data-category="lists"
+        >
+          <div class="exercise-header">
+            <div class="exercise-title">
+              لیست نامرتب برای منوی ساده
+              <span>ul + li</span>
+            </div>
+            <div class="exercise-tag-label">&lt;ul&gt; , &lt;li&gt;</div>
+          </div>
+          <p class="exercise-desc">
+            یک منوی ساده که از ۳ آیتم تشکیل شده است. بعداً در CSS می‌توانی آن را افقی و شبیه
+            منوی سایت‌ها کنی.
+          </p>
+
+          <div class="code-output-container">
+            <div class="code-wrapper">
+              <div class="code-header">
+                <div class="code-header-left">
+                  <span>HTML</span>
+                  <span class="code-lang">ul / li</span>
+                </div>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <button class="copy-button" title="کپی کد" onclick="copyCode(this)">⧉</button>
+              <pre class="custom-scrollbar"><code>
+&lt;ul&gt;
+  &lt;li&gt;خانه&lt;/li&gt;
+  &lt;li&gt;دوره‌ها&lt;/li&gt;
+  &lt;li&gt;ارتباط با ما&lt;/li&gt;
+&lt;/ul&gt;
+              </code></pre>
+            </div>
+
+            <div class="output-preview">
+              <div class="output-header">
+                <span>خروجی مثال</span>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <div class="output-body">
+                <ul>
+                  <li>خانه</li>
+                  <li>دوره‌ها</li>
+                  <li>ارتباط با ما</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="note-card note-challenge" style="margin-top:0.7rem;">
+            <span class="note-icon">⚑</span>
+            <div>
+              <strong>چالش دانشجو:</strong>
+              یک لیست نامرتب از ۵ غذای مورد علاقه خودت بساز. بعداً می‌توانی با CSS
+              به هر li یک آیکن کنار متن اضافه کنی.
+            </div>
+          </div>
+        </article>
+
+        <!-- exercise: ol -->
+        <article
+          class="exercise"
+          data-tags="ol,li,ordered list,لیست مرتب"
+          data-category="lists"
+        >
+          <div class="exercise-header">
+            <div class="exercise-title">
+              نمایش مراحل به صورت لیست شماره‌دار
+              <span>ol + li</span>
+            </div>
+            <div class="exercise-tag-label">&lt;ol&gt; , &lt;li&gt;</div>
+          </div>
+          <p class="exercise-desc">
+            وقتی ترتیب آیتم‌ها مهم است (مثلاً مراحل ثبت‌نام)، از لیست مرتب (ol) استفاده کن.
+          </p>
+
+          <div class="code-output-container">
+            <div class="code-wrapper">
+              <div class="code-header">
+                <div class="code-header-left">
+                  <span>HTML</span>
+                  <span class="code-lang">ol / li</span>
+                </div>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <button class="copy-button" title="کپی کد" onclick="copyCode(this)">⧉</button>
+              <pre class="custom-scrollbar"><code>
+&lt;ol&gt;
+  &lt;li&gt;ایجاد حساب کاربری&lt;/li&gt;
+  &lt;li&gt;تکمیل اطلاعات پروفایل&lt;/li&gt;
+  &lt;li&gt;انتخاب دوره مورد علاقه&lt;/li&gt;
+&lt;/ol&gt;
+              </code></pre>
+            </div>
+
+            <div class="output-preview">
+              <div class="output-header">
+                <span>خروجی مثال</span>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <div class="output-body">
+                <ol>
+                  <li>ایجاد حساب کاربری</li>
+                  <li>تکمیل اطلاعات پروفایل</li>
+                  <li>انتخاب دوره مورد علاقه</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ============ 4) MEDIA SECTION ============ -->
+      <section class="section" id="sec-media" data-category="media">
+        <header class="section-header">
+          <div class="section-title-block">
+            <div class="section-title">
+              تگ‌های رسانه‌ای
+              <small>img , audio , video</small>
+            </div>
+            <p class="section-subtitle">
+              برای نمایش تصویر، صدا و ویدیو از این سه تگ اصلی استفاده می‌شود.
+            </p>
+          </div>
+          <div class="section-meta">
+            <span>تصویر + متن جایگزین</span>
+            <span>کنترل‌های ویدیو و صدا</span>
+          </div>
+        </header>
+
+        <div class="note-card note-warning">
+          <span class="note-icon">⚠</span>
+          <div>
+            <strong>هشدار:</strong>
+            همیشه برای تصویرها ویژگی
+            <code>alt</code>
+            را پر کن. اگر تصویر لود نشود یا کاربر از صفحه‌خوان استفاده کند، این متن جایگزین
+            نمایش داده می‌شود.
+          </div>
+        </div>
+
+        <!-- exercise: img -->
+        <article
+          class="exercise"
+          data-tags="img,alt,src,تصویر"
+          data-category="media"
+        >
+          <div class="exercise-header">
+            <div class="exercise-title">
+              نمایش تصویر پروفایل ساده
+              <span>img + alt</span>
+            </div>
+            <div class="exercise-tag-label">&lt;img&gt;</div>
+          </div>
+          <p class="exercise-desc">
+            یک تصویر پروفایل نمونه را از سرویس picsum لود می‌کنیم و متن جایگزین مناسب قرار می‌دهیم.
+          </p>
+
+          <div class="code-output-container">
+            <div class="code-wrapper">
+              <div class="code-header">
+                <div class="code-header-left">
+                  <span>HTML</span>
+                  <span class="code-lang">img / alt</span>
+                </div>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <button class="copy-button" title="کپی کد" onclick="copyCode(this)">⧉</button>
+              <pre class="custom-scrollbar"><code>
+&lt;img
+  src="https://picsum.photos/150"
+  alt="تصویر پروفایل کاربر"
+/&gt;
+              </code></pre>
+            </div>
+
+            <div class="output-preview">
+              <div class="output-header">
+                <span>خروجی مثال</span>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <div class="output-body">
+                <img
+                  src="https://picsum.photos/150"
+                  alt="تصویر پروفایل کاربر"
+                  style="border-radius:999px;display:block;"
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="note-card note-challenge" style="margin-top:0.7rem;">
+            <span class="note-icon">⚑</span>
+            <div>
+              <strong>چالش دانشجو:</strong>
+              یک کارت پروفایل بساز که شامل تصویر، نام و توضیح کوتاه درباره‌ی کاربر باشد.
+            </div>
+          </div>
+        </article>
+
+        <!-- exercise: video (نمایشی) -->
+        <article
+          class="exercise"
+          data-tags="video,controls,source"
+          data-category="media"
+        >
+          <div class="exercise-header">
+            <div class="exercise-title">
+              تگ ویدیو با کنترل پخش
+              <span>video + controls</span>
+            </div>
+            <div class="exercise-tag-label">&lt;video&gt;</div>
+          </div>
+          <p class="exercise-desc">
+            این مثال ساختار کلی تگ ویدیو را نشان می‌دهد. برای اجرای واقعی باید فایل ویدیو
+            روی سیستم خودت داشته باشی.
+          </p>
+
+          <div class="code-output-container">
+            <div class="code-wrapper">
+              <div class="code-header">
+                <div class="code-header-left">
+                  <span>HTML</span>
+                  <span class="code-lang">video</span>
+                </div>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <button class="copy-button" title="کپی کد" onclick="copyCode(this)">⧉</button>
+              <pre class="custom-scrollbar"><code>
+&lt;video controls width="280"&gt;
+  &lt;source src="sample.mp4" type="video/mp4"&gt;
+  مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+&lt;/video&gt;
+              </code></pre>
+            </div>
+
+            <div class="output-preview">
+              <div class="output-header">
+                <span>خروجی تقریبی (بدون فایل ویدیو)</span>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <div class="output-body">
+                <video controls width="280">
+                  <source src="sample.mp4" type="video/mp4">
+                  مرورگر شما از ویدیو پشتیبانی نمی‌کند.
+                </video>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ============ 5) TABLES SECTION ============ -->
+      <section class="section" id="sec-tables" data-category="tables">
+        <header class="section-header">
+          <div class="section-title-block">
+            <div class="section-title">
+              ساخت جدول‌های ساده
+              <small>table , tr , th , td</small>
+            </div>
+            <p class="section-subtitle">
+              جدول‌ها برای نمایش داده‌های ساختاریافته (مثل لیست کاربران، نمرات، قیمت‌ها) استفاده می‌شوند.
+            </p>
+          </div>
+          <div class="section-meta">
+            <span>ساخت جدول ۲×۳</span>
+          </div>
+        </header>
+
+        <article
+          class="exercise"
+          data-tags="table,tr,th,td,جدول"
+          data-category="tables"
+        >
+          <div class="exercise-header">
+            <div class="exercise-title">
+              جدول لیست دانشجویان
+              <span>table + tr + th + td</span>
+            </div>
+            <div class="exercise-tag-label">&lt;table&gt;</div>
+          </div>
+          <p class="exercise-desc">
+            یک جدول ساده با دو ستون «نام» و «نمره» و سه ردیف دانشجو می‌سازیم.
+          </p>
+
+          <div class="code-output-container">
+            <div class="code-wrapper">
+              <div class="code-header">
+                <div class="code-header-left">
+                  <span>HTML</span>
+                  <span class="code-lang">table</span>
+                </div>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <button class="copy-button" title="کپی کد" onclick="copyCode(this)">⧉</button>
+              <pre class="custom-scrollbar"><code>
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;نام&lt;/th&gt;
+    &lt;th&gt;نمره&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;علی&lt;/td&gt;
+    &lt;td&gt;۱۸&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;مریم&lt;/td&gt;
+    &lt;td&gt;۱۹&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+              </code></pre>
+            </div>
+
+            <div class="output-preview">
+              <div class="output-header">
+                <span>خروجی مثال</span>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <div class="output-body">
+                <table>
+                  <tr>
+                    <th>نام</th>
+                    <th>نمره</th>
+                  </tr>
+                  <tr>
+                    <td>علی</td>
+                    <td>۱۸</td>
+                  </tr>
+                  <tr>
+                    <td>مریم</td>
+                    <td>۱۹</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="note-card note-challenge" style="margin-top:0.7rem;">
+            <span class="note-icon">⚑</span>
+            <div>
+              <strong>چالش دانشجو:</strong>
+              یک جدول برنامه هفتگی ۳ روزه بساز که سطرها روزهای هفته و ستون‌ها ساعت‌های صبح،
+              بعدازظهر و شب باشند.
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ============ 6) FORMS SECTION ============ -->
+      <section class="section" id="sec-forms" data-category="forms">
+        <header class="section-header">
+          <div class="section-title-block">
+            <div class="section-title">
+              تگ‌های فرم و ورودی
+              <small>form , input , textarea , select</small>
+            </div>
+            <p class="section-subtitle">
+              فرم‌ها جایی هستند که کاربر می‌تواند داده وارد کند: نام، ایمیل، نظر و...
+            </p>
+          </div>
+          <div class="section-meta">
+            <span>فرم تماس کوتاه</span>
+          </div>
+        </header>
+
+        <div class="note-card note-pro">
+          <span class="note-icon">💡</span>
+          <div>
+            <strong>نکته استاد:</strong>
+            همیشه با تگ <code>&lt;label&gt;</code> فیلدهای فرم را توضیح بده تا هم کاربر
+            راحت‌تر بفهمد، هم صفحه برای افراد با نیازهای ویژه قابل‌فهم‌تر باشد.
+          </div>
+        </div>
+
+        <!-- exercise: form contact -->
+        <article
+          class="exercise"
+          data-tags="form,input,textarea,label,button"
+          data-category="forms"
+        >
+          <div class="exercise-header">
+            <div class="exercise-title">
+              فرم تماس ساده
+              <span>form + input + textarea</span>
+            </div>
+            <div class="exercise-tag-label">&lt;form&gt;</div>
+          </div>
+          <p class="exercise-desc">
+            یک فرم ساده شامل نام، ایمیل و پیام کاربر را می‌سازیم. این فرم فعلاً سمت سرور
+            متصل نیست، اما ساختارش استاندارد است.
+          </p>
+
+          <div class="code-output-container">
+            <div class="code-wrapper">
+              <div class="code-header">
+                <div class="code-header-left">
+                  <span>HTML</span>
+                  <span class="code-lang">form</span>
+                </div>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <button class="copy-button" title="کپی کد" onclick="copyCode(this)">⧉</button>
+              <pre class="custom-scrollbar"><code>
+&lt;form&gt;
+  &lt;label&gt;نام کامل:&lt;/label&gt;&lt;br&gt;
+  &lt;input type="text" placeholder="نام خود را وارد کنید"&gt;
+
+  &lt;br&gt;&lt;br&gt;
+
+  &lt;label&gt;ایمیل:&lt;/label&gt;&lt;br&gt;
+  &lt;input type="email" placeholder="example@mail.com"&gt;
+
+  &lt;br&gt;&lt;br&gt;
+
+  &lt;label&gt;پیام شما:&lt;/label&gt;&lt;br&gt;
+  &lt;textarea rows="3" placeholder="پیام خود را بنویسید..."&gt;&lt;/textarea&gt;
+
+  &lt;br&gt;&lt;br&gt;
+
+  &lt;button type="submit"&gt;ارسال پیام&lt;/button&gt;
+&lt;/form&gt;
+              </code></pre>
+            </div>
+
+            <div class="output-preview">
+              <div class="output-header">
+                <span>خروجی مثال</span>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <div class="output-body">
+                <form onsubmit="event.preventDefault(); alert('این یک فرم نمایشی است.');">
+                  <label>نام کامل:</label><br>
+                  <input type="text" placeholder="نام خود را وارد کنید">
+                  <br><br>
+                  <label>ایمیل:</label><br>
+                  <input type="email" placeholder="example@mail.com">
+                  <br><br>
+                  <label>پیام شما:</label><br>
+                  <textarea rows="3" placeholder="پیام خود را بنویسید..."></textarea>
+                  <br><br>
+                  <button type="submit">ارسال پیام</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ============ 7) SEMANTIC SECTION ============ -->
+      <section class="section" id="sec-semantic" data-category="semantic">
+        <header class="section-header">
+          <div class="section-title-block">
+            <div class="section-title">
+              تگ‌های معنایی HTML5
+              <small>header , nav , main , section , footer</small>
+            </div>
+            <p class="section-subtitle">
+              این تگ‌ها به مرورگر و موتورهای جستجو می‌گویند هر بخش صفحه چه معنایی دارد.
+            </p>
+          </div>
+          <div class="section-meta">
+            <span>ساخت اسکلت صفحه</span>
+          </div>
+        </header>
+
+        <div class="note-card note-pro">
+          <span class="note-icon">💡</span>
+          <div>
+            <strong>نکته استاد:</strong>
+            از div برای همه‌چیز استفاده نکن؛ هر وقت ساختار واضحی مثل هدر، ناوبری یا محتوای اصلی داری،
+            از تگ‌های معنایی استفاده کن.
+          </div>
+        </div>
+
+        <!-- exercise: layout semantic -->
+        <article
+          class="exercise"
+          data-tags="header,nav,main,section,footer,semantic"
+          data-category="semantic"
+        >
+          <div class="exercise-header">
+            <div class="exercise-title">
+              ساخت اسکلت ساده صفحه وبلاگ
+              <span>header + nav + main + footer</span>
+            </div>
+            <div class="exercise-tag-label">تگ‌های معنایی</div>
+          </div>
+          <p class="exercise-desc">
+            در این مثال یک صفحه وبلاگ خیلی ساده را فقط با تگ‌های معنایی اصلی می‌سازیم.
+          </p>
+
+          <div class="code-output-container">
+            <div class="code-wrapper">
+              <div class="code-header">
+                <div class="code-header-left">
+                  <span>HTML</span>
+                  <span class="code-lang">semantic</span>
+                </div>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <button class="copy-button" title="کپی کد" onclick="copyCode(this)">⧉</button>
+              <pre class="custom-scrollbar"><code>
+&lt;header&gt;
+  &lt;h1&gt;وبلاگ کدنویسی من&lt;/h1&gt;
+&lt;/header&gt;
+
+&lt;nav&gt;
+  &lt;a href="#"&gt;خانه&lt;/a&gt; |
+  &lt;a href="#"&gt;مقالات&lt;/a&gt; |
+  &lt;a href="#"&gt;تماس&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;main&gt;
+  &lt;section&gt;
+    &lt;h2&gt;اولین پست وبلاگ&lt;/h2&gt;
+    &lt;p&gt;این اولین نوشته من در وبلاگ است.&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+  &lt;p&gt;تمام حقوق محفوظ است.&lt;/p&gt;
+&lt;/footer&gt;
+              </code></pre>
+            </div>
+
+            <div class="output-preview">
+              <div class="output-header">
+                <span>خروجی مثال</span>
+                <div class="browser-dots">
+                  <div class="dot-red"></div>
+                  <div class="dot-yellow"></div>
+                  <div class="dot-green"></div>
+                </div>
+              </div>
+              <div class="output-body">
+                <header>
+                  <h1>وبلاگ کدنویسی من</h1>
+                </header>
+                <nav>
+                  <a href="#">خانه</a> |
+                  <a href="#">مقالات</a> |
+                  <a href="#">تماس</a>
+                </nav>
+                <main>
+                  <section>
+                    <h2>اولین پست وبلاگ</h2>
+                    <p>این اولین نوشته من در وبلاگ است.</p>
+                  </section>
+                </main>
+                <footer>
+                  <p>تمام حقوق محفوظ است.</p>
+                </footer>
+              </div>
+            </div>
+          </div>
+
+          <div class="note-card note-challenge" style="margin-top:0.7rem;">
+            <span class="note-icon">⚑</span>
+            <div>
+              <strong>چالش دانشجو:</strong>
+              یک «صفحه فرود دوره آموزشی» طراحی کن که شامل header، nav، main با
+              دو section (معرفی دوره + سرفصل‌ها) و در نهایت footer باشد.
+            </div>
+          </div>
+        </article>
+      </section>
+    </div>
+
+    <footer class="footer">
+      نسخه نمایشی آزمایشگاه تگ‌های HTML – برای نسخه کامل با تگ‌های بیشتر، می‌توانیم
+      این صفحه را گسترش دهیم.
+    </footer>
+  </main>
+</div>
+
+<script>
+  // ------ کپی کردن کد ------
+  function copyCode(btn) {
+    const pre = btn.parentElement.querySelector("pre");
+    const code = pre.innerText;
+    navigator.clipboard.writeText(code).then(() => {
+      btn.classList.add("copied");
+      btn.textContent = "✔";
+      setTimeout(() => {
+        btn.classList.remove("copied");
+        btn.textContent = "⧉";
+      }, 1200);
+    });
+  }
+
+  // ------ جستجوی تگ و عنوان تمرین ------
+  const searchInput = document.getElementById("searchInput");
+  const exercises = document.querySelectorAll(".exercise");
+
+  searchInput.addEventListener("input", function () {
+    const q = this.value.trim().toLowerCase();
+    exercises.forEach((ex) => {
+      const tags = (ex.dataset.tags || "").toLowerCase();
+      const text = ex.innerText.toLowerCase();
+      if (!q || tags.includes(q) || text.includes(q)) {
+        ex.style.display = "";
+      } else {
+        ex.style.display = "none";
+      }
+    });
+  });
+
+  // ------ فیلتر دسته‌بندی با pills ------
+  const pills = document.querySelectorAll(".pill");
+  pills.forEach((pill) => {
+    pill.addEventListener("click", () => {
+      const cat = pill.dataset.category;
+      pills.forEach((p) => p.classList.remove("active"));
+      pill.classList.add("active");
+
+      exercises.forEach((ex) => {
+        const exCat = ex.dataset.category;
+        if (cat === "all" || exCat === cat) {
+          ex.style.display = "";
+        } else {
+          ex.style.display = "none";
+        }
+      });
+    });
+  });
+
+  // ------ اسکرول نرم سایدبار ------
+  const navItems = document.querySelectorAll(".nav-item");
+  navItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      const target = item.dataset.scroll;
+      if (target) {
+        const el = document.querySelector(target);
+        if (el) {
+          window.scrollTo({
+            top: el.getBoundingClientRect().top + window.scrollY - 20,
+            behavior: "smooth",
+          });
+        }
+      }
+      navItems.forEach((n) => n.classList.remove("active"));
+      item.classList.add("active");
+    });
+  });
+</script>
+</body>
+</html>

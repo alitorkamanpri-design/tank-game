@@ -1,0 +1,178 @@
+/* تنظیمات پایه با فونت و رنگ ملایم */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #fdfbf7; /* پس‌زمینه کرم بسیار ملایم */
+  color: #444; /* رنگ متن خاکستری تیره (نه مشکی خالص) برای جلوگیری از خستگی چشم */
+  line-height: 1.8;
+}
+
+/* هدر شیشه‌ای و هوشمند (Glassmorphism) */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+   z-index: 1; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10%;
+  background: rgba(219, 212, 212, 0.8);
+  backdrop-filter: blur(10px); /* افکت مات شدن پشت هدر */
+  border-bottom: 1px solid rgba(40, 39, 39, 0.05);
+  border-radius: 8px;
+}
+
+/* استایل منوی اصلی */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li {
+  position: relative; /* برای تنظیم موقعیت زیرمنو */
+}
+
+nav a {
+  text-decoration: none;
+  color: #576574;
+  font-weight: 500;
+  padding: 10px 15px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #222f3e;
+}
+
+/* استایل زیرمنو (Dropdown) */
+nav ul li ul {
+  display: block;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  min-width: 180px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(15px);
+  transition: all 0.3s ease;
+  flex-direction: column; /* زیر هم قرار گرفتن آیتم‌های زیرمنو */
+  padding: 10px 0;
+}
+
+nav ul li:hover > ul {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+nav ul li ul li a {
+  display: block;
+  padding: 8px 20px;
+  font-size: 14px;
+}
+
+/* استایل بخش‌ها برای حالت لایه‌ای (Stacking Effect) */
+section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 10%;
+  background: #fdfbf7;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+/* ایجاد حالت پویایی با سایه ملایم برای هر بخش */
+section:nth-child(even) {
+  background: #f7f9fc; /* تغییر رنگ بسیار جزئی برای تفکیک بخش‌ها */
+}
+
+/* بخش Hero (معرفی اولیه) */
+#home {
+  background: radial-gradient(circle at top right, #fdfbf7, #eef2f7);
+  text-align: center;
+}
+
+#home img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  border: 8px solid white;
+}
+
+h1,
+h2 {
+  color: #2d3436;
+  margin-bottom: 20px;
+}
+
+/* کارت‌های ملایم برای تجربیات و نمونه کارها */
+article {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  transition: transform 0.3s ease;
+}
+
+article:hover {
+  transform: translateY(-5px); /* حرکت رو به بالا هنگام هاور */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* دکمه‌ها و المان‌های تعاملی */
+button,
+input[type="submit"] {
+  background-color: #8395a7;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #576574;
+}
+
+/* فوتر ملایم */
+footer {
+  padding: 50px 10%;
+  background: #2f3542;
+  color: #ced6e0;
+}
+
+footer a {
+  color: #70a1ff;
+  text-decoration: none;
+}
+
+/* ریسپانسیو موبایل */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 20px;
+  }
+  nav ul {
+    margin-top: 15px;
+    gap: 10px;
+    font-size: 13px;
+  }
+}

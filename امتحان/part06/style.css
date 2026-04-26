@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: vazir-1;
+  font-style: normal;
+  width:auto;
+
+}
+@font-face {
+  font-family: vazir-medium;
+  src: url(../font/Vazir-Medium.eot) format(ٌ "eot"),
+    url(../font/Vazir-Medium.woff) format("woff"),
+    url(../font/Vazir-Medium.woff2) format("woff2");
+}
+@font-face {
+  font-family: vazir-bold;
+  src: url(../font/Vazir-Bold.eot) format(ٌ "eot"),
+    url(../font/Vazir-Bold.woff) format("woff"),
+    url(../font/Vazir-Bold.woff2) format("woff2"),
+    url(../font/Vazir-Bold.ttf) format("ttf");
+}
+.letter {
+  border: 1px solid black;
+  padding: 1px;
+  margin: 10px;
+  
+}
+.bold {
+  font-family: vazir-bold;
+}
+p.bold{
+  text-align:center;
+}
+.text-1{
+  padding-left: 3px;
+  padding-right: 3px;
+  text-align: justify;
+}

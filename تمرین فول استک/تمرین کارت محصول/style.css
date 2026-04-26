@@ -1,0 +1,245 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+@font-face {
+  font-family: vazir-1;
+  src:
+    url(/font/Vazir-Medium.eot) format("eot"),
+    url(/font/Vazir-Medium.woff) format("woff"),
+    url(/font/Vazir-Medium.woff2) format("woff2");
+  /* font-weight: bold;
+  font-style: italic; */
+}
+
+body {
+  font-family:vazir-1 ;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  direction: rtl;
+}
+
+section {
+  padding: 20px;
+}
+
+.card {
+  width: 320px;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+.card-header {
+  background: linear-gradient(135deg, #f76f6f, #f7a06f);
+  padding: 40px 24px 24px;
+  position: relative;
+  
+}
+
+.card-header::after {
+  content: '🛍️';
+  position: absolute;
+  bottom: -50px;
+  right: 24px;
+  font-size: 48px;
+  
+}
+.badge1{
+    position: absolute;
+    top: 19px;
+    left: -38px;
+    background: #ef4444;
+    color: white;
+    padding: 4px 40px;
+    font-size: 13px;
+    font-weight: 700;
+    transform: rotate(-45deg);
+}
+
+.badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.5px;
+}
+
+.card-body {
+  padding: 40px 24px 20px;
+}
+
+.card-body h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 10px;
+}
+
+.card-body p {
+  font-size: 14px;
+  color: #888;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.price {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 800;
+  color: #f76f6f;
+  background: #fff0f0;
+  padding: 8px 16px;
+  border-radius: 10px;
+}
+
+.card-footer {
+  padding: 16px 24px 24px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  /* وقتی ماوس رو روی عنصر میبری، شکل cursor عوض میشه به همون دست کوچیکه که روی لینک‌ها میبینی. بدون این، cursor روی دکمه همون فلش معمولیه. */
+  cursor: pointer;
+
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #f4f4f8;
+  color: #555;
+}
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  visibility: hidden;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.modal-overlay.active {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  visibility: visible;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 360px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  transform: translateY(30px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  direction: rtl;
+}
+
+.modal-overlay.active .modal {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modal-header {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  padding: 20px 24px;
+}
+
+.modal-header h3 {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.modal-body p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.modal-body ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.modal-body ul li {
+  font-size: 14px;
+  color: #444;
+  padding: 8px 12px;
+  background: #f4f4f8;
+  border-radius: 8px;
+}
+
+.modal-body ul li::before {
+  content: '✓ ';
+  color: #667eea;
+  font-weight: 700;
+}
+
+.modal-price {
+  font-size: 18px;
+  font-weight: 800;
+  color: #f76f6f;
+  background: #fff0f0;
+  padding: 10px 16px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.modal-footer {
+  padding: 0 24px 24px;
+}
+
+.modal-footer .btn {
+  width: 100%;
+}

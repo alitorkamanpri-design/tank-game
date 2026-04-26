@@ -1,0 +1,91 @@
+@font-face {
+  font-family: vazir-1;
+  src: url(../font/Vazir-Medium.eot) format(ٌ "eot"),
+    url(../font/Vazir-Medium.woff) format("woff"),
+    url(../font/Vazir-Medium.woff2) format("woff2");
+  font-weight: bold;
+  font-style: italic;
+}
+* {
+  font-family: vazir-1;
+  /* برای تغییر سایز فونت */
+  font-size: 15px;
+  font-variant: small-caps;
+}
+/* این کلاس ها زمانی اجرا میشود که درون اون بخش تگ های مشابه داشته باشیم و بدون کلاس دادن بخواهیم آن را صدا کینم  */
+/* این سدو کلس برای این که بگیم اولین تگ پی در عنصر برای ما صدا کن */
+.wrapper p:first-child{
+    background-color: blue;
+}
+/* این برای زمانی است که تگ های متفاوت زیادی درون سند داریم و میخواهیم اولین تگ پی درون سند صدا بزنیم  */
+.wrapper p:first-of-type{
+    background-color: #d51212;
+}
+/* این کلاس آخرین تگ پی برا در کادر ما صدا میزند */
+.wrapper p:last-child{
+    background-color: blue;
+}/* این کلاس آخرین تگ پی برا در کادر ما صدا میزند */
+.wrapper p:last-of-type{
+    background-color: gray;
+}
+/* این کلاس تمام المان هارا صدا میکند بجز اون تگی که شما بهش گفتید  */
+.wrapper :not(p){
+    background-color: #eae716;
+}
+/* این کلاس برای زمانی است که بخواهیم بگوییم فرزند چندم با شماره والد را صدا بزند */
+.wrapper :nth-child(7){
+    background-color: deeppink;
+    text-align: center;
+}
+/* مانند نمونه بالا شمارش فرزند نسبت به والد اما از پایین به بالا */
+.wrapper :nth-last-child(3){
+    background-color: goldenrod;
+}
+/* میاد بین تگ های پی از پایین میشماره و فرزند 3 میاره */
+.wrapper p:nth-last-of-type(3){
+    background-color: #efefef;
+}
+/* از بالا میگرده و تگ پی سومی از بالا صدا میکنه */
+.wrapper p:nth-of-type(3){
+    background-color: cadetblue;
+}
+/* تنها تگی اجرا میشود که در خانواده فقط یکی باشد مشابه نداشته باید  */
+.wrapper div:only-of-type{
+    background-color: darkorange;
+}
+/* این تگ فقط روی تگی اجرا میشود که یدونه درون خانواده باشد  */ */
+.wrapper div header:only-child{
+    background-color: cyan;
+}
+/* زمانی که آن را بزاریم و مقدار oddبزاریم مقدار را روی شمارش فرد سند میدهد */
+p:nth-child(odd){
+    background-color: darkorange;
+
+}
+/* این اتریبیوت مقدار evenخط های زوج را انتخاب میکند */
+p:nth-child(even){
+    background-color: #eae716;
+}
+/* برای استایل دهی به کل جدول */
+table{
+    width: 100%;
+    border: 1px solid #000;
+    /* خط بین متن جدول را از بین میبرد و یک تیکه میکند */
+    border-collapse: collapse;
+}
+td,th{
+    text-align: center;
+}
+table tbody tr:nth-child(odd){
+    background-color: aliceblue;
+}
+input:disabled{
+    background-color: #eae716;
+}
+input:read-only{
+    background-color: blue;
+    color:gold;
+}
+input:required{
+    background-color: #d51212;
+}

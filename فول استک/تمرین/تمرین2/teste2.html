@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+
+    <!-- تعیین انکودینگ فارسی -->
+    <meta charset="UTF-8">
+
+    <!-- برای ریسپانسیو شدن در موبایل -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- توضیح برای سئو -->
+    <meta name="description" content="فرم ثبت نام کاربر شامل نام کاربری، ایمیل، رمز عبور و شماره تماس">
+
+    <title>فرم ثبت نام</title>
+
+    <!-- اتصال فایل CSS -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<main class="container">
+
+    <!-- عنوان اصلی صفحه -->
+    <h1>ثبت نام</h1>
+
+    <!-- فرم ثبت نام -->
+    <form action="#" method="post">
+
+        <!-- گروه‌بندی فیلدهای فرم -->
+        <fieldset>
+
+            <!-- عنوان گروه فرم -->
+            <legend>اطلاعات کاربر</legend>
+
+            <!-- نام کاربری -->
+            <label for="username">نام کاربری</label>
+            <input 
+                type="text"
+                id="username"
+                name="username"
+                placeholder="نام کاربری"
+                required
+                autocomplete="username"
+            >
+
+            <!-- رمز عبور -->
+            <label for="password">رمز عبور</label>
+            <input 
+                type="password"
+                id="password"
+                name="password"
+                placeholder="رمز عبور"
+                required
+                autocomplete="new-password"
+            >
+
+            <!-- ایمیل -->
+            <label for="email">ایمیل</label>
+            <input 
+                type="email"
+                id="email"
+                name="email"
+                placeholder="example@email.com"
+                required
+                autocomplete="email"
+            >
+
+            <!-- شماره تماس -->
+            <label for="phone">شماره تماس</label>
+            <input 
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="09123456789"
+                required
+                pattern="09[0-9]{9}"
+            >
+
+            <!-- قوانین سایت -->
+            <div class="checkbox-group">
+
+                <input 
+                    type="checkbox"
+                    id="rules"
+                    name="rules"
+                    required
+                >
+
+                <label class="label1" for="rules">
+                    قوانین سایت را می‌پذیرم
+                </label>
+
+            </div>
+
+            <!-- دکمه ارسال -->
+            <button type="submit">
+                ثبت نام
+            </button>
+
+        </fieldset>
+
+    </form>
+
+</main>
+
+</body>
+</html>

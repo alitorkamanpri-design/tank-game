@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    /* .btn:enabled {
+    background-color: #cbd5e1;
+    color: #94a3b8;
+    
+} */
+     .btn:hover{
+background-color: red;
+/* برای تغییر کرسر موس  */
+cursor:not-allowed;
+border-radius: 5px;
+    } 
+    .test:focus{
+border-color: blue;
+    }
+    li:first-child{
+        color: green;
+    }
+    li:last-child{
+        color: orange;
+    }
+    li:nth-child(2){
+background-color:#efefef;
+    }
+    /* (:has)گر input داخل label باشد باید این‌طوری بنویسی */
+input[type="checkbox"]:checked{
+    
+    /* زمانی که چک شد سبز بشه */
+    accent-color: green;
+}
+/* میگه زمانی که تگ اینپوت چک شد لیبل این استایل بگیره با مقدار has */
+label:has(input[type="checkbox"]:checked){
+color: green;
+text-decoration: line-through;
+}
+/* برای اینکه وقتی مقدار درست بود سبز و وقتی نبود قرمز شود */
+/* .test:invalid {
+    border-color: #ef4444;
+    background-color: #ef4444;
+}
+.test:valid {
+    border-color: #0d7031;
+    background-color: #0d7031;
+} */
+ .test{
+    width: 200px;
+    height: auto;
+
+ }
+.test label {
+    opacity: 1;
+    transition: 0.2s;
+    
+}
+input:placeholder-shown + label {
+    opacity: 0;
+    /* مخفی کردن لیبل وقتی باکس خالیست */
+}
+/* استایل به متن داخل اینپوت */
+.test::placeholder {
+    color: #165fc6;
+    font-style: italic;
+    opacity: 0.7;
+}
+/* استایل‌دهی به بالت‌ها (نقطه‌ها) یا اعداد لیست‌ها در تگ‌های ul و ol.
+
+ */
+li::marker{
+     color: #8b5cf6;
+    font-size: 1em;
+    content: "⚡ ";
+}
+/* شبه‌کلاس نفی. همه‌چیز را انتخاب می‌کند **به‌جز** موردی که داخل پرانتز مشخص شده است */
+li:not(.item2){
+    font-weight: 800;
+}
+</style>
+</head>
+
+<body>
+
+<h2>تمرین سودو کلاس</h2>
+
+<button class="btn">Click Me</button>
+
+<br><br>
+
+<input class="test" type="email" placeholder="type something">
+<label for="test">نام کاربری</label>
+<br><br>
+
+<ul>
+  <li>item 1</li>
+  <li class="item2">item 2</li>
+  <li>item 3</li>
+  <li>item 4</li>
+</ul>
+
+<br>
+
+<label>
+<input type="checkbox" > قبول قوانین
+</label>
+
+</body>
+</html>

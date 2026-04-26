@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>داشبورد - FreelanceFlow</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="dashboard-wrapper">
+      <div class="sidebar">
+        <div class="logo">🚀 FreelanceFlow</div>
+        <nav class="nav-menu">
+          <a href="#" class="nav-item active" onclick="showPage('dashboard')"
+            >📊 داشبورد</a
+          >
+          <a href="#" class="nav-item" onclick="showPage('clients')"
+            >👥 مشتریان</a
+          >
+          <a href="#" class="nav-item" onclick="showPage('projects')"
+            >📁 پروژه‌ها</a
+          >
+          <a href="#" class="nav-item" onclick="showPage('payments')"
+            >💰 پرداخت‌ها</a
+          >
+        </nav>
+        <button class="logout-btn" onclick="handleLogout()">خروج</button>
+      </div>
+
+      <div class="main-content">
+        <div class="header">
+          <h1 id="pageTitle">داشبورد</h1>
+          <div class="user-info">
+            <div class="user-avatar" id="userAvatar">K</div>
+            <span id="userName">کاربر</span>
+          </div>
+        </div>
+
+        <!-- صفحه داشبورد -->
+        <div id="dashboardPage" class="page-content">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <h3>درآمد کل</h3>
+              <div class="value" id="totalRevenue">۰</div>
+              <div class="label">تومان</div>
+            </div>
+            <div class="stat-card">
+              <h3>پروژه‌های فعال</h3>
+              <div class="value" id="activeProjects">۰</div>
+              <div class="label">پروژه</div>
+            </div>
+            <div class="stat-card">
+              <h3>مشتریان</h3>
+              <div class="value" id="totalClients">۰</div>
+              <div class="label">مشتری</div>
+            </div>
+            <div class="stat-card">
+              <h3>پرداخت‌های معلق</h3>
+              <div class="value" id="pendingPayments">۰</div>
+              <div class="label">فاکتور</div>
+            </div>
+          </div>
+
+          <div class="content-grid">
+            <div class="card">
+              <h2>📊 نمودار درآمد</h2>
+              <canvas id="revenueChart" width="400" height="200"></canvas>
+            </div>
+            <div class="card">
+              <h2>🔔 فعالیت‌های اخیر</h2>
+              <div id="recentActivities"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- صفحه مشتریان -->
+        <div id="clientsPage" class="page-content" style="display: none">
+          <button class="add-btn" onclick="showAddClientModal()">
+            ➕ افزودن مشتری
+          </button>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>نام</th>
+                  <th>ایمیل</th>
+                  <th>تلفن</th>
+                  <th>شرکت</th>
+                  <th>عملیات</th>
+                </tr>
+              </thead>
+              <tbody id="clientsTable"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- صفحه پروژه‌ها -->
+        <div id="projectsPage" class="page-content" style="display: none">
+          <button class="add-btn" onclick="showAddProjectModal()">
+            ➕ افزودن پروژه
+          </button>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>عنوان</th>
+                  <th>مشتری</th>
+                  <th>بودجه</th>
+                  <th>وضعیت</th>
+                  <th>ددلاین</th>
+                  <th>عملیات</th>
+                </tr>
+              </thead>
+              <tbody id="projectsTable"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- صفحه پرداخت‌ها -->
+        <div id="paymentsPage" class="page-content" style="display: none">
+          <button class="add-btn" onclick="showAddPaymentModal()">
+            ➕ ثبت پرداخت
+          </button>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>پروژه</th>
+                  <th>مبلغ</th>
+                  <th>تاریخ</th>
+                  <th>وضعیت</th>
+                  <th>عملیات</th>
+                </tr>
+              </thead>
+              <tbody id="paymentsTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal مشتری -->
+    <div id="clientModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('clientModal')">&times;</span>
+        <h2 id="clientModalTitle">افزودن مشتری</h2>
+        <input type="text" id="clientName" placeholder="نام" />
+        <input type="email" id="clientEmail" placeholder="ایمیل" />
+        <input type="text" id="clientPhone" placeholder="تلفن" />
+        <input type="text" id="clientCompany" placeholder="شرکت" />
+        <button onclick="saveClient()">ذخیره</button>
+      </div>
+    </div>
+
+    <!-- Modal پروژه -->
+    <div id="projectModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('projectModal')">&times;</span>
+        <h2 id="projectModalTitle">افزودن پروژه</h2>
+        <input type="text" id="projectTitle" placeholder="عنوان پروژه" />
+        <select id="projectClient"></select>
+        <input type="number" id="projectBudget" placeholder="بودجه (تومان)" />
+        <select id="projectStatus">
+          <option value="active">فعال</option>
+          <option value="completed">تکمیل شده</option>
+          <option value="pending">در انتظار</option>
+        </select>
+        <input type="date" id="projectDeadline" />
+        <button onclick="saveProject()">ذخیره</button>
+      </div>
+    </div>
+
+    <!-- Modal پرداخت -->
+    <div id="paymentModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('paymentModal')">&times;</span>
+        <h2 id="paymentModalTitle">ثبت پرداخت</h2>
+        <select id="paymentProject"></select>
+        <input type="number" id="paymentAmount" placeholder="مبلغ (تومان)" />
+        <input type="date" id="paymentDate" />
+        <select id="paymentStatus">
+          <option value="paid">پرداخت شده</option>
+          <option value="pending">در انتظار</option>
+        </select>
+        <button onclick="savePayment()">ذخیره</button>
+      </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

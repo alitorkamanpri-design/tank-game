@@ -1,0 +1,54 @@
+@font-face {
+  font-family: vazir-1;
+  src: url(../font/Vazir-Medium.eot) format(ٌ "eot"),
+    url(../font/Vazir-Medium.woff) format("woff"),
+    url(../font/Vazir-Medium.woff2) format("woff2");
+  font-weight: bold;
+  font-style: italic;
+}
+* {
+  font-family: vazir-1;
+  /* برای تغییر سایز فونت */
+  font-size: 25px;
+  font-variant: small-caps;
+  padding: 3px;
+  margin: 0;
+}
+
+/* این سدوالمنت باعث میشود موقع درگ کردن رنگشو خودمون انتخاب کینم */
+p::selection {
+  color: blue;
+  background-color: red;
+}
+/* تمام خط را رنگ میکند و فقط روی عناصر بلاک اجرا میشود و اگه متن بره خط بعدی از خالت خارج میشود */
+.div::first-line {
+  color: red;
+}
+/* حرف اول کلمه را رنگ میکند */
+.div1::first-letter {
+  color: red;
+  text-transform: capitalize;
+}
+/* میتوان عکس دلخواه را جلو متن گذاشت*/
+/* .test::before{
+  content: url(../img/images.png);
+} */
+/* میتوان عکس را پشت متن گذاشت */
+.test::after {
+  /* content: url(../img/images.png); */
+  /* با گذاشتن یک اسلش بعد کد هگزا میتوان آیکن اضافه کرد  */
+  content: "\2600";
+}
+/* با این اتریبیوت ها اپسیتی یا ارجی بی ای مبتوان وضوح تصویر را کم زیاد کرد  */
+.opacity {
+  color: blue;
+  background-color: rgba(255, 0, 0, 0.5);
+  /* opacity:0.5 ; */
+  width: 200px;
+  height: 200px;
+}
+/* rgbبرای دادن مقدار رنگ و rgbaآلفا است و برای دادن رنگ و مقدار اپسیتی انتهاب آن با این مقدار دیگه تگ فرزند رنگش تغییر نمیکنه */
+.opacity1 {
+  color: rgb(247, 247, 247);
+  background-color: rgb(21, 21, 17);
+}

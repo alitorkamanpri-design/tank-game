@@ -1,0 +1,19 @@
+*{
+     text-decoration: none;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.test li{
+    list-style: square;
+
+
+}
+img{
+    width: 500px;
+}
+h1,h3{
+    margin: 5px;
+}

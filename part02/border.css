@@ -1,0 +1,37 @@
+.ali {
+  background-color: blue;
+  color: #fdf6f6;
+  width: 300px;
+  border-radius:50px ;
+  /* استایل دهی های borderبرای ظاهر*/
+  /*نقطه چین*/
+  /*border: 8px dotted black;
+    border-style: dotted;
+    border-color: black;
+    border-width: 8px;*/
+  /*خط چین*/
+  /*border: 5px dashed red ;
+ border-style: dashed;
+    border-color: rgb(237, 6, 6);
+    border-width: 5px;*/
+  /*شکل خط ممتد*/
+  /*border-style: solid;
+    border-color: rgb(237, 6, 6);
+    border-width: 5px;*/
+  /*سه بعدی*/
+  /*border-style: groove;
+    border-color: rgb(237, 6, 6);
+    border-width: 5px;*/
+  /*سه بعدی تیف رنگی*/
+  /*border-style: ridge;
+    border-color: rgb(237, 6, 6);
+    border-width: 5px;*/
+  /*سه بعدی داخلی*/
+  /*border-style: inset;
+    border-color: rgb(237, 6, 6);
+    border-width: 5px;*/
+  /*سه بعدی خارجی*/
+  /*border-style: outset;
+    border-color: rgb(43, 39, 39);
+    border-width: 5px;*/
+}

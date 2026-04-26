@@ -1,0 +1,24 @@
+
+
+/* برای تنظیمات متن با آیکن درون تگ دکمه */
+#test1{
+  font-size: 15px;
+  vertical-align: -6px;
+  margin: 5px;
+ border:none;
+  border-radius:1px 8px;
+  background-color: #3498db;
+      color: white; 
+      cursor: pointer;
+}
+.test{
+  font-size: 20px;
+   padding:3px;
+}
+.danlod{
+  font-size: 20px;
+  padding: 10px;
+  color: black;
+  border: 1px dashed #877f7f;
+
+}

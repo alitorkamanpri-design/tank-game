@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>پلتفرم جامع آموزش HTML</title>
+    <!-- لینک به CSS و JS پس از تولید کامل -->
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* استایل اولیه برای نمایش ساختار پیش از اعمال کامل CSS */
+      body {
+        font-family: Tahoma, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f7f9;
+        color: #333;
+      }
+      header {
+        background-color: #2c3e50;
+        color: white;
+        padding: 15px;
+        text-align: right;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      #sidebar {
+        width: 250px;
+        background-color: #ecf0f1;
+        position: fixed;
+        height: calc(100vh - 50px);
+        overflow-y: auto;
+        right: 0;
+        top: 50px;
+        padding: 10px;
+        border-left: 1px solid #ccc;
+      }
+      #main-content {
+        margin-left: 270px;
+        padding: 20px;
+      }
+      .tag-section {
+        margin-bottom: 40px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #ffffff;
+      }
+      .code-wrapper {
+        background-color: #2d2d2d;
+        color: #f8f8f2;
+        padding: 15px;
+        border-radius: 6px;
+        margin-bottom: 15px;
+        overflow-x: auto;
+      }
+      .code-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .copy-button {
+        background: #3498db;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .output-preview {
+        border: 1px solid #ccc;
+        padding: 15px;
+        min-height: 100px;
+        background-color: #fff;
+        border-radius: 4px;
+        margin-top: 15px;
+      }
+      /* این فقط استایل اولیه است، CSS کامل جایگزین خواهد شد */
+    </style>
+  </head>
+  <body>
+    <!-- 1. هدر و جستجو -->
+    <header>
+      <h1>پلتفرم جامع آموزش HTML (نسخه آزمایشی)</h1>
+      <input
+        type="text"
+        id="tag-search"
+        placeholder="جستجوی تگ‌ها (مثلاً a یا div)..."
+        style="padding: 8px; width: 40%; border-radius: 4px; border: none"
+      />
+    </header>
+
+    <!-- 2. سایدبار دسته‌بندی‌ها (محتوای سایدبار با JS پر خواهد شد) -->
+    <aside id="sidebar">
+      <h2>دسته‌بندی‌ها</h2>
+      <ul id="category-list">
+        <li>متن</li>
+        <li>لینک‌ها</li>
+        <li>لیست‌ها</li>
+        <!-- ... سایر دسته‌ها -->
+      </ul>
+    </aside>
+
+    <!-- 3. محتوای اصلی -->
+    <main id="main-content">
+      <!-- **بخش آموزش تگ‌ها (Reference)** -->
+      <section id="learning-content">
+        <h2>بخش ۱: آموزش کامل تگ‌های HTML</h2>
+
+        <!-- مثال تگ: h1 -->
+        <div id="tag-h1" class="tag-section">
+          <h3>تگ <code>&lt;h1&gt;</code></h3>
+          <p>توضیح: این تگ برای تعریف مهم‌ترین عنوان در صفحه استفاده می‌شود.</p>
+
+          <div class="code-output-container">
+            <!-- کد -->
+            <div class="code-wrapper">
+              <div class="code-header">
+                <span class="dots">● ● ●</span>
+                <span class="lang-label">HTML</span>
+                <button class="copy-button" data-target="#code-h1-example">
+                  کپی
+                </button>
+              </div>
+              <pre><code id="code-h1-example">&lt;!DOCTYPE html&gt;
+&lt;html lang="fa" dir="rtl"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;مثال h1&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;این مهم‌ترین عنوان صفحه است.&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+            <!-- خروجی -->
+            <div class="output-preview">
+              <h4>خروجی زنده:</h4>
+              <div><h1>این مهم‌ترین عنوان صفحه است.</h1></div>
+            </div>
+          </div>
+        </div>
+        <!-- ... ادامه آموزش برای 70+ تگ دیگر ... -->
+      </section>
+
+      <!-- **بخش تمرین تعاملی** -->
+      <section id="practice-content" style="margin-top: 60px">
+        <h2>بخش ۲: تمرین‌های عملی</h2>
+        <p>در این بخش، تگ‌ها را در قالب یک ساختار کامل HTML تمرین می‌کنید.</p>
+
+        <!-- مثال تمرین: a -->
+        <div class="tag-section">
+          <h3>تمرین: ساخت لینک</h3>
+          <p>
+            <strong>چالش:</strong> یک لینک به وبسایت گوگل بسازید که در بدنه
+            (body) یک فایل HTML کامل قرار بگیرد.
+          </p>
+
+          <div class="code-output-container">
+            <!-- کد تمرین -->
+            <div class="code-wrapper">
+              <div class="code-header">
+                <span class="dots">● ● ●</span>
+                <span class="lang-label">HTML Template</span>
+                <button class="copy-button" data-target="#practice-a-example">
+                  کپی
+                </button>
+              </div>
+              <pre><code id="practice-a-example">&lt;!DOCTYPE html&gt;
+&lt;html lang="fa"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;تمرین لینک&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- کد خود را اینجا وارد کنید --&gt;
+    &lt;a href="https://www.google.com"&gt;لینک گوگل&lt;/a&gt;
+    &lt;!-- این خط برای نمایش جایگاه است --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+            <!-- خروجی تمرین -->
+            <div class="output-preview">
+              <h4>خروجی زنده:</h4>
+              <div><a href="https://www.google.com">لینک گوگل</a></div>
+            </div>
+          </div>
+        </div>
+        <!-- ... ادامه تمرین‌ها ... -->
+      </section>
+
+      <!-- **بخش آزمایشگاه HTML (Playground)** -->
+      <section id="playground-content" style="margin-top: 60px">
+        <h2>بخش ۳: آزمایشگاه HTML (اجرای زنده)</h2>
+        <p>
+          کد خود را در ویرایشگر زیر وارد کنید و روی "اجرا" کلیک کنید تا خروجی را
+          بلافاصله ببینید.
+        </p>
+
+        <div class="playground-container">
+          <div class="code-editor-area">
+            <div class="code-wrapper">
+              <div class="code-header">
+                <span class="dots">● ● ●</span>
+                <span class="lang-label">HTML Editor</span>
+                <button
+                  id="run-button"
+                  class="copy-button"
+                  style="background: #2ecc71"
+                >
+                  اجرا
+                </button>
+              </div>
+              <pre><code id="playground-editor">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="fa"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Playground&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello World!&lt;/h1&gt;
+    &lt;p&gt;کد خود را اینجا بنویسید.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                        </code></pre>
+            </div>
+          </div>
+
+          <div class="output-preview" style="min-height: 300px">
+            <h4>خروجی زنده:</h4>
+            <iframe
+              id="playground-iframe"
+              sandbox="allow-scripts allow-same-origin"
+              style="width: 100%; height: 100%; border: none"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- اسکریپت نهایی (باید با script.js جایگزین شود) -->
+    <script>
+      // JS Placeholder - منطق کامل در script.js خواهد بود
+      console.log(
+        "HTML structure loaded. CSS and JS will enhance functionality.",
+      );
+    </script>
+  </body>
+</html>

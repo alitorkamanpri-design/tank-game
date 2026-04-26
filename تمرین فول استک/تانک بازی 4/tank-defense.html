@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tank Defense</title>
+
+    <meta
+      name="description"
+      content="Tank Defense - defend your base against missiles and aircraft"
+    />
+    <link rel="manifest" href="manifest.json" />
+
+    <style>
+      body {
+        margin: 0;
+        background: #0b0f1a;
+        color: white;
+        font-family: Arial;
+        overflow: hidden;
+      }
+
+      #ui {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 10;
+      }
+
+      button {
+        padding: 8px 12px;
+        margin: 3px;
+        background: #222;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      #menu {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="menu">
+      <h1>Tank Defense</h1>
+
+      <select id="difficulty">
+        <option value="easy">Easy</option>
+        <option value="hard">Hard</option>
+      </select>
+
+      <br /><br />
+
+      <button onclick="startGame()">Start Game</button>
+    </div>
+
+    <div id="ui" style="display: none">
+      <div>Score: <span id="score">0</span></div>
+      <div>Health: <span id="health">100</span></div>
+      <div>HighScore: <span id="high">0</span></div>
+
+      <button onclick="pauseGame()">Pause</button>
+      <button onclick="toggleSound()">Mute</button>
+    </div>
+
+    <canvas id="game"></canvas>
+
+    <script>
+      const canvas = document.getElementById("game");
+      const ctx = canvas.getContext("2d");
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      window.addEventListener("resize", resize);
+      resize();
+
+      let running = false;
+      let paused = false;
+
+      let score = 0;
+      let health = 100;
+      let highScore = localStorage.getItem("tankHigh") || 0;
+
+      document.getElementById("high").innerText = highScore;
+
+      let difficulty = "easy";
+
+      let enemySpeed = 1;
+      let dropChance = 0.3;
+
+      let soundsEnabled = true;
+
+      const shootSound = new Audio();
+      const explosionSound = new Audio();
+      const powerSound = new Audio();
+
+      function toggleSound() {
+        soundsEnabled = !soundsEnabled;
+      }
+
+      function startGame() {
+        difficulty = document.getElementById("difficulty").value;
+
+        if (difficulty === "hard") {
+          enemySpeed = 1.7;
+          dropChance = 0.6;
+        } else {
+          enemySpeed = 1;
+          dropChance = 0.3;
+        }
+
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("ui").style.display = "block";
+
+        running = true;
+
+        loop();
+      }
+
+      function pauseGame() {
+        paused = !paused;
+      }
+
+      const tank = {
+        x: 0,
+        y: 0,
+        angle: 0,
+        cooldown: 0,
+      };
+
+      const bullets = [];
+      const enemies = [];
+      const powerups = [];
+      const particles = [];
+
+      let rapidTimer = 0;
+      let shieldTimer = 0;
+      let tripleTimer = 0;
+
+      function spawnEnemy() {
+        let x = Math.random() * canvas.width;
+
+        enemies.push({
+          x: x,
+          y: -20,
+          speed: enemySpeed + Math.random(),
+          hp: 1,
+        });
+      }
+
+      setInterval(() => {
+        if (running) spawnEnemy();
+      }, 1500);
+
+      function shoot() {
+        if (tank.cooldown > 0) return;
+
+        tank.cooldown = rapidTimer > 0 ? 5 : 15;
+
+        if (tripleTimer > 0) {
+          createBullet(tank.angle - 0.2);
+          createBullet(tank.angle);
+          createBullet(tank.angle + 0.2);
+        } else {
+          createBullet(tank.angle);
+        }
+
+        if (soundsEnabled) shootSound.play();
+      }
+
+      function createBullet(angle) {
+        bullets.push({
+          x: tank.x,
+          y: tank.y,
+          vx: Math.cos(angle) * 8,
+          vy: Math.sin(angle) * 8,
+        });
+      }
+
+      canvas.addEventListener("mousemove", (e) => {
+        tank.angle = Math.atan2(e.clientY - tank.y, e.clientX - tank.x);
+      });
+
+      canvas.addEventListener("click", shoot);
+
+      canvas.addEventListener("touchstart", (e) => {
+        shoot();
+      });
+
+      function spawnPower(x, y) {
+        if (Math.random() > dropChance) return;
+
+        const types = ["health", "rapid", "shield", "triple"];
+
+        powerups.push({
+          x,
+          y,
+          type: types[Math.floor(Math.random() * types.length)],
+          vy: 2,
+        });
+      }
+
+      function update() {
+        tank.x = canvas.width / 2;
+        tank.y = canvas.height - 60;
+
+        if (tank.cooldown > 0) tank.cooldown--;
+
+        rapidTimer--;
+        shieldTimer--;
+        tripleTimer--;
+
+        bullets.forEach((b, i) => {
+          b.x += b.vx;
+          b.y += b.vy;
+
+          if (b.y < 0) bullets.splice(i, 1);
+        });
+
+        enemies.forEach((e, ei) => {
+          e.y += e.speed;
+
+          if (e.y > canvas.height) {
+            if (shieldTimer <= 0) {
+              health -= 10;
+            }
+
+            enemies.splice(ei, 1);
+          }
+
+          bullets.forEach((b, bi) => {
+            let dx = b.x - e.x;
+            let dy = b.y - e.y;
+
+            if (Math.sqrt(dx * dx + dy * dy) < 20) {
+              score += 10;
+
+              spawnPower(e.x, e.y);
+
+              enemies.splice(ei, 1);
+              bullets.splice(bi, 1);
+
+              if (soundsEnabled) explosionSound.play();
+            }
+          });
+        });
+
+        powerups.forEach((p, pi) => {
+          p.y += p.vy;
+
+          let dx = p.x - tank.x;
+          let dy = p.y - tank.y;
+
+          if (Math.sqrt(dx * dx + dy * dy) < 30) {
+            if (p.type === "health") health += 20;
+            if (p.type === "rapid") rapidTimer = 360;
+            if (p.type === "shield") shieldTimer = 300;
+            if (p.type === "triple") tripleTimer = 480;
+
+            if (soundsEnabled) powerSound.play();
+
+            powerups.splice(pi, 1);
+          }
+        });
+
+        document.getElementById("score").innerText = score;
+        document.getElementById("health").innerText = health;
+
+        if (health <= 0) {
+          running = false;
+
+          if (score > highScore) {
+            localStorage.setItem("tankHigh", score);
+          }
+
+          alert("Game Over");
+
+          location.reload();
+        }
+      }
+
+      function draw() {
+        ctx.fillStyle = "#0b0f1a";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.save();
+
+        ctx.translate(tank.x, tank.y);
+        ctx.rotate(tank.angle);
+
+        ctx.fillStyle = "green";
+        ctx.fillRect(-20, -10, 40, 20);
+
+        ctx.fillStyle = "#999";
+        ctx.fillRect(0, -3, 30, 6);
+
+        ctx.restore();
+
+        bullets.forEach((b) => {
+          ctx.fillStyle = "yellow";
+          ctx.beginPath();
+          ctx.arc(b.x, b.y, 3, 0, 6.28);
+          ctx.fill();
+        });
+
+        enemies.forEach((e) => {
+          ctx.fillStyle = "red";
+          ctx.beginPath();
+          ctx.arc(e.x, e.y, 15, 0, 6.28);
+          ctx.fill();
+        });
+
+        powerups.forEach((p) => {
+          if (p.type === "health") ctx.fillStyle = "lime";
+          if (p.type === "rapid") ctx.fillStyle = "orange";
+          if (p.type === "shield") ctx.fillStyle = "cyan";
+          if (p.type === "triple") ctx.fillStyle = "magenta";
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 10, 0, 6.28);
+          ctx.fill();
+        });
+      }
+
+      function loop() {
+        if (!running) return;
+
+        if (!paused) {
+          update();
+          draw();
+        }
+
+        requestAnimationFrame(loop);
+      }
+    </script>
+  </body>
+</html>

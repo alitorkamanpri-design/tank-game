@@ -1,0 +1,214 @@
+/* =========================
+   تنظیمات پایه
+========================= */
+
+:root {
+  /* رنگ‌های آبی-بنفش ملایم */
+  --bg-main: #dbdfe7;
+  --bg-alt: #b9becc;
+  --primary: #6c63ff;
+  --secondary: #8e9cff;
+  --text-main: #4a4a68;
+  --white-soft: #fed8d8;
+  --radius: 7px;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  line-height: 1.8;
+  margin: 0;
+
+}
+
+/* =========================
+   Header اصلی سایت
+========================= */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(241, 240, 240, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-logo {
+  font-size: 20px;
+  color: var(--primary);
+}
+
+/* =========================
+   منوی ناوبری + Dropdown
+========================= */
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: var(--text-main);
+  padding: 8px 12px;
+  transition: 0.3s;
+}
+
+.nav-item a:hover {
+  color: var(--primary);
+}
+
+/* زیرمنو */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--white-soft);
+  border-radius: var(--radius);
+  list-style: none;
+  padding: 10px 0;
+  min-width: 160px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: 0.3s;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+   flex-direction: column; 
+}
+
+/* .has-dropdown:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+} */
+
+.dropdown li a {
+  display: block;
+  padding: 8px 15px;
+}
+
+/* =========================
+   Section ها + Stacking Header
+========================= */
+
+.main-content {
+  margin-top: 90px; /* فاصله از هدر اصلی */
+}
+
+.section {
+  min-height: 100vh;
+  padding: 80px 20px;
+  background: var(--bg-main);
+  position: relative;
+}
+
+.section-alt {
+  background: var(--bg-alt);
+}
+
+/* هدر هر بخش (Sticky + Stack) */
+.section-header {
+  position: sticky;
+  top: 90px;
+  z-index: 10;
+  background: inherit;
+  padding: 15px 20px;
+  border-radius: var(--radius);
+  margin-bottom: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04);
+}
+
+.section-header h2 {
+  margin: 0;
+  color: var(--primary);
+}
+
+/* =========================
+   متن‌ها
+========================= */
+
+.section-text {
+  max-width: 700px;
+}
+
+/* =========================
+   کارت‌ها
+========================= */
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: var(--white-soft);
+  padding: 25px;
+  border-radius: var(--radius);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* =========================
+   فرم تماس
+========================= */
+
+.contact-form {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  border-radius: var(--radius);
+  border: 1px solid #ddd;
+  font-family: inherit;
+}
+
+.contact-form button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background: var(--secondary);
+}
+
+/* =========================
+   Footer
+========================= */
+
+.site-footer {
+  background: #2f2f4f;
+  color: #ccc;
+  text-align: center;
+  padding: 30px;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/cssstyle.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section>
+    <div class="card">
+        <div class="card-header">
+            <span class="badge">پیشنهاد ویژه</span>
+            <span class="badge1">30%تخفیف</span>
+        </div>
+        <div class="card-body">
+            <h2>محصول شگفت‌انگیز</h2>
+            <p>توضیحات کوتاه درباره این محصول فوق‌العاده</p>
+            <div class="price">۲۵۰,۰۰۰ تومان</div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary">افزودن به سبد</button>
+            <button class="btn btn-secondary" onclick="openModal()">جزئیات</button>
+        </div>
+    </div>
+    </section>
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+        <div class="modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3>جزئیات محصول</h3>
+            </div>
+            <div class="modal-body">
+                <p>این محصول با بهترین مواد اولیه تهیه شده و دارای گارانتی ۲ ساله معتبر می‌باشد.</p>
+                <ul>
+                    <li>جنس: درجه یک</li>
+                    <li>گارانتی: ۲ سال</li>
+                    <li>ارسال: رایگان</li>
+                    <li>بازگشت کالا: ۷ روز</li>
+                </ul>
+                <div class="modal-price">قیمت: ۲۵۰,۰۰۰ تومان</div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeModal()">بستن</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('modalOverlay').classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
+    
+</body>
+</html>

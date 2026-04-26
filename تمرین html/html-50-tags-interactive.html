@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>آموزش تعاملی 50 تگ HTML</title>
+
+<style>
+
+body{
+font-family:tahoma;
+background:#0f172a;
+color:#e2e8f0;
+margin:0;
+padding:30px;
+}
+
+h1{
+text-align:center;
+margin-bottom:40px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+}
+
+.row{
+display:grid;
+grid-template-columns:120px 1.5fr 1.5fr 1fr;
+gap:15px;
+background:#1e293b;
+padding:16px;
+margin-bottom:14px;
+border-radius:12px;
+align-items:start;
+transition:0.3s;
+}
+
+.row:hover{
+transform:scale(1.02);
+background:#334155;
+}
+
+.tag{
+font-family:monospace;
+font-size:18px;
+color:#38bdf8;
+font-weight:bold;
+}
+
+.desc{
+font-size:14px;
+line-height:1.8;
+}
+
+.code{
+background:#020617;
+padding:12px;
+border-radius:8px;
+font-family:monospace;
+font-size:13px;
+direction:ltr;
+white-space:pre-wrap;
+}
+
+.preview{
+background:#020617;
+padding:12px;
+border-radius:8px;
+min-height:40px;
+}
+
+input,textarea,select{
+padding:6px;
+border-radius:6px;
+border:none;
+}
+
+button{
+padding:6px 12px;
+border:none;
+background:#2563eb;
+color:white;
+border-radius:6px;
+cursor:pointer;
+}
+
+.box{
+width:60px;
+height:60px;
+background:orange;
+}
+
+.red{color:red}
+
+table,td,th{
+border:1px solid white;
+border-collapse:collapse;
+padding:5px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>آموزش تعاملی ۵۰ تگ مهم HTML</h1>
+
+<div class="container" id="tags"></div>
+
+<script>
+
+const tags=[
+
+{tag:"h1",desc:"بزرگ‌ترین عنوان صفحه.",code:`<h1>عنوان اصلی</h1>`,preview:`<h1>عنوان اصلی</h1>`},
+{tag:"h2",desc:"عنوان سطح دوم.",code:`<h2>عنوان</h2>`,preview:`<h2>عنوان</h2>`},
+{tag:"h3",desc:"عنوان سطح سوم.",code:`<h3>عنوان</h3>`,preview:`<h3>عنوان</h3>`},
+{tag:"p",desc:"برای نوشتن پاراگراف متن.",code:`<p>یک متن آموزشی</p>`,preview:`<p>یک متن آموزشی</p>`},
+{tag:"br",desc:"رفتن به خط جدید.",code:`سلام<br>دنیا`,preview:`سلام<br>دنیا`},
+{tag:"hr",desc:"نمایش خط جداکننده.",code:`<hr>`,preview:`<hr>`},
+
+{tag:"a",desc:"ساخت لینک برای رفتن به صفحات دیگر.",code:`<a href="https://google.com">گوگل</a>`,preview:`<a href="https://google.com" target="_blank">گوگل</a>`},
+{tag:"img",desc:"نمایش تصویر در صفحه.",code:`<img src="https://picsum.photos/100">`,preview:`<img src="https://picsum.photos/100">`},
+
+{tag:"ul",desc:"ساخت لیست بدون شماره.",code:`<ul><li>سیب</li><li>موز</li></ul>`,preview:`<ul><li>سیب</li><li>موز</li></ul>`},
+{tag:"ol",desc:"ساخت لیست شماره‌دار.",code:`<ol><li>مرحله</li><li>مرحله</li></ol>`,preview:`<ol><li>مرحله</li><li>مرحله</li></ol>`},
+{tag:"li",desc:"هر آیتم داخل لیست.",code:`<li>آیتم</li>`,preview:`• آیتم`},
+
+{tag:"div",desc:"جعبه برای ساختار صفحه.",code:`<div class="box"></div>`,preview:`<div class="box"></div>`},
+{tag:"span",desc:"تغییر استایل بخشی از متن.",code:`<span class="red">متن</span>`,preview:`<span class="red">متن</span>`},
+
+{tag:"strong",desc:"نشان دادن متن مهم.",code:`<strong>مهم</strong>`,preview:`<strong>مهم</strong>`},
+{tag:"em",desc:"تاکید روی متن.",code:`<em>تاکید</em>`,preview:`<em>تاکید</em>`},
+{tag:"mark",desc:"هایلایت متن.",code:`<mark>متن</mark>`,preview:`<mark>متن</mark>`},
+{tag:"small",desc:"نمایش متن کوچک‌تر.",code:`<small>متن</small>`,preview:`<small>متن</small>`},
+
+{tag:"del",desc:"نمایش متن حذف شده.",code:`<del>متن</del>`,preview:`<del>متن</del>`},
+{tag:"ins",desc:"نمایش متن اضافه شده.",code:`<ins>متن</ins>`,preview:`<ins>متن</ins>`},
+
+{tag:"sub",desc:"متن پایین نویس.",code:`H<sub>2</sub>O`,preview:`H<sub>2</sub>O`},
+{tag:"sup",desc:"متن بالا نویس.",code:`x<sup>2</sup>`,preview:`x<sup>2</sup>`},
+
+{tag:"code",desc:"نمایش کد برنامه.",code:`<code>var x</code>`,preview:`<code>var x</code>`},
+{tag:"pre",desc:"نمایش متن با حفظ فاصله.",code:`<pre>code block</pre>`,preview:`<pre>code block</pre>`},
+
+{tag:"blockquote",desc:"نقل قول طولانی.",code:`<blockquote>متن</blockquote>`,preview:`<blockquote>متن</blockquote>`},
+{tag:"q",desc:"نقل قول کوتاه.",code:`<q>متن</q>`,preview:`<q>متن</q>`},
+
+{tag:"abbr",desc:"نمایش مخفف.",code:`<abbr title="HyperText">HTML</abbr>`,preview:`<abbr title="HyperText">HTML</abbr>`},
+
+{tag:"b",desc:"متن بولد.",code:`<b>bold</b>`,preview:`<b>bold</b>`},
+{tag:"i",desc:"متن ایتالیک.",code:`<i>italic</i>`,preview:`<i>italic</i>`},
+{tag:"u",desc:"زیرخط متن.",code:`<u>underline</u>`,preview:`<u>underline</u>`},
+
+{tag:"form",desc:"ساخت فرم برای دریافت اطلاعات.",code:`<form>...</form>`,preview:`فرم`},
+
+{tag:"input",desc:"فیلد ورودی.",code:`<input placeholder="نام">`,preview:`<input placeholder="نام">`},
+{tag:"textarea",desc:"ورودی متن بزرگ.",code:`<textarea></textarea>`,preview:`<textarea></textarea>`},
+
+{tag:"button",desc:"ساخت دکمه.",code:`<button>کلیک</button>`,preview:`<button>کلیک</button>`},
+
+{tag:"select",desc:"لیست انتخاب.",code:`<select><option>1</option></select>`,preview:`<select><option>1</option></select>`},
+{tag:"option",desc:"آیتم داخل select.",code:`<option>گزینه</option>`,preview:`گزینه`},
+
+{tag:"label",desc:"برچسب برای input.",code:`<label>نام</label>`,preview:`<label>نام</label>`},
+
+{tag:"table",desc:"ساخت جدول.",code:`<table>...</table>`,preview:`جدول`},
+
+{tag:"tr",desc:"ردیف جدول.",code:`<tr></tr>`,preview:`ردیف`},
+{tag:"td",desc:"سلول جدول.",code:`<td></td>`,preview:`سلول`},
+{tag:"th",desc:"عنوان ستون جدول.",code:`<th></th>`,preview:`عنوان`},
+
+{tag:"thead",desc:"بخش بالای جدول.",code:`<thead></thead>`,preview:`thead`},
+{tag:"tbody",desc:"بدنه جدول.",code:`<tbody></tbody>`,preview:`tbody`},
+{tag:"tfoot",desc:"پایان جدول.",code:`<tfoot></tfoot>`,preview:`tfoot`},
+
+{tag:"audio",desc:"پخش صدا.",code:`<audio controls></audio>`,preview:`<audio controls></audio>`},
+{tag:"video",desc:"پخش ویدیو.",code:`<video width="120" controls></video>`,preview:`<video width="120" controls></video>`},
+
+{tag:"canvas",desc:"محیط رسم گرافیک.",code:`<canvas></canvas>`,preview:`canvas`},
+
+{tag:"iframe",desc:"نمایش صفحه دیگر داخل صفحه.",code:`<iframe src="https://example.com"></iframe>`,preview:`iframe`},
+
+{tag:"details",desc:"بخش باز و بسته شونده.",code:`<details><summary>بیشتر</summary>متن</details>`,preview:`<details><summary>بیشتر</summary>متن</details>`},
+
+{tag:"summary",desc:"عنوان details.",code:`<summary>عنوان</summary>`,preview:`summary`}
+
+];
+
+const container=document.getElementById("tags");
+
+tags.forEach(t=>{
+
+const row=document.createElement("div");
+row.className="row";
+
+row.innerHTML=`
+
+<div class="tag">${t.tag}</div>
+
+<div class="desc">${t.desc}</div>
+
+<div class="code">${t.code.replaceAll("<","&lt;").replaceAll(">","&gt;")}</div>
+
+<div class="preview">${t.preview}</div>
+
+`;
+
+container.appendChild(row);
+
+});
+
+</script>
+
+</body>
+</html>

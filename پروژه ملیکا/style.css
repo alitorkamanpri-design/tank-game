@@ -1,0 +1,106 @@
+/* تنظیمات کلی صفحه */
+body {
+  font-family: Tahoma, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+  height: 100vh;
+
+  /* وسط قرار گرفتن فرم */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* باکس اصلی فرم */
+.container {
+  width: 100%;
+  max-width: 400px;
+}
+
+/* عنوان صفحه */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ظاهر فرم */
+form {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+
+  /* سایه نرم */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* حذف استایل پیشفرض fieldset */
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+/* عنوان داخل fieldset */
+legend {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* استایل label ها */
+label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+#rules {
+  margin: -29%;
+}
+
+/* استایل input ها */
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* وقتی روی input کلیک شود */
+input:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+/* بخش چک باکس */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  gap: 8px;
+}
+
+/* دکمه ارسال */
+button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: #4a90e2;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* افکت hover */
+button:hover {
+  background: #357abd;
+}
+
+/* ریسپانسیو برای موبایل */
+@media (max-width: 480px) {
+  form {
+    padding: 20px;
+  }
+}

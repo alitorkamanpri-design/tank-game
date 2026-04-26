@@ -1,0 +1,168 @@
+/* تعریف متغیرهای رنگی با تم صنعتی (تیره متالیک و نارنجی هشدار/انرژی) */
+:root {
+    --primary-color: #f39c12; /* نارنجی صنعتی */
+    --bg-dark: #1e272e; /* خاکستری تیره */
+    --text-light: #ecf0f1; /* سفید مایل به خاکستری */
+    --card-bg: #2f3640; /* بک‌گراند کارت‌ها */
+}
+
+/* تنظیمات پایه */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Tahoma, 'Segoe UI', sans-serif; /* فونت‌های پیش‌فرض و خوانا */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* استایل هدر */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #111;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: var(--primary-color);
+}
+
+.navbar a {
+    color: var(--text-light);
+    text-decoration: none;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: var(--primary-color);
+}
+
+/* استایل دکمه‌ها */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.primary-btn:hover {
+    background-color: #d68910;
+}
+
+/* بخش Hero */
+.hero {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(rgba(30,39,46,0.8), rgba(30,39,46,0.8)), url('cnc-machine-bg.jpg') center/cover;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+/* گرید محصولات - رسپانسیو */
+.products {
+    padding: 50px;
+    text-align: center;
+}
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.product-card {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.product-img-placeholder {
+    height: 150px;
+    background-color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+/* استایل مودال (پنجره پاپ‌آپ) */
+.modal {
+    display: none; /* در حالت پیش‌فرض مخفی است */
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    width: 350px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #aaa;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background: #222;
+    color: #fff;
+}
+
+.w-100 { width: 100%; }
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #111;
+    margin-top: 50px;
+}
+
+/* ریسپانسیو برای موبایل */
+@media (max-width: 768px) {
+    .header { flex-direction: column; gap: 15px; }
+    .hero h1 { font-size: 2rem; }
+}

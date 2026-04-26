@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!-- زبان فارسی و جهت راست به چپ -->
+<html lang="fa" dir="rtl">
+<head>
+    <!-- کدگذاری کاراکتر UTF-8 برای پشتیبانی از فارسی -->
+    <meta charset="UTF-8">
+    
+    <!-- تنظیمات viewport برای ریسپانسیو بودن در موبایل -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- عنوان صفحه برای سئو -->
+    <title>ثبت‌نام | مانلی - آرایشی و بهداشتی</title>
+    
+    <!-- توضیحات صفحه برای موتورهای جستجو -->
+    <meta name="description" content="فرم ثبت‌نام در سایت مانلی - برند لوکس آرایشی و بهداشتی. عضویت سریع و آسان با امنیت بالا">
+    
+    <!-- کلمات کلیدی برای سئو -->
+    <meta name="keywords" content="ثبت نام مانلی, عضویت, آرایشی بهداشتی, MANELY">
+    
+    <!-- نویسنده صفحه -->
+    <meta name="author" content="MANELY Beauty & Clinical Care">
+    
+    <!-- لینک canonical برای جلوگیری از محتوای تکراری -->
+    <link rel="canonical" href="https://manely.com/register">
+    
+    <!-- تگ‌های Open Graph برای شبکه‌های اجتماعی -->
+    <meta property="og:title" content="ثبت‌نام | مانلی">
+    <meta property="og:description" content="عضویت در خانواده بزرگ مانلی">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://manely.com/register">
+    
+    <!-- لینک به فایل استایل -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    
+
+    <!-- محتوای اصلی صفحه -->
+    <main class="container" role="main">
+        <!-- عنوان صفحه -->
+        <h1 class="form-title">ثبت‌نام در مانلی</h1>
+        
+        <!-- توضیحات کوتاه -->
+        <p class="form-subtitle">به خانواده بزرگ مانلی خوش آمدید</p>
+
+        <!-- فرم ثبت‌نام -->
+        <form action="/api/register" method="post" class="register-form" novalidate>
+            <!-- گروه‌بندی فیلدها -->
+            <fieldset class="form-fieldset">
+                <legend class="form-legend">اطلاعات کاربری</legend>
+
+                <!-- فیلد نام کاربری -->
+                <div class="form-group">
+                    <label for="username" class="form-label">
+                        نام کاربری
+                        <span class="required" aria-label="الزامی">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        class="form-input"
+                        placeholder="نام کاربری خود را وارد کنید"
+                        autocomplete="username"
+                        required
+                        minlength="3"
+                        maxlength="20"
+                        aria-required="true"
+                        aria-describedby="username-help"
+                    >
+                    <small id="username-help" class="form-help">حداقل ۳ کاراکتر، فقط حروف و اعداد</small>
+                </div>
+
+                <!-- فیلد ایمیل -->
+                <div class="form-group">
+                    <label for="email" class="form-label">
+                        ایمیل
+                        <span class="required" aria-label="الزامی">*</span>
+                    </label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-input"
+                        placeholder="example@email.com"
+                        autocomplete="email"
+                        required
+                        aria-required="true"
+                        aria-describedby="email-help"
+                    >
+                    <small id="email-help" class="form-help">ایمیل معتبر خود را وارد کنید</small>
+                </div>
+
+                <!-- فیلد رمز عبور -->
+                <div class="form-group">
+                    <label for="password" class="form-label">
+                        رمز عبور
+                        <span class="required" aria-label="الزامی">*</span>
+                    </label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        class="form-input"
+                        placeholder="رمز عبور قوی انتخاب کنید"
+                        autocomplete="new-password"
+                        required
+                        minlength="8"
+                        aria-required="true"
+                        aria-describedby="password-help"
+                    >
+                    <small id="password-help" class="form-help">حداقل ۸ کاراکتر شامل حروف و اعداد</small>
+                </div>
+
+                <!-- فیلد شماره تماس -->
+                <div class="form-group">
+                    <label for="phone" class="form-label">
+                        شماره تماس
+                        <span class="required" aria-label="الزامی">*</span>
+                    </label>
+                    <input 
+                        type="tel" 
+                        id="phone" 
+                        name="phone" 
+                        class="form-input"
+                        placeholder="09123456789"
+                        autocomplete="tel"
+                        pattern="09[0-9]{9}"
+                        required
+                        aria-required="true"
+                        aria-describedby="phone-help"
+                    >
+                    <small id="phone-help" class="form-help">شماره موبایل ۱۱ رقمی با ۰۹</small>
+                </div>
+
+                <!-- چک‌باکس قوانین -->
+                <div class="form-group form-checkbox-group">
+                    <label class="checkbox-label">
+                        <input 
+                            type="checkbox" 
+                            id="terms" 
+                            name="terms" 
+                            class="form-checkbox"
+                            required
+                            aria-required="true"
+                        >
+                        <span class="checkbox-text">
+                            <a href="/terms" class="terms-link" target="_blank">قوانین و مقررات</a> سایت را مطالعه کرده و می‌پذیرم
+                            <span class="required" aria-label="الزامی">*</span>
+                        </span>
+                    </label>
+                </div>
+
+                <!-- دکمه ثبت‌نام -->
+                <button type="submit" class="form-submit">
+                   ثبت‌نام
+                </button>
+
+                <!-- لینک ورود -->
+                <p class="form-footer">
+                    قبلاً ثبت‌نام کرده‌اید؟ 
+                    <a href="/login" class="login-link">ورود به حساب</a>
+                </p>
+            </fieldset>
+        </form>
+    </main>
+
+    <!-- فوتر صفحه -->
+    <footer class="footer" role="contentinfo">
+        <p>&copy; ۱۴۰۵ مانلی (MANELY Beauty &amp; Clinical Care) - تمامی حقوق محفوظ است</p>
+    </footer>
+
+    <!-- اسکریپت برای منوی موبایل و اعتبارسنجی فرم -->
+    <script>
+        // منوی موبایل
+        const navToggle = document.querySelector('.nav-toggle');
+        const navList = document.querySelector('.nav-list');
+
+        navToggle.addEventListener('click', () => {
+            const isOpen = navList.classList.toggle('nav-open');
+            navToggle.setAttribute('aria-expanded', isOpen);
+            navToggle.setAttribute('aria-label', isOpen ? 'بستن منو' : 'باز کردن منو');
+        });
+
+        // بستن منو با کلیک روی overlay
+        navList.addEventListener('click', (e) => {
+            if (e.target === navList) {
+                navList.classList.remove('nav-open');
+                navToggle.setAttribute('aria-expanded', 'false');
+                navToggle.setAttribute('aria-label', 'باز کردن منو');
+            }
+        });
+
+        // اعتبارسنجی فرم
+        const form = document.querySelector('.register-form');
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // بررسی اعتبار فیلدها
+            const username = document.getElementById('username');
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const phone = document.getElementById('phone');
+            const terms = document.getElementById('terms');
+            
+            let isValid = true;
+            
+            // اعتبارسنجی نام کاربری
+            if (username.value.length < 3) {
+                alert('نام کاربری باید حداقل ۳ کاراکتر باشد');
+                username.focus();
+                isValid = false;
+                return;
+            }
+            
+            // اعتبارسنجی ایمیل
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email.value)) {
+                alert('لطفاً یک ایمیل معتبر وارد کنید');
+                email.focus();
+                isValid = false;
+                return;
+            }
+            
+            // اعتبارسنجی رمز عبور
+            if (password.value.length < 8) {
+                alert('رمز عبور باید حداقل ۸ کاراکتر باشد');
+                password.focus();
+                isValid = false;
+                return;
+            }
+            
+            // اعتبارسنجی شماره تماس
+            const phonePattern = /^09[0-9]{9}$/;
+            if (!phonePattern.test(phone.value)) {
+                alert('شماره تماس باید ۱۱ رقم و با ۰۹ شروع شود');
+                phone.focus();
+                isValid = false;
+                return;
+            }
+            
+            // بررسی قبول قوانین
+            if (!terms.checked) {
+                alert('لطفاً قوانین و مقررات را بپذیرید');
+                terms.focus();
+                isValid = false;
+                return;
+            }
+            
+            // // if (isValid) {
+            //     // alert('ثبت‌نام با موفقیت انجام شد!');
+            //     // form.submit(); // ارسال واقعی فرم
+            // }
+        });
+    </script>
+ <div class="modal-overlay" id="successModal">
+    <div class="modal-box">
+      <div class="modal-icon">✅</div>
+      <h3>ثبت‌نام با موفقیت انجام شد!</h3>
+      <p>به خانواده ما خوش آمدید</p>
+      <button class="modal-btn" id="closeModal">بستن</button>
+    </div>
+  </div>
+
+  <script src="register.js"></script>
+</body>
+
+</body>
+</html>

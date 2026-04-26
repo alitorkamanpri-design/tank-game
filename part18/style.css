@@ -1,0 +1,93 @@
+/* @charset "utf-8";
+@import "../css/cssstyle.css";  */
+* {
+  box-sizing: border-box;
+  font-size: 12px;
+}
+
+/* این مقدار عکس را با عرض طول مساوی به شکل مربع در میاورد درون قالب که ما سایز دادیم */
+.img-1 {
+  width: 300px;
+  height: 200px;
+  object-fit: contain;
+}
+/* این مقدار میاد عکس نسبت به عرض طولی که ما بدیم میکشه تا پرکنه فضارو */
+.img-2 {
+  object-fit: cover;
+  width: 300px;
+  height: 300px;
+}
+/* میاد این مقدار عکس وسط کادر عرض طولی که براش تعیین کردیم میزاره */
+.img-3 {
+  width: 400px;
+  height: 200px;
+  object-fit: scale-down;
+}
+/* مقداری که دادیم باعث میشود اگر عرض اترفاع کتر از عکس باشد عکس را زوم کند تا درون کادر جا شود */
+.img-4 {
+  width: 150px;
+  height: 100;
+  object-fit: none;
+}
+.container {
+  max-width: 500px;
+  min-height: 500px;
+  background-color: #d3cccc;
+  /* این روش برای تنظیم کردن فاصله عنصر بین سند  */
+  margin: 50px auto;
+  position: relative;
+}
+/* با مقدار ولد فرزندی و تاپ لفت درصد میتوان در مرکز قرار داد عنصر  */
+section {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* با این مقدار میاد میگه که بیا از محور x وy برگرد عقب تا بیاد وسط قرار بگیره */
+  transform: translate(-50%, -50%);
+}
+.login {
+  width: 300px;
+  height: auto;
+  background-color: #688de2;
+  margin: 50px auto;
+  padding: 10px;
+  border-radius: 5px;
+}
+.login input {
+  display: block;
+  margin-bottom: 15px;
+  width: 100%;
+  height: 25px;
+  border-radius: 2px;
+  border: none;
+  padding: 10px;
+}
+.login button {
+  width: 50%;
+  background-color: cyan;
+  color: black;
+  border-radius: 5px;
+}
+.login button:hover {
+  background-color: red;
+  cursor: pointer;
+}
+.login h3 {
+  font-size: 16px;
+  text-align: center;
+  margin: 10px;
+}
+.login div {
+  text-align: center;
+}
+.login input[type="checkbox"] {
+  display: inline-block;
+  width: 15px;
+}
+.login span {
+  font-size: 16px;
+  font-style: bold;
+}

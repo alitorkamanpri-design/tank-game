@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- ===== تگ‌های سئو ===== -->
+  <title>مانلی | محصولات آرایشی و بهداشتی لوکس - MANELY Beauty & Clinical Care</title>
+  <meta name="description" content="فروشگاه آنلاین مانلی - ارائه‌دهنده محصولات آرایشی، بهداشتی و مراقبت پوست با کیفیت پریمیوم. خرید آنلاین با ارسال سریع." />
+  <meta name="keywords" content="مانلی, محصولات آرایشی, بهداشتی, مراقبت پوست, لوازم آرایش, MANELY, کلینیکال, پریمیوم" />
+  <meta name="author" content="MANELY Beauty & Clinical Care" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="مانلی | محصولات آرایشی و بهداشتی لوکس" />
+  <meta property="og:description" content="فروشگاه آنلاین مانلی - محصولات پریمیوم آرایشی و بهداشتی" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fa_IR" />
+  <meta property="og:url" content="https://manely.ir/" />
+  <link rel="canonical" href="https://manely.ir/" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%231A4341'>M</text></svg>" />
+  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    
+
+    <!-- ===== کانتینر اصلی صفحه ===== -->
+  <div class="container">
+
+    <!-- ===== هدر سایت ===== -->
+    <header class="header" role="banner">
+
+      <!-- لوگوی SVG برند مانلی -->
+      <div class="logo" aria-label="لوگوی مانلی">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="220" height="66"
+          role="img" aria-label="MANELY Beauty and Clinical Care">
+          <defs>
+            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#A48D67;stop-opacity:1" />
+              <stop offset="50%" style="stop-color:#C4A96A;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#8B7654;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="tealGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#1A4341;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#215A57;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <line x1="50" y1="15" x2="350" y2="15" stroke="url(#goldGrad)" stroke-width="1.5" />
+          <text x="200" y="62" text-anchor="middle"
+            font-family="Georgia, 'Times New Roman', serif"
+            font-size="42" font-weight="bold" letter-spacing="14"
+            fill="url(#tealGrad)">MANELY</text>
+          <line x1="80" y1="74" x2="320" y2="74" stroke="url(#goldGrad)" stroke-width="1" />
+          <text x="200" y="92" text-anchor="middle"
+            font-family="Georgia, 'Times New Roman', serif"
+            font-size="11" letter-spacing="6"
+            fill="#A48D67">BEAUTY &amp; CLINICAL CARE</text>
+          <line x1="50" y1="105" x2="350" y2="105" stroke="url(#goldGrad)" stroke-width="1.5" />
+        </svg>
+      </div>
+
+      <!-- ===== ناوبری اصلی سایت ===== -->
+      <nav class="nav" role="navigation" aria-label="منوی اصلی سایت">
+        <button class="nav-toggle" id="navToggle" aria-label="باز و بسته کردن منو" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+        <ul class="nav-list" id="navList">
+          <li><a href="#" class="nav-link active" aria-current="page">خانه</a></li>
+          <li><a href="#products" class="nav-link">محصولات</a></li>
+          <li><a href="#about" class="nav-link">درباره ما</a></li>
+          <li><a href="#contact" class="nav-link">تماس با ما</a></li>
+        </ul>
+      </nav>
+
+      <!-- دکمه‌های هدر -->
+      <div class="header-actions">
+        <!-- سبد خرید -->
+        <button class="cart-button" id="cartBtn" aria-label="سبد خرید">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+        
+        <!-- دکمه ورود / ثبت‌نام -->
+        <a href="#" class="button login-btn" aria-label="ورود به حساب کاربری" onclick="showLoginModal(); return false;">
+          ورود | ثبت‌نام
+        </a>
+      </div>
+
+    </header>
+
+    <!-- ===== بخش اصلی: گرید کارت محصولات ===== -->
+    <main class="cards-container" id="products" role="main" aria-label="لیست محصولات">
+
+      <!-- کارت محصول ۱ -->
+      <article class="card" aria-label="کرم مرطوب‌کننده مانلی" data-product-id="1" data-product-name="کرم مرطوب‌کننده" data-product-price="385000">
+        <div class="card-header">
+          <img src="../css3/img/ali.png" alt="کرم مرطوب‌کننده روزانه مانلی" loading="lazy" width="300" height="180" />
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">کرم مرطوب‌کننده</h2>
+          <p class="card-text">کرم مرطوب‌کننده روزانه با فرمول سبک و جذب سریع، مناسب انواع پوست. حاوی ویتامین E و عصاره آلوئه‌ورا.</p>
+          <span class="card-price">۳۸۵,۰۰۰ تومان</span>
+          <button class="card-btn" onclick="openProductModal(1, 'کرم مرطوب‌کننده', 385000)">افزودن به سبد</button>
+        </div>
+      </article>
+
+      <!-- کارت محصول ۲ -->
+      <article class="card" aria-label="سرم ضدچروک مانلی" data-product-id="2" data-product-name="سرم ضدچروک" data-product-price="520000">
+        <div class="card-header">
+          <img src="../css3/img/ali.png" alt="سرم ضدچروک و جوان‌کننده مانلی" loading="lazy" width="300" height="180" />
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">سرم ضدچروک</h2>
+          <p class="card-text">سرم ضدچروک با رتینول خالص و هیالورونیک اسید. بازسازی عمیق پوست در ۲۸ روز.</p>
+          <span class="card-price">۵۲۰,۰۰۰ تومان</span>
+          <button class="card-btn" onclick="openProductModal(2, 'سرم ضدچروک', 520000)">افزودن به سبد</button>
+        </div>
+      </article>
+
+      <!-- کارت محصول ۳ -->
+      <article class="card" aria-label="ماسک صورت مانلی" data-product-id="3" data-product-name="ماسک زغال فعال" data-product-price="290000">
+        <div class="card-header">
+          <img src="../css3/img/ali.png" alt="ماسک صورت زغال فعال مانلی" loading="lazy" width="300" height="180" />
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">ماسک زغال فعال</h2>
+          <p class="card-text">ماسک پاک‌سازی عمیق با زغال فعال. از بین برنده چربی اضافی و آلودگی‌های پوست. مناسب پوست چرب و مختلط.</p>
+          <span class="card-price">۲۹۰,۰۰۰ تومان</span>
+          <button class="card-btn" onclick="openProductModal(3, 'ماسک زغال فعال', 290000)">افزودن به سبد</button>
+        </div>
+      </article>
+
+      <!-- کارت محصول ۴ -->
+      <article class="card" aria-label="ضدآفتاب مانلی" data-product-id="4" data-product-name="ضدآفتاب SPF50" data-product-price="410000">
+        <div class="card-header">
+          <img src="../css3/img/ali.png" alt="کرم ضدآفتاب SPF50 مانلی" loading="lazy" width="300" height="180" />
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">ضدآفتاب SPF50</h2>
+          <p class="card-text">محافظت کامل در برابر اشعه UVA و UVB. بافت سبک و بدون چربی، بدون جای سفیدی روی پوست.</p>
+          <span class="card-price">۴۱۰,۰۰۰ تومان</span>
+          <button class="card-btn" onclick="openProductModal(4, 'ضدآفتاب SPF50', 410000)">افزودن به سبد</button>
+        </div>
+      </article>
+
+      <!-- کارت محصول ۵ -->
+      <article class="card" aria-label="شامپو تقویتی مانلی" data-product-id="5" data-product-name="شامپو ضدریزش" data-product-price="345000">
+        <div class="card-header">
+          <img src="../css3/img/ali.png" alt="شامپو تقویت‌کننده و ضدریزش مانلی" loading="lazy" width="300" height="180" />
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">شامپو ضدریزش</h2>
+          <p class="card-text">شامپو تقویتی با بیوتین و کراتین. تقویت ریشه مو و کاهش ریزش تا ۸۰٪ در ۳ ماه مصرف مداوم.</p>
+          <span class="card-price">۳۴۵,۰۰۰ تومان</span>
+          <button class="card-btn" onclick="openProductModal(5, 'شامپو ضدریزش', 345000)">افزودن به سبد</button>
+        </div>
+      </article>
+
+      <!-- کارت محصول ۶ -->
+      <article class="card" aria-label="رژلب مات مانلی" data-product-id="6" data-product-name="رژلب مات بادوام" data-product-price="185000">
+        <div class="card-header">
+          <img src="../css3/img/ali.png" alt="رژلب مات بادوام مانلی" loading="lazy" width="300" height="180" />
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">رژلب مات بادوام</h2>
+          <p class="card-text">رژلب مات با ماندگاری ۱۲ ساعته. فرمول مرطوب‌کننده بدون خشک کردن لب. موجود در ۱۸ رنگ.</p>
+          <span class="card-price">۱۸۵,۰۰۰ تومان</span>
+          <button class="card-btn" onclick="openProductModal(6, 'رژلب مات بادوام', 185000)">افزودن به سبد</button>
+        </div>
+      </article>
+
+    </main>
+
+    <!-- ===== فوتر سایت ===== -->
+    <footer class="footer" role="contentinfo">
+      <p>&copy; ۱۴۰۵ تمامی حقوق برای مانلی (MANELY Beauty &amp; Clinical Care) محفوظ است.</p>
+    </footer>
+
+  </div>
+
+  <!-- ===== مودال ورود / ثبت‌نام ===== -->
+  <div id="loginModal" class="modal" role="dialog" aria-labelledby="loginTitle" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('loginModal')" aria-label="بستن">×</button>
+      <h2 id="loginTitle" class="modal-title">ورود / ثبت‌نام</h2>
+      <form id="loginForm" class="form">
+        <div class="form-group">
+          <label for="loginEmail" class="form-label">ایمیل</label>
+          <input type="email" id="loginEmail" placeholder="example@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword" class="form-label">رمز عبور</label>
+          <input type="password" id="loginPassword" placeholder="رمز عبور خود را وارد کنید" required>
+        </div>
+        <button type="submit" class="form-submit">ورود</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== مودال افزودن به سبد ===== -->
+  <div id="productModal" class="modal" role="dialog" aria-labelledby="productTitle" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal('productModal')" aria-label="بستن">×</button>
+      <h2 id="productTitle" class="modal-title">افزودن به سبد خرید</h2>
+      <form id="productForm" class="form">
+        <div class="form-group">
+          <label for="productQuantity" class="form-label">تعداد:</label>
+          <input type="number" id="productQuantity" min="1" value="1" required>
+        </div>
+        <div id="productSizeGroup" class="form-group" style="display: none;">
+          <label for="productSize" class="form-label">سایز:</label>
+          <select id="productSize">
+            <option value="">انتخاب کنید</option>
+            <option value="small">کوچک</option>
+            <option value="medium">متوسط</option>
+            <option value="large">بزرگ</option>
+          </select>
+        </div>
+        <button type="submit" class="form-submit">افزودن به سبد</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== مودال سبد خرید ===== -->
+  <div id="cartModal" class="modal" role="dialog" aria-labelledby="cartTitle" aria-hidden="true">
+    <div class="modal-content modal-large">
+      <button class="modal-close" onclick="closeModal('cartModal')" aria-label="بستن">×</button>
+      <h2 id="cartTitle" class="modal-title">سبد خرید</h2>
+      <div id="cartContent" class="cart-items">
+        <p class="empty-cart">سبد خرید شما خالی است</p>
+      </div>
+      <div id="cartSummary" class="cart-summary" style="display: none;">
+        <div class="summary-row">
+          <span>جمع کل:</span>
+          <span id="cartTotal">۰ تومان</span>
+        </div>
+        <button class="form-submit" onclick="checkout()">تکمیل خرید</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== مودال تایید ثبت نام ===== -->
+  <div id="successModal" class="modal success-modal" role="dialog" aria-labelledby="successTitle" aria-hidden="true">
+    <div class="modal-content modal-success">
+      <div class="success-icon">✓</div>
+      <h2 id="successTitle" class="modal-title">ثبت‌نام موفق!</h2>
+      <p class="success-message">اطلاعات شما با موفقیت ثبت شد. به زودی درباره پیشنهادات خاص برایتان ایمیل خواهیم فرستاد.</p>
+      <button class="form-submit" onclick="closeModal('successModal')">بستن</button>
+    </div>
+  </div>
+
+  <!-- ===== مودال تایید خریدار ===== -->
+  <div id="checkoutSuccessModal" class="modal success-modal" role="dialog" aria-hidden="true">
+    <div class="modal-content modal-success">
+      <div class="success-icon">✓</div>
+      <h2 class="modal-title">سفارش ثبت شد!</h2>
+      <p class="success-message">سفارش شما با موفقیت ثبت شد. شماره سفارش شما برایتان ایمیل خواهد شد.</p>
+      <button class="form-submit" onclick="closeModal('checkoutSuccessModal')">تایید</button>
+    </div>
+  </div>
+
+  <!-- اسکریپت -->
+  <script src="app.js"></script>
+
+</body>
+
+</html>
+                terms.focus();
+                isValid = false;
+                return;
+            }
+            
+            // // if (isValid) {
+            //     // alert('ثبت‌نام با موفقیت انجام شد!');
+            //     // form.submit(); // ارسال واقعی فرم
+            // }
+        });
+    </script>
+ <div class="modal-overlay" id="successModal">
+    <div class="modal-box">
+      <div class="modal-icon">✅</div>
+      <h3>ثبت‌نام با موفقیت انجام شد!</h3>
+      <p>به خانواده ما خوش آمدید</p>
+      <button class="modal-btn" id="closeModal">بستن</button>
+    </div>
+  </div>
+
+  <script src="register.js"></script>
+</body>
+
+</body>
+</html>

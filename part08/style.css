@@ -1,0 +1,88 @@
+/* برای تغیر فونت سند  */
+@font-face {
+  font-family: vazir-1;
+  src: url(../font/Vazir-Medium.eot) format(ٌ "eot"),
+    url(../font/Vazir-Medium.woff) format("woff"),
+    url(../font/Vazir-Medium.woff2) format("woff2");
+  font-weight: bold;
+  font-style: italic;
+}
+/* برای اعمال فونت روی تمام سند این را حتما باید بزاریم */
+* {
+  font-family: vazir-1;
+  font-style: italic;
+  /* برای تغییر سایز فونت */
+  font-size: 20px;
+  font-variant: small-caps;
+}
+/* برای ریست کردن حاشیه اضافه سند است ریست میگویند */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul li {
+  /* تمام بولت های پیش فرض تگ ulرا حذف میکند */
+  /* list-style: none; */
+  /* بولت ها را دایره تو خالی میگذارد  */
+  /* list-style-type: circle; */
+  /* بولت ها را مربعی میگذارد */
+  /* list-style-type: square; */
+  /* بولت ها را به زبان یونانی میگذارد */
+  /* list-style-type: upper-roman; */
+  /* بولت ها را به حروف لاتین میگذارد */
+  /* list-style-type: upper-latin; */
+  /* برای گذاشتن عکس بجای بولت است */
+  /* list-style-image: url(../img/blue_square_10x10.png); */
+}
+ol li{
+     /* تمام بولت های پیش فرض تگ ulرا حذف میکند */
+   /* list-style: none; */ 
+  /* بولت ها را دایره تو خالی میگذارد  */
+  /* list-style-type: circle; */
+  /* بولت ها را مربعی میگذارد */
+  /* list-style-type: square; */
+  /* بولت ها را به زبان یونانی میگذارد */
+  /* list-style-type: upper-roman; */
+  /* بولت ها را به حروف لاتین میگذارد */
+  /* list-style-type: upper-latin; */
+  /* برای گذاشتن عکس بجای بولت است */
+  /* list-style-image: url(../img/blue_square_10x10.png); */
+}
+a{
+    /* ریست تگ a است که تمام خط های زیر لینک را برمیدارد */
+    text-decoration: none;
+}
+nav {
+    background-color: #efefef;
+    /* برای اینکه متن نسبت به تگ والدش وسط چین بشه */
+    text-align: center;
+}
+
+.test li{
+    /* برای فاصله متن درون تگ از هم دیگه  */
+    margin: 0 5px;
+    /* برای اینکه عناصر جلوی هم دیگه قرار بگیرن */
+    display: inline;
+    /* برای اینکه بولت ها نمایش داده نشوند */
+    list-style: none;
+   
+
+}
+div{
+    background-color: blue;
+    color: #efefef;
+    /* تگ بلاکی را این لاین میکند  */
+    display: inline;
+    /* تگ این لاین را بلاکی میکند  */
+    display: block;
+    /* تگ بلاکی را این لاین میکند ولی امکان تغییر سایز هم بهش میده  */
+     display: inline-block; 
+}
+.ali{
+    background-color: rgb(217, 12, 46);
+    color: #efefef;
+    /* در تگ های این لاین میتوان عرض ارتفاع داد  چون بستس */
+    display: inline-block; 
+    width: 50px;
+}

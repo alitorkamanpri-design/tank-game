@@ -1,0 +1,43 @@
+/* @charset "utf-8"; */
+/* این برای این است که در اسناد قدیمی هم درست دیده شود و باید اول سند بزاریم */
+/* @import "../css/cssstyle.css"; */
+ /*  با این روش میتوان فایل های ثابت را جدا استایل دهی کرد  و به این سند وصل کرد و باید حتما اول سند باشه */
+
+.wrapper img{
+    width: 300px;
+   float: right;
+   margin-left: 5px ;
+   
+     
+
+}
+.wrapper{
+ background-color: #efefef;
+   overflow: auto;
+   
+}
+
+
+/* p{
+    margin: 0px;
+    text-align: justify;
+   } */
+   /* .clearfix{
+    clear: both;
+   } */
+    .container img{
+      width: 100%;
+      filter:grayscale(1);
+      border-radius: 3%;
+
+    }
+    .container{
+       float: right;
+      width: 33%;
+      
+    }
+   .container img:hover{
+     
+      filter:grayscale(0);
+      
+    }

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fa">
+  <head>
+    <meta charset="UTF-8" />
+    <title>سیستم مدیریت اضافه‌کاری</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>سیستم مدیریت اضافه‌کاری</h1>
+    </header>
+
+    <main class="container">
+      <section class="input-box">
+        <label> تاریخ (روز ماه):</label>
+        <input id="day" type="number" min="1" max="31" />
+
+        <label> ساعت شروع:</label>
+        <input id="start" type="time" />
+
+        <label> ساعت پایان:</label>
+        <input id="end" type="time" />
+
+        <label> مبلغ هر ساعت (تومان):</label>
+        <input id="rate" type="number" />
+
+        <button id="saveBtn">ذخیره</button>
+      </section>
+
+      <section>
+        <h2>لیست روزهای ثبت‌شده</h2>
+        <div id="daysList" class="days-list"></div>
+      </section>
+
+      <section class="total-box">
+        <button id="calcBtn">محاسبه مجموع آخر ماه</button>
+        <p id="totalResult"></p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>طراحی شده توسط GapGPT • 2026</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+@charset "utf-8"; 
+@import "../css/cssstyle.css";
+
+/* زمانی که این اتریبیوت سلکتور بزاریم دستور میدیم که اینپوت هایی که ولییو دارن را صدا بزن */
+.login input[value]{
+    background-color: red;
+}
+/* و میتوان هر چیزی را در این قسمت گذاشت برای جداسازی مانند */
+/* مثلا میگیم که اون اینپوت هایی که فقط تایپشون ایمیل اعمل کن  */
+.login input[type="email"]{
+    background-color: blue;
+}
+/* میتوان گفت که فقط اون inputکه value ایمیل دارد را صدا بزن  */
+.login input[value="email"]{
+    background-color: chartreuse;
+}

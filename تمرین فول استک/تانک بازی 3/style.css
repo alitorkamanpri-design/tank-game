@@ -1,0 +1,209 @@
+/* =============================
+   ریست اولیه
+============================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =============================
+   بدنه اصلی
+============================= */
+
+body {
+  background: radial-gradient(circle at top, #0f1a28, #050510);
+
+  font-family: "Orbitron", sans-serif;
+
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #7fff7f;
+}
+
+/* =============================
+   کانتینر اصلی
+============================= */
+
+.game-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* =============================
+   بوم بازی
+============================= */
+
+.canvas-wrapper {
+  position: relative;
+}
+
+canvas {
+  border: 2px solid #2a5a2a;
+  border-radius: 10px;
+
+  box-shadow:
+    0 0 20px rgba(0, 255, 120, 0.3),
+    inset 0 0 10px rgba(0, 255, 120, 0.1);
+}
+
+/* =============================
+   پنل اطلاعات
+============================= */
+
+.sidebar {
+  width: 150px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.panel {
+  background: linear-gradient(145deg, #0d1f0d, #1b2f1b);
+
+  border: 1px solid #2a5a2a;
+
+  border-radius: 10px;
+
+  padding: 15px;
+
+  text-align: center;
+
+  box-shadow: 0 0 10px rgba(0, 255, 120, 0.2);
+}
+
+.panel span {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #4a9a4a;
+}
+
+.panel h2 {
+  font-size: 28px;
+}
+
+/* =============================
+   نوار جان
+============================= */
+
+.health-bar {
+  width: 100%;
+  height: 8px;
+
+  background: #111;
+
+  margin-top: 8px;
+
+  border-radius: 4px;
+
+  overflow: hidden;
+}
+
+#healthFill {
+  height: 100%;
+
+  width: 100%;
+
+  background: linear-gradient(90deg, #ff4444, #ffaa00, #44ff44);
+
+  transition: width 0.3s;
+}
+
+/* =============================
+   صفحات overlay
+============================= */
+
+.overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.85);
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 15px;
+}
+
+.overlay h1 {
+  font-size: 34px;
+
+  text-shadow: 0 0 20px #00ff88;
+}
+
+.overlay p {
+  color: #aaa;
+}
+
+/* =============================
+   دکمه ها
+============================= */
+
+button {
+  padding: 12px 25px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  background: linear-gradient(135deg, #1f7a1f, #3aff7a);
+
+  color: #002200;
+
+  font-weight: bold;
+
+  transition: 0.25s;
+}
+
+button:hover {
+  transform: scale(1.05);
+
+  box-shadow: 0 0 10px #00ff88;
+}
+
+/* =============================
+   دکمه انتخاب سختی
+============================= */
+
+.difficulty-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* =============================
+   مخفی کردن
+============================= */
+
+.hidden {
+  display: none;
+}
+
+/* =============================
+   ریسپانسیو موبایل
+============================= */
+
+@media (max-width: 900px) {
+  .game-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sidebar {
+    flex-direction: row;
+    width: auto;
+  }
+}

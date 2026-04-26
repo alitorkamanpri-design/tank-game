@@ -1,0 +1,61 @@
+* {
+  box-sizing: border-box;
+  margin: ;
+  padding: ;
+}
+a {
+  /* برای برداشتن خط زیر متن لینک است*/
+  text-decoration: none;
+}
+.test {
+  /*برای رنگ متن*/
+  color: brown;
+  /* برای رنگ پس زمینه متن*/
+  background-color: beige;
+  /*برای فاصله متن از کادر */
+  padding: 10px;
+  /* برای جابجایی متن بین صفحه چپ چین یا راست چین */
+  /*text-align: left;
+    text-align:center ;
+  text-align: right;*/
+  /*برای مرتب کردن انتها من ابتدای متن*/
+  text-align: justify;
+  /*باید در تمام استایل ها فونت متنو تایین کنیم */
+  font-size: 20px;
+  /* برای فاصله بین خطوط متن که فونت سایز در 
+  زبان فارسی ضربدر 1/5
+  درزبان انگلیسی 1/6*/
+  line-height: 32px;
+}
+.test-2 {
+  /*برای کشیدن خط بالای متن*/
+  text-decoration: overline;
+  /*برای کشیدن خط روی متن*/
+  text-decoration: line-through;
+  /* برای کشیدن خط زیر متن*/
+  text-decoration: underline;
+}
+.test-3 {
+  text-align: left;
+  /*این تگ برای متن های لاتین کاربرد دارد*/
+  /*حرف اول هر کلمه بزرگ مینویسه*/
+  text-transform: capitalize;
+  /*تمام حروف بزرگ مینویسه*/
+  text-transform: uppercase;
+  /*تمام حروف کوچیک مینویسه*/
+  text-transform: lowercase;
+}
+.test-4 {
+  /* این تگ رو حروف فارسی و لاتین کارایی دارد
+    برای فاصله دادن به متن از دیواره است*/
+  text-indent: 20px;
+  /* منفی هم میتوان داد.فاصله بین حروف ایجاد میکند*/
+  /*letter-spacing: 10px;
+    letter-spacing: -10;*/
+  /*بین کلمات متن فاصله می اندازد*/
+  word-spacing: 10px;
+}
+.test-5 {
+  /*برای دادن سایه به متن*/
+  text-shadow: 5px 5px 5px red;
+}

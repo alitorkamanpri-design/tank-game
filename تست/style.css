@@ -1,0 +1,890 @@
+/* ===================================================
+   ریست کامل CSS - حذف استایل‌های پیش‌فرض مرورگر
+   =================================================== */
+
+/* ریست باکس‌مدل: همه عناصر border-box باشند */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* حذف استایل پیش‌فرض لیست‌ها */
+ul,
+ol {
+  list-style: none;
+}
+
+/* ریست لینک‌ها */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ریست تصاویر: ریسپانسیو پیش‌فرض */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ریست دکمه‌ها */
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* ریست عناصر فرم */
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* حذف outline پیش‌فرض و جایگزینی با استایل سفارشی */
+:focus-visible {
+  outline: 2px solid #1A4341;
+  outline-offset: 2px;
+}
+
+/* ===================================================
+   متغیرهای CSS - پالت رنگی Clinical Premium
+   =================================================== */
+:root {
+  /* --- رنگ‌های پایه --- */
+  --bg-main: #F7F7F9;           /* پس‌زمینه اصلی - خاکستری ابری */
+  --bg-card: #FFFFFF;            /* پس‌زمینه کارت‌ها - سفید خالص */
+  --text-primary: #2C3E50;       /* متن اصلی - سرمه‌ای تیره */
+  --text-secondary: #5D6D7E;     /* متن فرعی - خاکستری آبی */
+
+  /* --- رنگ‌های اکشن --- */
+  --cta-primary: #1A4341;        /* دکمه اصلی - تیل عمیق */
+  --cta-hover: #215A57;          /* هاور دکمه اصلی */
+  --accent-secondary: #9CAEA9;   /* تأکید ثانویه - سبز ملایم */
+
+  /* --- رنگ‌های لوکس/طلایی --- */
+  --gold-muted: #A48D67;         /* طلایی مات - لوکس */
+  --gold-light: #C4A96A;         /* طلایی روشن */
+  --gold-dark: #8B7654;          /* طلایی تیره */
+
+  /* --- رنگ‌های بازخورد --- */
+  --success: #27AE60;            /* موفقیت - سبز */
+  --warning: #F39C12;            /* هشدار - زرد */
+  --error: #C0392B;              /* خطا - قرمز */
+
+  /* --- رنگ‌های بخش لوکس --- */
+  --dark-bg: #1E1E24;            /* پس‌زمینه تیره لوکس */
+  --pearl-white: #ECF0F1;        /* سفید مرواریدی */
+
+  /* --- سایه‌ها --- */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-hover: 0 12px 28px rgba(26, 67, 65, 0.15);
+
+  /* --- گوشه‌های گرد --- */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  /* --- انتقال‌ها --- */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
+
+/* ===================================================
+   استایل پایه بدنه صفحه
+   =================================================== */
+body {
+  font-family: 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.7;
+  font-size: 16px;
+  /* اسکرول نرم برای لینک‌های داخلی */
+  scroll-behavior: smooth;
+  /* جلوگیری از اسکرول افقی */
+  overflow-x: hidden;
+}
+
+/* ===================================================
+   کانتینر اصلی - ساختار گرید صفحه
+   =================================================== */
+.container {
+  display: grid;
+  /* سه ردیف: هدر، محتوا، فوتر */
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "header"
+    "card"
+    "footer";
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===================================================
+   هدر سایت
+   =================================================== */
+.header {
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background-color: var(--bg-card);
+  border-bottom: 2px solid var(--gold-muted);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  /* چسبیدن هدر به بالای صفحه */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* ===== لوگو ===== */
+.logo {
+  flex-shrink: 0;
+}
+
+.logo svg {
+  display: block;
+  /* انتقال نرم برای هاور */
+  transition: transform var(--transition-normal);
+}
+
+/* افکت هاور لوگو */
+.logo svg:hover {
+  transform: scale(1.03);
+}
+
+/* ===================================================
+   ناوبری اصلی
+   =================================================== */
+.nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+/* لیست لینک‌های ناوبری */
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* هر لینک ناوبری */
+.nav-link {
+  display: inline-block;
+  padding: 8px 18px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+/* خط زیر لینک فعال */
+.nav-link.active {
+  color: var(--cta-primary);
+  font-weight: 700;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background-color: var(--gold-muted);
+  border-radius: 2px;
+}
+
+/* هاور لینک‌های ناوبری */
+.nav-link:hover {
+  color: var(--cta-primary);
+  background-color: rgba(26, 67, 65, 0.06);
+}
+
+/* ===== دکمه همبرگری (مخفی در دسکتاپ) ===== */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  z-index: 1001;
+}
+
+/* خطوط همبرگری */
+.hamburger-line {
+  display: block;
+  width: 24px;
+  height: 2.5px;
+  background-color: var(--cta-primary);
+  border-radius: 2px;
+  transition: all var(--transition-normal);
+  transform-origin: center;
+}
+
+/* انیمیشن تبدیل به ضربدر */
+.nav-toggle.active .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.active .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ===================================================
+   دکمه ورود / ثبت‌نام
+   =================================================== */
+.header-actions {
+  flex-shrink: 0;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cta-primary);
+  border: 2px solid var(--cta-primary);
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+}
+
+/* هاور دکمه ورود */
+.button:hover {
+  background-color: var(--cta-primary);
+  color: var(--bg-card);
+  box-shadow: var(--shadow-md);
+}
+
+/* ===================================================
+   بخش کارت‌های محصولات
+   =================================================== */
+.cards-container {
+  grid-area: card;
+  display: grid;
+  /* گرید ریسپانسیو: حداقل ۲۶۰ پیکسل، حداکثر یک کسر */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  padding: 40px 0;
+}
+
+/* ===================================================
+   کارت محصول
+   =================================================== */
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  /* حاشیه ظریف */
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+/* هاور کارت: بالا رفتن و سایه بیشتر */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--accent-secondary);
+}
+
+/* ===== تصویر کارت ===== */
+.card-header {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background-color: var(--bg-main);
+}
+
+.card-header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+/* زوم تصویر هنگام هاور روی کارت */
+.card:hover .card-header img {
+  transform: scale(1.05);
+}
+
+/* ===== بدنه کارت ===== */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  /* flex:1 باعث می‌شود دکمه همیشه پایین کارت بماند */
+  flex: 1;
+  padding: 20px;
+  gap: 10px;
+}
+
+/* عنوان محصول */
+.card-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* توضیحات محصول */
+.card-text {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  /* flex:1 فضای خالی را پر می‌کند و قیمت و دکمه پایین می‌مانند */
+  flex: 1;
+}
+
+/* قیمت محصول */
+.card-price {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--cta-primary);
+  margin-top: 4px;
+  /* جهت عدد فارسی */
+  direction: rtl;
+}
+
+/* ===== دکمه خرید کارت ===== */
+.card-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--bg-card);
+  background-color: var(--cta-primary);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  margin-top: 8px;
+}
+
+/* هاور دکمه خرید */
+.card-btn:hover {
+  background-color: var(--cta-hover);
+  box-shadow: var(--shadow-md);
+  /* کمی بزرگ‌تر شدن */
+  transform: translateY(-1px);
+}
+
+/* فوکوس دکمه خرید برای دسترسی‌پذیری */
+.card-btn:focus-visible {
+  outline: 2px solid var(--gold-muted);
+  outline-offset: 2px;
+}
+
+/* ===================================================
+   فوتر سایت
+   =================================================== */
+.footer {
+  grid-area: footer;
+  background-color: var(--cta-primary);
+  color: var(--pearl-white);
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  margin-top: 20px;
+}
+
+/* ===================================================
+   ریسپانسیو - تبلت (حداکثر ۸۶۸ پیکسل)
+   =================================================== */
+/* ===================================================
+   ریسپانسیو - تبلت (حداکثر ۸۶۸ پیکسل)
+   =================================================== */
+@media (max-width: 868px) {
+  /* نمایش دکمه همبرگری */
+  .nav-toggle {
+    display: flex;
+  }
+
+  /* تبدیل ناوبری به منوی عمودی */
+  .nav-list {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--bg-card);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 80px 24px 24px;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+    transition: right var(--transition-normal);
+    overflow-y: auto;
+    z-index: 999;
+  }
+
+  /* نمایش منو هنگام باز شدن */
+  .nav-list.nav-open {
+    right: 0;
+  }
+
+  /* استایل لینک‌ها در منوی موبایل */
+  .nav-link {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  /* خط زیر لینک فعال در موبایل */
+  .nav-link.active::after {
+    right: 16px;
+    left: auto;
+    width: 4px;
+    height: 100%;
+    bottom: auto;
+    top: 0;
+  }
+
+  /* اورلی تیره پشت منو */
+  .nav-list.nav-open::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+
+  /* کاهش padding هدر */
+  .header {
+    padding: 12px 16px;
+  }
+
+  /* کوچک‌تر کردن لوگو */
+  .logo svg {
+    width: 180px;
+    height: auto;
+  }
+
+  /* کاهش padding دکمه ورود */
+  .button {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  /* کاهش gap گرید کارت‌ها */
+  .cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    padding: 30px 0;
+  }
+
+  /* کاهش padding کانتینر */
+  .container {
+    padding: 0 16px;
+  }
+}
+
+/* ===================================================
+   ریسپانسیو - موبایل بزرگ (حداکثر ۶۴۰ پیکسل)
+   =================================================== */
+@media (max-width: 640px) {
+  /* کوچک‌تر کردن بیشتر لوگو */
+  .logo svg {
+    width: 150px;
+  }
+
+  /* مخفی کردن متن دکمه ورود و نمایش آیکون */
+  .button {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  /* تک ستونی کردن گرید کارت‌ها */
+  .cards-container {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 24px 0;
+  }
+
+  /* کاهش ارتفاع تصویر کارت */
+  .card-header {
+    height: 180px;
+  }
+
+  /* کاهش padding بدنه کارت */
+  .card-body {
+    padding: 16px;
+    gap: 8px;
+  }
+
+  /* کوچک‌تر کردن عنوان */
+  .card-title {
+    font-size: 16px;
+  }
+
+  /* کوچک‌تر کردن متن */
+  .card-text {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  /* کوچک‌تر کردن قیمت */
+  .card-price {
+    font-size: 15px;
+  }
+
+  /* کاهش padding دکمه خرید */
+  .card-btn {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  /* کاهش padding فوتر */
+  .footer {
+    padding: 16px;
+    font-size: 12px;
+  }
+
+  /* کاهش padding کانتینر */
+  .container {
+    padding: 0 12px;
+  }
+
+  /* کاهش padding هدر */
+  .header {
+    padding: 10px 12px;
+  }
+
+  /* کاهش عرض منوی موبایل */
+  .nav-list {
+    width: 260px;
+    padding: 70px 20px 20px;
+  }
+}
+
+/* ===================================================
+   ریسپانسیو - موبایل کوچک (حداکثر ۴۰۰ پیکسل)
+   =================================================== */
+@media (max-width: 400px) {
+  /* کوچک‌ترین اندازه لوگو */
+  .logo svg {
+    width: 130px;
+  }
+
+  /* تبدیل دکمه ورود به آیکون خالص */
+  .button {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  /* کاهش بیشتر gap */
+  .cards-container {
+    gap: 16px;
+    padding: 20px 0;
+  }
+
+  /* کاهش ارتفاع تصویر */
+  .card-header {
+    height: 160px;
+  }
+
+  /* کاهش padding */
+  .card-body {
+    padding: 14px;
+  }
+
+  /* کوچک‌تر کردن فونت‌ها */
+  .card-title {
+    font-size: 15px;
+  }
+
+  .card-text {
+    font-size: 12px;
+  }
+
+  .card-price {
+    font-size: 14px;
+  }
+
+  .card-btn {
+    padding: 9px;
+    font-size: 12px;
+  }
+
+  /* کاهش padding کانتینر */
+  .container {
+    padding: 0 10px;
+  }
+
+  /* کاهش padding هدر */
+  .header {
+    padding: 8px 10px;
+  }
+
+  /* کاهش عرض منو */
+  .nav-list {
+    width: 240px;
+    padding: 60px 16px 16px;
+  }
+
+  /* کوچک‌تر کردن لینک‌های منو */
+  .nav-link {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+
+  /* کاهش اندازه دکمه همبرگری */
+  .nav-toggle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hamburger-line {
+    width: 22px;
+    height: 2px;
+  }
+}
+
+/* ===================================================
+   ریسپانسیو - دسکتاپ بزرگ (بیش از ۱۴۰۰ پیکسل)
+   =================================================== */
+@media (min-width: 1400px) {
+  /* افزایش فاصله کارت‌ها */
+  .cards-container {
+    gap: 32px;
+    padding: 48px 0;
+  }
+
+  /* حداکثر ۴ ستون */
+  .cards-container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  /* افزایش اندازه فونت‌ها */
+  .card-title {
+    font-size: 18px;
+  }
+
+  .card-text {
+    font-size: 14px;
+  }
+
+  .card-price {
+    font-size: 17px;
+  }
+
+  /* افزایش ارتفاع تصویر */
+  .card-header {
+    height: 220px;
+  }
+}
+
+/* ===================================================
+   ریسپانسیو - لندسکیپ موبایل (ارتفاع کم)
+   =================================================== */
+@media (max-height: 600px) and (orientation: landscape) {
+  /* کاهش padding عمودی */
+  .header {
+    padding: 8px 16px;
+  }
+
+  .cards-container {
+    padding: 20px 0;
+  }
+
+  /* کاهش ارتفاع تصویر کارت */
+  .card-header {
+    height: 140px;
+  }
+
+  /* کاهش padding کارت */
+  .card-body {
+    padding: 12px;
+  }
+
+  /* منوی موبایل با اسکرول */
+  .nav-list {
+    padding: 50px 20px 20px;
+  }
+
+  .nav-link {
+    padding: 10px 14px;
+  }
+}
+
+/* ===================================================
+   بهینه‌سازی برای صفحه‌نمایش‌های Retina
+   =================================================== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* افزایش کیفیت سایه‌ها */
+  .card {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  }
+
+  .card:hover {
+    box-shadow: 0 12px 32px rgba(26, 67, 65, 0.18);
+  }
+
+  /* افزایش کیفیت border */
+  .header {
+    border-bottom-width: 1.5px;
+  }
+}
+
+/* ===================================================
+   حالت تاریک (Dark Mode) - اختیاری
+   =================================================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-main: #1E1E24;
+    --bg-card: #2A2A32;
+    --text-primary: #ECF0F1;
+    --text-secondary: #BDC3C7;
+    --cta-primary: #215A57;
+    --cta-hover: #2A6D69;
+  }
+
+  /* تنظیم سایه برای حالت تاریک */
+  .card {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .card:hover {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+  }
+
+  .header {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border-bottom-color: var(--gold-dark);
+  }
+
+  /* تنظیم منوی موبایل */
+  .nav-list {
+    background-color: var(--bg-card);
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .nav-link {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* ===================================================
+   بهینه‌سازی چاپ
+   =================================================== */
+@media print {
+  /* مخفی کردن عناصر غیرضروری */
+  .header,
+  .nav,
+  .button,
+  .card-btn,
+  .footer {
+    display: none;
+  }
+
+  /* تنظیم کارت‌ها برای چاپ */
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .card {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+
+  /* حذف رنگ پس‌زمینه */
+  body {
+    background-color: #fff;
+  }
+
+  /* تنظیم رنگ متن برای چاپ */
+  * {
+    color: #000 !important;
+  }
+}
+
+/* ===================================================
+   انیمیشن‌های اضافی برای تجربه کاربری بهتر
+   =================================================== */
+
+/* انیمیشن ظاهر شدن کارت‌ها */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* اعمال انیمیشن به کارت‌ها با تأخیر */
+.card {
+  animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+.card:nth-child(5) { animation-delay: 0.5s; }
+.card:nth-child(6) { animation-delay: 0.6s; }
+
+/* غیرفعال کردن انیمیشن برای کاربرانی که حرکت را ترجیح نمی‌دهند */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===================================================
+   بهینه‌سازی عملکرد
+   =================================================== */
+
+/* استفاده از GPU برای انیمیشن‌های نرم‌تر */
+.card,
+.card-header img,
+.nav-list,
+.button,
+.card-btn {
+  will-change: transform;
+}
+
+/* حذف will-change بعد از انیمیشن */
+.card:hover {
+  will-change: auto;
+}

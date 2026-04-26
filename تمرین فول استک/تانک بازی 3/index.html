@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- فونت مدرن برای حس گیم -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Tank Defense Pro</title>
+
+    <!-- فایل استایل -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- =========================
+       کانتینر اصلی بازی
+  ========================== -->
+    <div class="game-container">
+      <!-- =========================
+         بوم بازی
+    ========================== -->
+      <div class="canvas-wrapper">
+        <canvas id="gameCanvas" width="560" height="600"></canvas>
+
+        <!-- =========================
+           صفحه شروع بازی
+      ========================== -->
+        <div id="startMenu" class="overlay">
+          <h1>🎯 TANK DEFENSE</h1>
+
+          <p>سطح بازی را انتخاب کن</p>
+
+          <div class="difficulty-buttons">
+            <button data-level="easy">Easy</button>
+            <button data-level="normal">Normal</button>
+            <button data-level="hard">Hard</button>
+          </div>
+
+          <div class="controls">
+            ← → چرخش لوله <br />
+            Enter یا Space شلیک
+          </div>
+        </div>
+
+        <!-- =========================
+           صفحه پایان بازی
+      ========================== -->
+        <div id="gameOverMenu" class="overlay hidden">
+          <h1 class="danger">GAME OVER</h1>
+
+          <p>امتیاز نهایی</p>
+          <h2 id="finalScore">0</h2>
+
+          <button onclick="restartGame()">دوباره بازی کن</button>
+        </div>
+      </div>
+
+      <!-- =========================
+         پنل اطلاعات بازی
+    ========================== -->
+      <div class="sidebar">
+        <div class="panel">
+          <span>امتیاز</span>
+          <h2 id="scoreDisplay">0</h2>
+        </div>
+
+        <div class="panel">
+          <span>جان</span>
+          <h2 id="lifeDisplay">100</h2>
+
+          <div class="health-bar">
+            <div id="healthFill"></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <span>Wave</span>
+          <h2 id="waveDisplay">1</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- فایل جاوااسکریپت بازی -->
+    <script src="game.js"></script>
+  </body>
+</html>

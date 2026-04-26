@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <title>آموزش و تمرین تگ های HTML</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Vazirmatn;
+        background: #f1f5f9;
+        display: flex;
+        height: 100vh;
+      }
+
+      .sidebar {
+        width: 250px;
+        background: #0f172a;
+        color: white;
+        padding: 20px;
+        overflow: auto;
+      }
+
+      .sidebar h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .sidebar a {
+        display: block;
+        padding: 8px;
+        margin-bottom: 6px;
+        text-decoration: none;
+        color: #cbd5e1;
+        border-radius: 6px;
+      }
+
+      .sidebar a:hover {
+        background: #1e293b;
+      }
+
+      .main {
+        flex: 1;
+        overflow: auto;
+        padding: 30px;
+      }
+
+      .search {
+        margin-bottom: 30px;
+      }
+
+      .search input {
+        width: 100%;
+        padding: 10px;
+        font-family: Vazirmatn;
+        border-radius: 8px;
+        border: 1px solid #cbd5e1;
+      }
+
+      .section {
+        margin-bottom: 60px;
+      }
+
+      .section h2 {
+        margin-bottom: 20px;
+        border-bottom: 2px solid #e2e8f0;
+        padding-bottom: 10px;
+      }
+
+      .exercise {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .exercise h3 {
+        margin-bottom: 10px;
+      }
+
+      .code {
+        background: #0f172a;
+        color: #e2e8f0;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 10px 0;
+        direction: ltr;
+        font-family: monospace;
+        overflow: auto;
+      }
+
+      .preview {
+        border: 1px solid #e2e8f0;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="sidebar">
+      <h2>دسته بندی تگ ها</h2>
+
+      <a href="#text">تگ های متن</a>
+      <a href="#links">تگ های لینک</a>
+      <a href="#lists">تگ های لیست</a>
+      <a href="#media">رسانه</a>
+      <a href="#tables">جدول</a>
+      <a href="#forms">فرم</a>
+      <a href="#semantic">تگ های معنایی</a>
+    </div>
+
+    <div class="main">
+      <div class="search">
+        <input id="search" placeholder="جستجوی تگ مثلا h1 یا img" />
+      </div>
+
+      <div id="text" class="section">
+        <h2>تگ های متن</h2>
+
+        <div class="exercise" data-tag="h1">
+          <h3>تگ h1</h3>
+
+          <p>برای عنوان اصلی صفحه استفاده می شود.</p>
+
+          <div class="code">&lt;h1&gt;عنوان اصلی&lt;/h1&gt;</div>
+
+          <div class="preview">
+            <h1>عنوان اصلی</h1>
+          </div>
+        </div>
+
+        <div class="exercise" data-tag="p">
+          <h3>تگ p</h3>
+
+          <p>برای نوشتن پاراگراف.</p>
+
+          <div class="code">&lt;p&gt;این یک متن پاراگراف است&lt;/p&gt;</div>
+
+          <div class="preview">
+            <p>این یک متن پاراگراف است</p>
+          </div>
+        </div>
+
+        <div class="exercise" data-tag="strong">
+          <h3>تگ strong</h3>
+
+          <p>برای تاکید روی متن.</p>
+
+          <div class="code">&lt;strong&gt;متن مهم&lt;/strong&gt;</div>
+
+          <div class="preview">
+            <strong>متن مهم</strong>
+          </div>
+        </div>
+
+        <div class="exercise" data-tag="em">
+          <h3>تگ em</h3>
+
+          <p>برای تاکید معنایی روی متن.</p>
+
+          <div class="code">&lt;em&gt;متن تاکید شده&lt;/em&gt;</div>
+
+          <div class="preview">
+            <em>متن تاکید شده</em>
+          </div>
+        </div>
+      </div>
+
+      <div id="links" class="section">
+        <h2>تگ های لینک</h2>
+
+        <div class="exercise" data-tag="a">
+          <h3>تگ a</h3>
+
+          <p>برای ساخت لینک استفاده می شود.</p>
+
+          <div class="code">
+            &lt;a href="https://google.com"&gt;رفتن به گوگل&lt;/a&gt;
+          </div>
+
+          <div class="preview">
+            <a href="https://google.com">رفتن به گوگل</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="lists" class="section">
+        <h2>تگ های لیست</h2>
+
+        <div class="exercise" data-tag="ul">
+          <h3>تگ ul</h3>
+
+          <p>لیست نامرتب.</p>
+
+          <div class="code">
+            &lt;ul&gt; &lt;li&gt;سیب&lt;/li&gt; &lt;li&gt;موز&lt;/li&gt;
+            &lt;/ul&gt;
+          </div>
+
+          <div class="preview">
+            <ul>
+              <li>سیب</li>
+              <li>موز</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exercise" data-tag="ol">
+          <h3>تگ ol</h3>
+
+          <p>لیست مرتب.</p>
+
+          <div class="code">
+            &lt;ol&gt; &lt;li&gt;مرحله اول&lt;/li&gt; &lt;li&gt;مرحله
+            دوم&lt;/li&gt; &lt;/ol&gt;
+          </div>
+
+          <div class="preview">
+            <ol>
+              <li>مرحله اول</li>
+              <li>مرحله دوم</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div id="media" class="section">
+        <h2>تگ های رسانه</h2>
+
+        <div class="exercise" data-tag="img">
+          <h3>تگ img</h3>
+
+          <p>برای نمایش تصویر.</p>
+
+          <div class="code">&lt;img src="https://picsum.photos/200"&gt;</div>
+
+          <div class="preview">
+            <img src="https://picsum.photos/200" />
+          </div>
+        </div>
+
+        <div class="exercise" data-tag="video">
+          <h3>تگ video</h3>
+
+          <p>برای نمایش ویدیو.</p>
+
+          <div class="code">
+            &lt;video controls width="250"&gt; &lt;source src="movie.mp4"&gt;
+            &lt;/video&gt;
+          </div>
+        </div>
+      </div>
+
+      <div id="tables" class="section">
+        <h2>تگ های جدول</h2>
+
+        <div class="exercise" data-tag="table">
+          <h3>تگ table</h3>
+
+          <p>برای ساخت جدول.</p>
+
+          <div class="code">
+            &lt;table border="1"&gt; &lt;tr&gt; &lt;th&gt;نام&lt;/th&gt;
+            &lt;th&gt;سن&lt;/th&gt; &lt;/tr&gt; &lt;tr&gt;
+            &lt;td&gt;علی&lt;/td&gt; &lt;td&gt;20&lt;/td&gt; &lt;/tr&gt;
+            &lt;/table&gt;
+          </div>
+
+          <div class="preview">
+            <table border="1">
+              <tr>
+                <th>نام</th>
+                <th>سن</th>
+              </tr>
+              <tr>
+                <td>علی</td>
+                <td>20</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div id="forms" class="section">
+        <h2>تگ های فرم</h2>
+
+        <div class="exercise" data-tag="form">
+          <h3>تگ form</h3>
+
+          <p>برای دریافت اطلاعات کاربر.</p>
+
+          <div class="code">
+            &lt;form&gt; &lt;input placeholder="نام"&gt;
+            &lt;button&gt;ارسال&lt;/button&gt; &lt;/form&gt;
+          </div>
+
+          <div class="preview">
+            <form>
+              <input placeholder="نام" />
+              <button>ارسال</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div id="semantic" class="section">
+        <h2>تگ های معنایی</h2>
+
+        <div class="exercise" data-tag="header">
+          <h3>تگ header</h3>
+
+          <p>بخش هدر صفحه.</p>
+
+          <div class="code">
+            &lt;header&gt; &lt;h2&gt;هدر سایت&lt;/h2&gt; &lt;/header&gt;
+          </div>
+
+          <div class="preview">
+            <header>
+              <h2>هدر سایت</h2>
+            </header>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const search = document.getElementById("search");
+
+      search.addEventListener("keyup", function () {
+        const value = this.value.toLowerCase();
+
+        document.querySelectorAll(".exercise").forEach((ex) => {
+          const tag = ex.dataset.tag;
+
+          if (tag.includes(value)) ex.style.display = "block";
+          else ex.style.display = "none";
+        });
+      });
+    </script>
+  </body>
+</html>

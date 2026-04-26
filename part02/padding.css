@@ -1,0 +1,20 @@
+.ali{
+    background-color: blue;
+    width: 300px;
+    height: 300px;
+    color: black;
+    border: 5px ridge #000;
+    border-radius:50px ;
+    /*برای فاصله از داخل*/
+   /* padding:50px 30px 20px 0px ;
+    padding-left:0px ;
+    padding-right: 30px;
+    padding-top: 50px;
+    padding-bottom: 20px;*/
+    /* برای فاصله از بیرون*/
+    /*margin: 20px 40px 0px 10px ;
+    margin-left:10px ;
+    margin-right: 40px;
+    margin-top: 20px;
+   margin-bottom: 0px;*/
+}

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>مدیریت اضافه‌کاری</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- کتابخانه‌های مورد نیاز -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/pwt-date@1.1.1/dist/index.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment-jalaali@0.9.2/build/moment-jalaali.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment-timezone@0.5.43/builds/moment-timezone-with-data.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pwt-date@1.1.1/dist/index.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>مدیریت اضافه‌کاری</h1>
+    </header>
+
+    <!-- داشبورد -->
+    <section id="dashboard" class="card">
+      <h2>داشبورد ماه جاری</h2>
+      <div class="stats">
+        <div class="stat">
+          <h3 id="total-hours">0.00</h3>
+          <p>مجموع ساعات</p>
+        </div>
+        <div class="stat">
+          <h3 id="total-amount">0</h3>
+          <p>مجموع مبلغ (ریال)</p>
+        </div>
+        <div class="stat">
+          <h3 id="total-days">0</h3>
+          <p>تعداد روزهای اضافه‌کاری</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- فرم ثبت رکورد -->
+    <section id="form-section" class="card">
+      <h2>ثبت رکورد جدید</h2>
+      <form id="overtime-form">
+        <label for="date">تاریخ شمسی:</label>
+        <input type="text" id="date" placeholder="انتخاب تاریخ" />
+        <span id="day-name" style="margin-right: 10px; color: #bb86fc"></span>
+
+        <label for="start-time">ساعت شروع (24 ساعته):</label>
+        <input type="time" id="start-time" required />
+
+        <label for="end-time">ساعت پایان (24 ساعته):</label>
+        <input type="time" id="end-time" required />
+
+        <label for="rate">مبلغ دستمزد به ازای هر ساعت (ریال):</label>
+        <input type="text" id="rate" placeholder="مثال: 50000" required />
+
+        <button type="submit">ثبت رکورد</button>
+      </form>
+    </section>
+
+    <!-- فیلترها -->
+    <section id="filters" class="card">
+      <h2>فیلتر گزارش</h2>
+      <label for="month-filter">ماه شمسی:</label>
+      <select id="month-filter">
+        <option value="">همه ماه‌ها</option>
+      </select>
+
+      <label for="year-filter">سال شمسی:</label>
+      <select id="year-filter">
+        <option value="">همه سال‌ها</option>
+      </select>
+    </section>
+
+    <!-- جدول گزارش -->
+    <section id="report" class="card">
+      <h2>گزارش ماهانه</h2>
+      <div style="margin-bottom: 20px">
+        <button
+          id="export-btn"
+          style="
+            padding: 10px 20px;
+            background-color: #03dac6;
+            color: #121212;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+          "
+        >
+          📥 دانلود اکسل
+        </button>
+      </div>
+      <table id="overtime-table">
+        <thead>
+          <tr>
+            <th>تاریخ شمسی</th>
+            <th>روز هفته</th>
+            <th>ساعت شروع</th>
+            <th>ساعت پایان</th>
+            <th>تعداد ساعات</th>
+            <th>مبلغ کل (ریال)</th>
+            <th>عملیات</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+          <!-- رکوردها اینجا نمایش داده می‌شوند -->
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4"><strong>مجموع کل</strong></td>
+            <td id="report-total-hours"><strong>0.00</strong></td>
+            <td id="report-total-amount"><strong>0</strong></td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

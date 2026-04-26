@@ -1,0 +1,46 @@
+@font-face {
+  font-family: vazir-1;
+  src: url(../font/Vazir-Medium.eot) format(ٌ "eot"),
+    url(../font/Vazir-Medium.woff) format("woff"),
+    url(../font/Vazir-Medium.woff2) format("woff2");
+  font-weight: bold;
+  font-style: italic;
+}
+* {
+  font-family: vazir-1;
+  
+  /* برای تغییر سایز فونت */
+  font-size: 20px;
+  font-variant: small-caps;
+}
+body{
+    
+    padding: 5px;
+    box-sizing: border-box;
+}
+h1{
+    color: blue;
+}
+.img{
+    width: 150px;
+}
+.div1{
+    text-align: justify;
+}
+.button1{
+    background-color: orange;
+    color: #fff;
+    border: 3px dashed;
+    border-radius:14px 4px;
+    display: block;
+}
+.test1{
+    color: #a44848;
+
+}
+.div2{
+    background-color: blue;
+    margin: 5px;
+    color: #fff;
+    display: inline-block;
+}

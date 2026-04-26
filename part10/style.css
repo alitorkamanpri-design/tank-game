@@ -1,0 +1,126 @@
+@font-face {
+  font-family: vazir-1;
+  src: url(../font/Vazir-Medium.eot) format(ٌ "eot"),
+    url(../font/Vazir-Medium.woff) format("woff"),
+    url(../font/Vazir-Medium.woff2) format("woff2");
+  font-weight: bold;
+  font-style: italic;
+}
+/* برای اعمال فونت روی تمام سند این را حتما باید بزاریم */
+* {
+  font-family: vazir-1;
+  /* برای تغییر سایز فونت */
+  font-size: 15px;
+  font-variant: small-caps;
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  /* ریست تگ a است که تمام خط های زیر لینک را برمیدارد */
+  text-decoration: none;
+}
+nav {
+  background-color: #efefef;
+  /* برای اینکه متن نسبت به تگ والدش وسط چین بشه */
+  /* /* text-align: center; */
+}
+.test li {
+  /* برای فاصله متن درون تگ از هم دیگه  */
+  /* margin: 0 5px; */
+  padding: 0px 5px;
+  /* برای اینکه عناصر جلوی هم دیگه قرار بگیرن */
+  display: inline;
+  /* برای اینکه بولت ها نمایش داده نشوند */
+  list-style: none;
+}
+.test li a:hover {
+  background-color: rgb(11, 164, 247);
+}
+/* برای اینکه اگه با موس روی متن رفتیم این استایل روی آن اجرا شود */
+.test li a:hover {
+  /* اگه به تگ والد و تگ فرزند یک مقدار بدهی باهم تراز میشوند و استایل بیرون نمیزند */
+  padding: 0;
+  color: #b3ff02;
+  border-bottom: 1px solid red;
+}
+/* برای زمانی که با موس روی عنصر نگهداریم یا کلید کنیم وارد صفحه جدید شود آن رنگش تغییر میکند */
+.test li:active {
+  background-color: rgb(252, 246, 246);
+}
+/* برای اینکه نمایش دهد ما قبلا روی کدام لینک ها کیلید کرده ایم */
+.test li a:visited{
+    color: #000000;
+}
+/* برای اینکه روی کادر متن زدیم کادر دور آن هنگام انتظار تغیر کند */
+.input:focus{
+    border: 3px solid blue;
+    /* حالت بردر پیش فرض اینپوت را حذف میکند */
+    outline: none;
+}
+.div{
+  background-color: blue;
+  width: 200px;
+  height: 200px;
+  color: #fff;
+  /* تگ والد اجازه میدهد عنصر دیگری درون آن حرکت کند */
+  position: relative;
+  margin: 3px;
+}
+.div-1{
+
+  background-color: #b3ff02;
+  color: #000000;
+width: 100px;
+height: 50px;
+/* به عنصر اجازه میدهد درون تگ والد خود حرکت کند */
+position: absolute;
+top:0;
+left: 0;
+}
+.div-2{
+  background-color: red;
+  width: 100px;
+  margin: 5px;
+  /* برای اینکه یک عنصر را ئر صفحه فیکس کند حتی اگر اسکرول کردیم جاجا نشود */
+  position: fixed; 
+  
+  bottom: 10px;
+}
+.i{
+  color: rgb(27, 27, 28);
+  text-align: center;
+ position: fixed;
+  bottom: 20px;
+  left:50%;
+  background-color: rgb(172, 188, 182);
+  border-radius: 3px;
+}
+.test2 li{
+    display: block;
+    
+}
+.test1{
+    position: relative;
+
+}
+.test2{
+ 
+    position: absolute;
+    background-color: #efefef;
+    top: 25px;
+    right: 6px;
+    display: none;
+    border-radius: 6px;
+    padding: 8px;
+max-width:100%;  
+ /* background: rgba(255, 255, 255, 0.2); شفافیت */
+     
+}
+
+.test1:hover .test2{
+    display: block;
+
+}

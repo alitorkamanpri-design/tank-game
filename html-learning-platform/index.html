@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>آموزش کامل HTML</title>
+    <!-- استفاده از فونت وزیرمتن برای تایپوگرافی استاندارد فارسی -->
+    <link
+      href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- هدر بالای صفحه -->
+    <header class="top-header">
+      <div class="header-right">
+        <button id="mobile-menu-btn" class="menu-btn">☰</button>
+        <h1 class="logo">آموزش کامل <span>HTML</span></h1>
+      </div>
+      <div class="header-left">
+        <div class="search-container">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="جستجوی تگ‌ها (مثلا div)..."
+          />
+        </div>
+        <nav class="top-nav">
+          <button
+            onclick="scrollToSection('reference-section')"
+            class="nav-btn"
+          >
+            آموزش تگ‌ها
+          </button>
+          <button onclick="scrollToSection('practice-section')" class="nav-btn">
+            تمرین‌ها
+          </button>
+          <button
+            onclick="scrollToSection('playground-section')"
+            class="nav-btn"
+          >
+            آزمایشگاه
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="main-layout">
+      <!-- منوی کناری (Sidebar) -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">دسته‌بندی‌ها</div>
+        <ul id="sidebar-nav" class="category-list">
+          <!-- محتوای منوی کناری توسط JS تولید می‌شود -->
+        </ul>
+      </aside>
+
+      <!-- محتوای اصلی -->
+      <main class="main-content">
+        <!-- بخش آموزش تگ‌ها -->
+        <section id="reference-section" class="content-section">
+          <!-- محتوای تگ‌ها توسط JS در اینجا قرار می‌گیرد -->
+        </section>
+
+        <!-- بخش تمرین‌ها -->
+        <section id="practice-section" class="content-section">
+          <h2 class="section-title">تمرین‌ها</h2>
+          <p class="section-desc">
+            دانش خود را با این تمرین‌های ساختاریافته محک بزنید.
+          </p>
+          <div id="practice-container">
+            <!-- تمرین‌ها توسط JS تولید می‌شوند -->
+          </div>
+        </section>
+
+        <!-- بخش آزمایشگاه HTML -->
+        <section id="playground-section" class="content-section">
+          <h2 class="section-title">آزمایشگاه HTML</h2>
+          <p class="section-desc">
+            کد HTML خود را بنویسید و نتیجه را به صورت زنده مشاهده کنید.
+          </p>
+          <div class="playground-container">
+            <div class="playground-toolbar">
+              <button id="btn-run-playground" class="btn primary">
+                اجرای کد
+              </button>
+              <button id="btn-reset-playground" class="btn secondary">
+                بازنشانی
+              </button>
+            </div>
+            <div class="playground-split">
+              <div class="playground-editor-wrapper">
+                <textarea id="playground-editor" spellcheck="false"></textarea>
+              </div>
+              <div class="playground-preview-wrapper">
+                <iframe id="playground-preview"></iframe>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            background-color: rgb(181, 196, 196);
+            width:400px;
+        
+            display: flex;
+            align-items: center;
+            /* برای اینکه بین عناصر فاصله بندازیم  */
+            /* flex-direction:row;     */
+            /* برای چینش درست عناصر  */
+            /* align-items:flex-start; */
+            /* برای اینکه عناصر چجوری جایگزاری بشن در یک خط */
+            /* flex-wrap:wrap; */
+        }
+        .box{
+            background-color: antiquewhite;
+            border: 1px solid black;
+           width: 200px;
+             
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- style="flex-grow:3;"  این مقدار فضای بین عناصر تایین میکند  -->
+         <!-- flex-shrink:0;این مقدار باعث میشود که بگیم موقع کم شدن فضا هر آیتم کوچیک شود یا ن -->
+         <!-- flex-basis:200px میگه هر عنصر چقدر از فضای 100درصد بگیره  -->
+         <!-- { flex: 0 0 200px; }   /* نه grow نه shrink */ این مقدار یعنی که اول چقدر فضا بین عنصر بگیره دوم درصورت نبود چقدر کوچیک بشه و سوم عرض چقدر باشه  -->
+ <!-- order:5  با این مقدار میتوان بدون جابجایی تگ عنصر در سند جابجا کرد  -->
+         <!--align-self:  با این مقدار میتوان با اینکه مقدار وسط چین به کانتینر دادیم اما هر المان جدا مقدار دهی کنیم   -->
+ <div class="box" style="">1</div>
+  <div class="box" style="">2</div>
+  <div class="box" style="">3</div>
+ <div class="box" style="" >4</div>
+  <div class="box">5</div>
+</div>
+    
+</body>
+</html>

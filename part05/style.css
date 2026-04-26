@@ -1,0 +1,24 @@
+/* برای تغیر فونت سند  */
+@font-face {
+  font-family: vazir-1;
+  src: url(../font/Vazir-Medium.eot) format(ٌ "eot"),
+    url(../font/Vazir-Medium.woff) format("woff"),
+    url(../font/Vazir-Medium.woff2) format("woff2");
+  font-weight: bold;
+  font-style: italic;
+}
+/* برای اعمال فونت روی تمام سند این را حتما باید بزاریم */
+* {
+  font-family: vazir-1;
+  font-style: italic;
+  /* برای تغییر سایز فونت */
+  font-size: 27px;
+ font-variant: small-caps;
+}
+/* فونت گوگل */
+.a{
+ font-family: "Playwrite VN Guides", cursive;
+  font-weight: 400;
+  font-style: normal;
+  /* font-family: "Roboto", sans-serif; */
+}

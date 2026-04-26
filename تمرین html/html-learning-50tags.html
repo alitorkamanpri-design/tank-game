@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>آموزش تعاملی 50 تگ HTML</title>
+
+    <style>
+      body {
+        font-family: tahoma;
+        background: #0f172a;
+        color: #e2e8f0;
+        margin: 0;
+        padding: 30px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 120px 1.5fr 1.5fr 1fr;
+        gap: 15px;
+        background: #1e293b;
+        padding: 16px;
+        margin-bottom: 14px;
+        border-radius: 12px;
+        align-items: start;
+        transition: 0.3s;
+      }
+
+      .row:hover {
+        transform: scale(1.02);
+        background: #334155;
+      }
+
+      .tag {
+        font-family: monospace;
+        font-size: 18px;
+        color: #38bdf8;
+        font-weight: bold;
+      }
+
+      .desc {
+        font-size: 14px;
+        line-height: 1.8;
+      }
+
+      .code {
+        background: #020617;
+        padding: 12px;
+        border-radius: 8px;
+        font-family: monospace;
+        font-size: 13px;
+        direction: ltr;
+        white-space: pre-wrap;
+      }
+
+      .preview {
+        background: #020617;
+        padding: 12px;
+        border-radius: 8px;
+        min-height: 40px;
+      }
+
+      button {
+        padding: 6px 12px;
+        border: none;
+        background: #2563eb;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      input {
+        padding: 6px;
+        border-radius: 6px;
+        border: none;
+      }
+
+      .box {
+        width: 60px;
+        height: 60px;
+        background: orange;
+      }
+
+      .red {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>آموزش تصویری و تعاملی HTML (۵۰ تگ مهم)</h1>
+
+    <div class="container" id="tags"></div>
+
+    <script>
+      const tags = [
+        {
+          tag: "h1",
+          desc: "تگ h1 برای ساخت بزرگترین عنوان صفحه استفاده می‌شود. موتورهای جستجو و کاربران از این تگ برای فهم موضوع اصلی صفحه استفاده می‌کنند.",
+          code: `<h1>آموزش برنامه نویسی</h1>`,
+          preview: `<h1>آموزش برنامه نویسی</h1>`,
+        },
+
+        {
+          tag: "p",
+          desc: "تگ p برای نوشتن پاراگراف استفاده می‌شود. هر متن طولانی معمولاً داخل یک پاراگراف قرار می‌گیرد.",
+          code: `<p>من در حال یادگیری HTML هستم</p>`,
+          preview: `<p>من در حال یادگیری HTML هستم</p>`,
+        },
+
+        {
+          tag: "a",
+          desc: "تگ a برای ساخت لینک استفاده می‌شود. با آن می‌توان به صفحات دیگر یا سایت‌های دیگر رفت.",
+          code: `<a href="https://google.com">رفتن به گوگل</a>`,
+          preview: `<a href="https://google.com" target="_blank">رفتن به گوگل</a>`,
+        },
+
+        {
+          tag: "img",
+          desc: "این تگ برای نمایش تصویر در صفحه وب استفاده می‌شود. ویژگی src مسیر تصویر را مشخص می‌کند.",
+          code: `<img src="https://picsum.photos/100">`,
+          preview: `<img src="https://picsum.photos/100">`,
+        },
+
+        {
+          tag: "ul / li",
+          desc: "برای ساخت لیست استفاده می‌شود. ul لیست و li هر آیتم داخل لیست است.",
+          code: `<ul>
+<li>سیب</li>
+<li>موز</li>
+<li>پرتقال</li>
+</ul>`,
+          preview: `<ul><li>سیب</li><li>موز</li><li>پرتقال</li></ul>`,
+        },
+
+        {
+          tag: "button",
+          desc: "این تگ یک دکمه می‌سازد. می‌توان با JavaScript کاری انجام داد وقتی روی آن کلیک شود.",
+          code: `<button onclick="alert('سلام')">کلیک کن</button>`,
+          preview: `<button onclick="alert('سلام')">کلیک کن</button>`,
+        },
+
+        {
+          tag: "input",
+          desc: "برای گرفتن اطلاعات از کاربر استفاده می‌شود مثل نام یا ایمیل.",
+          code: `<input placeholder="نام خود را وارد کنید">`,
+          preview: `<input placeholder="نام خود را وارد کنید">`,
+        },
+
+        {
+          tag: "div",
+          desc: "تگ div یک جعبه برای نگهداری عناصر دیگر است و در طراحی صفحه بسیار استفاده می‌شود.",
+          code: `<div class="box"></div>`,
+          preview: `<div class="box"></div>`,
+        },
+
+        {
+          tag: "span",
+          desc: "برای تغییر استایل بخشی از متن بدون شکستن ساختار پاراگراف استفاده می‌شود.",
+          code: `<p>من <span class="red">HTML</span> دوست دارم</p>`,
+          preview: `<p>من <span class="red">HTML</span> دوست دارم</p>`,
+        },
+
+        {
+          tag: "strong",
+          desc: "برای مهم نشان دادن متن استفاده می‌شود و معمولاً آن را بولد می‌کند.",
+          code: `<strong>متن مهم</strong>`,
+          preview: `<strong>متن مهم</strong>`,
+        },
+      ];
+
+      const container = document.getElementById("tags");
+
+      tags.forEach((t) => {
+        const row = document.createElement("div");
+        row.className = "row";
+
+        row.innerHTML = `
+
+<div class="tag">${t.tag}</div>
+
+<div class="desc">${t.desc}</div>
+
+<div class="code">${t.code.replaceAll("<", "&lt;").replaceAll(">", "&gt;")}</div>
+
+<div class="preview">${t.preview}</div>
+
+`;
+
+        container.appendChild(row);
+      });
+    </script>
+  </body>
+</html>

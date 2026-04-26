@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>💼 مدیریت اضافه‌کاری</title>
+    <link rel="stylesheet" href="style_v2.css" />
+    <!-- کتابخانه‌های مورد نیاز -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/persian-datepicker@1.6.1/dist/css/persian-datepicker.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment-jalaali@0.9.2/build/moment-jalaali.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/persian-datepicker@1.6.1/dist/js/persian-datepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>💼 مدیریت اضافه‌کاری</h1>
+      <p class="subtitle">
+        سیستم مدیریت و ثبت اضافه‌کاری‌ها - نسخه 2.0 Responsive
+      </p>
+    </header>
+
+    <!-- داشبورد -->
+    <section id="dashboard" class="card">
+      <h2>📊 داشبورد ماه جاری</h2>
+      <div class="stats">
+        <div class="stat">
+          <h3 id="total-hours">0.00</h3>
+          <p>⏱️ مجموع ساعات</p>
+        </div>
+        <div class="stat">
+          <h3 id="total-amount">0</h3>
+          <p>💰 مجموع درآمد</p>
+        </div>
+        <div class="stat">
+          <h3 id="total-days">0</h3>
+          <p>📅 تعداد روزها</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- فرم ثبت رکورد -->
+    <section id="form-section" class="card">
+      <h2>➕ ثبت رکورد جدید</h2>
+      <form id="overtime-form" onsubmit="return false;">
+        <div class="form-group">
+          <label for="date">📅 تاریخ شمسی (خودکار):</label>
+          <input type="text" id="date" placeholder="تاریخ شمسی" readonly />
+          <p id="day-name" class="day-display"></p>
+        </div>
+
+        <div class="form-group">
+          <label for="date-picker">📆 انتخاب تاریخ:</label>
+          <input type="date" id="date-picker" required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="start-time">⏰ ساعت شروع:</label>
+            <input type="time" id="start-time" required />
+          </div>
+
+          <div class="form-group">
+            <label for="end-time">🏁 ساعت پایان:</label>
+            <input type="time" id="end-time" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="rate">💵 مبلغ دستمزد (ریال/ساعت):</label>
+          <input type="text" id="rate" placeholder="مثال: 50000" required />
+        </div>
+
+        <div class="form-actions">
+          <button id="submit-btn" type="button" class="btn-primary">
+            ✓ ثبت رکورد
+          </button>
+          <button type="reset" class="btn-secondary">🔄 پاک کن</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- فیلترها -->
+    <section id="filters" class="card">
+      <h2>🔍 فیلتر و گزارش</h2>
+      <div class="filter-group">
+        <div class="filter-item">
+          <label for="month-filter">ماه شمسی:</label>
+          <select id="month-filter">
+            <option value="">همه ماه‌ها</option>
+          </select>
+        </div>
+
+        <div class="filter-item">
+          <label for="year-filter">سال شمسی:</label>
+          <select id="year-filter">
+            <option value="">همه سال‌ها</option>
+          </select>
+        </div>
+
+        <div class="filter-item">
+          <button id="export-btn" class="btn-export">📊 دانلود Excel</button>
+          <button id="clear-all-btn" class="btn-danger">🗑️ حذف همه</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- جدول گزارش -->
+    <section id="report" class="card">
+      <h2>📋 گزارش تفصیلی</h2>
+      <div class="table-wrapper">
+        <table id="overtime-table" class="show">
+          <thead>
+            <tr>
+              <th>تاریخ شمسی</th>
+              <th>روز هفته</th>
+              <th>شروع</th>
+              <th>پایان</th>
+              <th>ساعات</th>
+              <th>درآمد</th>
+              <th>عملیات</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <!-- رکوردها اینجا نمایش داده می‌شوند -->
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4"><strong>مجموع کل</strong></td>
+              <td id="report-total-hours"><strong>0.00</strong></td>
+              <td id="report-total-amount"><strong>0</strong></td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div id="empty-message" class="empty-message">
+        📌 هیچ رکوردی وجود ندارد. اول رکورد ثبت کنید!
+      </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer>
+      <p>
+        💾 تمام داده‌ها محلی ذخیره می‌شوند | 🔒 بدون نیاز به اتصال اینترنت | 🚀
+        نسخه 2.0
+      </p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

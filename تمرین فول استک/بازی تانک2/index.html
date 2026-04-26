@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tank Defense - 2D Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="mainMenu">
+      <div class="menu-content">
+        <h1 class="game-title">TANK DEFENSE</h1>
+        <p class="game-subtitle">Defend Your Base</p>
+
+        <div class="difficulty-selector">
+          <h3>Select Difficulty</h3>
+          <div class="difficulty-buttons">
+            <button class="diff-btn" data-difficulty="easy">Easy</button>
+            <button class="diff-btn selected" data-difficulty="normal">
+              Normal
+            </button>
+            <button class="diff-btn" data-difficulty="hard">Hard</button>
+          </div>
+        </div>
+
+        <button id="startBtn" class="menu-btn">START GAME</button>
+
+        <div class="controls-info">
+          <p><strong>Controls:</strong></p>
+          <p>← → Arrow Keys: Rotate Tank</p>
+          <p>SPACE: Shoot</p>
+          <p>P: Pause</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="gameScreen" style="display: none">
+      <div id="gameWrapper">
+        <div id="sidebar">
+          <div class="stat-panel">
+            <div class="stat-label">SCORE</div>
+            <div id="score" class="stat-value">0</div>
+          </div>
+          <div class="stat-panel">
+            <div class="stat-label">LIVES</div>
+            <div id="lives" class="stat-value">3</div>
+          </div>
+          <div class="stat-panel">
+            <div class="stat-label">WAVE</div>
+            <div id="wave" class="stat-value">1</div>
+          </div>
+          <div class="stat-panel">
+            <div class="stat-label">HEALTH</div>
+            <div id="healthBar">
+              <div id="healthFill"></div>
+            </div>
+          </div>
+          <div id="powerups" class="stat-panel">
+            <div class="stat-label">POWER-UPS</div>
+            <div id="powerupIcons"></div>
+          </div>
+        </div>
+        <div id="canvasContainer">
+          <canvas id="gameCanvas"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div id="pauseOverlay" style="display: none">
+      <div class="pause-content">
+        <h2>PAUSED</h2>
+        <button id="resumeBtn" class="menu-btn">Resume</button>
+        <button id="mainMenuBtn" class="menu-btn">Main Menu</button>
+      </div>
+    </div>
+
+    <script src="game.js"></script>
+  </body>
+</html>

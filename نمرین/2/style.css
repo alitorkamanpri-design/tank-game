@@ -1,0 +1,53 @@
+
+@font-face {
+  font-family: vazir-1;
+  src:url(../font/Vazir-Medium.eot) format("eot"),
+    url(../font/Vazir-Medium.woff) format("woff"),
+    url(../font/Vazir-Medium.woff2) format("woff2");
+  font-weight: bold;
+  font-style: italic;
+}
+
+* {
+  font-family: vazir-1;
+  font-size: 20px;
+  font-variant: small-caps;
+}
+body{
+    margin: 0px;
+    background-color: #f5f5f5;
+  padding: 20px;
+  text-align: center;
+}
+
+.div img{
+    width: 50%;
+}
+.div{
+    display: inline-block; 
+     background-color: white;
+  width: 300px;
+ margin: 20px auto; 
+   padding: 15px;
+   /* برای گرد کردن دور کادر است */
+  border-radius: 12px; 
+  /* برای سایه دادن */
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+}
+.test{
+   font-weight: bold;
+   font-size: 30px;
+}
+.button1{
+    border-radius: 6px;
+    border: none;
+    color: #f5f5f5;
+    background-color: rgb(81, 114, 215);
+    padding: 5px 10px;
+    margin:  auto;
+    cursor: pointer;
+
+}
+button:hover{
+    background-color: #074a93;
+}
